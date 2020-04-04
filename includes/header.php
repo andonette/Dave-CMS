@@ -17,17 +17,3 @@
   <link type="text/css" href="css/blk-design-system.min.css" rel="stylesheet">
 </head>
 <body>
-  <h1>Hello, world!</h1>
-
-  <!-- Core -->
-  <script src="js/core/jquery.min.js"></script>
-  <script src="js/core/popper.min.js"></script>
-  <script src="js/core/bootstrap.min.js"></script>
-
-  <!-- Optional plugins -->
-
-
-  <!-- BLK• JS -->
-  <script src="js/blk-design-system.js"></script>
-  </body>
-</html>
