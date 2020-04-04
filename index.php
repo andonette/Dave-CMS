@@ -7,8 +7,13 @@
        <div class="container">
          <div class="row">
            <div class="col-md-10 ml-auto mr-auto">
+
              <h2 class="title">Latest Blogposts 3</h2>
              <br />
+             <?php
+            $query = "SELECT * FROM posts";
+            $select_all_categories_query = mysqli_query($connection, $query);
+              ?>
              <div class="card card-blog card-plain blog-horizontal">
                <div class="row">
                  <div class="col-lg-4">
