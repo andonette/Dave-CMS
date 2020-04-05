@@ -33,16 +33,51 @@
     </div>
 
     <div class="sidebar-wrapper">
-      <ul class="nav">
-        <li class="nav-item active  ">
-            <a class="nav-link" href="../">
-                <i class="tim-icons icon-chart-pie-36"></i>
-                <p>Front End</p>
+        <ul class="nav">
+          <li class="active ">
+            <a href="./dashboard.html">
+              <i class="fa fa-star"></i>
+              <p>Dashboard</p>
             </a>
-        </li>
+          </li>
+          <li>
+            <a href="./icons.html">
+              <i class="tim-icons icon-atom"></i>
+              <p>Posts</p>
+            </a>
+          </li>
+          <li>
+            <a href="./map.html">
+              <i class="tim-icons icon-pin"></i>
+              <p>Categories</p>
+            </a>
+          </li>
+          <li>
+            <a href="./notifications.html">
+              <i class="tim-icons icon-bell-55"></i>
+              <p>Users</p>
+            </a>
+          </li>
+          <li>
+            <a href="./user.html">
+              <i class="tim-icons icon-single-02"></i>
+              <p>Profile</p>
+            </a>
+          </li>
+          <li>
+            <a href="./tables.html">
+              <i class="tim-icons icon-puzzle-10"></i>
+              <p>Admin</p>
+            </a>
+          </li>
+          <li>
+            <a href="../">
+              <i class="tim-icons icon-puzzle-10"></i>
+              <p>Front End</p>
+            </a>
+          </li>
 
-         <!-- your sidebar here -->
-      </ul>
+        </ul>
     </div>
   </div>
   <div class="main-panel">
