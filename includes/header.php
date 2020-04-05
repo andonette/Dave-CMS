@@ -34,12 +34,15 @@
                     while ($row = mysqli_fetch_assoc($select_all_categories_query)) {
                         $cat_title = $row['cat_title'];
                         ?>
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link" href="#"><?php echo $cat_title; ?></a>
                         </li>
                         <?php
                     }
                     ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin">Admin</a>
+                    </li>
                 </ul>
             </div>
         </div>
