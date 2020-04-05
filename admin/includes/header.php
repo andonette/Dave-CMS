@@ -1,3 +1,4 @@
+<?php include '../includes/db.php'; ?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -55,7 +56,7 @@
             </a>
           </li>
           <li>
-            <a href="./map.html">
+            <a href="categories.php">
               <i class="tim-icons icon-pin"></i>
               <p>Categories</p>
             </a>
