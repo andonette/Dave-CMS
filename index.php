@@ -12,99 +12,47 @@
              <br />
              <?php
             $query = "SELECT * FROM posts";
-            $select_all_categories_query = mysqli_query($connection, $query);
+            $select_all_posts_query = mysqli_query($connection, $query);
+            while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
+                $post_title = $row['post_title'];
+                $post_author = $row['post_author'];
+                $post_date = $row['post_date'];
+                $post_image = $row['post_image'];
+                $post_content = $row['post_content'];
+                $post_author_image = $row['post_author_image'];
+                ?>
+                <div class="card card-blog card-plain blog-horizontal">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <div class="card-image">
+                        <a href="javascript:;">
+                          <img class="img rounded" src="assets/img/serge-kutuzov.jpg" />
+                        </a>
+                      </div>
+                    </div>
+                    <div class="col-lg-8">
+                      <div class="card-body">
+                        <h3 class="card-title">
+                          <a href="#"><?php echo $post_title; ?></a>
+                        </h3>
+                        <p class="card-description">
+                          <?php echo $post_content; ?>
+                          <a href="javascript:;"> Read More </a>
+                        </p>
+                        <div class="author">
+                          <img src="<?php echo $post_image; ?>" alt="..." class="avatar img-raised">
+                          <div class="text">
+                            <span class="name"><?php echo $post_title; ?></span>
+                            <div class="meta"><?php echo $post_date; ?></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <?php
+                }
               ?>
-             <div class="card card-blog card-plain blog-horizontal">
-               <div class="row">
-                 <div class="col-lg-4">
-                   <div class="card-image">
-                     <a href="javascript:;">
-                       <img class="img rounded" src="assets/img/serge-kutuzov.jpg" />
-                     </a>
-                   </div>
-                 </div>
-                 <div class="col-lg-8">
-                   <div class="card-body">
-                     <h3 class="card-title">
-                       <a href="javascript:;">Rover raised $65 million for pet sitting</a>
-                     </h3>
-                     <p class="card-description">
-                       Finding temporary housing for your dog should be as easy as renting an Airbnb. That’s the idea behind Rover, which raised $65 million to expand its pet sitting and dog-walking businesses..Finding temporary housing for your dog should be as easy as renting an Airbnb. That’s the idea behind Rover, which raised $65 million to expand its pet sitting and dog-walking businesses..
-                       <a href="javascript:;"> Read More </a>
-                     </p>
-                     <div class="author">
-                       <img src="assets/img/julie.jpg" alt="..." class="avatar img-raised">
-                       <div class="text">
-                         <span class="name">Tom Hanks</span>
-                         <div class="meta">Drawn on 23 Jan</div>
-                       </div>
-                     </div>
-                   </div>
-                 </div>
-               </div>
-             </div>
-             <div class="card card-blog card-plain blog-horizontal">
-               <div class="row">
-                 <div class="col-lg-4">
-                   <div class="card-image">
-                     <a href="javascript:;">
-                       <img class="img rounded" src="assets/img/trae-gould.jpg" />
-                     </a>
-                   </div>
-                 </div>
-                 <div class="col-lg-8">
-                   <div class="card-body">
-                     <h3 class="card-title">
-                       <a href="javascript:;">MateLabs mixes machine learning with IFTTT</a>
-                     </h3>
-                     <p class="card-description">
-                       If you’ve ever wanted to train a machine learning model and integrate it with IFTTT, you now can with a new offering from MateLabs. MateVerse, a platform where novices can spin out machine...If you’ve ever wanted to train a machine learning model and integrate it with IFTTT, you now can with a new offering from MateLabs. MateVerse, a platform where novices can spin out machine...
-                       <a href="javascript:;"> Read More </a>
-                     </p>
-                     <div class="author">
-                       <img src="assets/img/james.jpg" alt="..." class="avatar img-raised">
-                       <div class="text">
-                         <span class="name">Tom Hanks</span>
-                         <div class="meta">Drawn on 23 Jan</div>
-                       </div>
-                     </div>
-                   </div>
-                 </div>
-               </div>
-             </div>
-             <div class="card card-blog card-plain blog-horizontal">
-               <div class="row">
-                 <div class="col-lg-4">
-                   <div class="card-image">
-                     <a href="javascript:;">
-                       <img class="img rounded" src="assets/img/mark-harrison.jpg" />
-                     </a>
-                   </div>
-                 </div>
-                 <div class="col-lg-8">
-                   <div class="card-body">
-                     <h3 class="card-title">
-                       <a href="javascript:;">US venture investment ticks up in Q2 2017</a>
-                     </h3>
-                     <p class="card-description">
-                       Venture investment in U.S. startups rose sequentially in the second quarter of 2017, boosted by large, late-stage financings and a few outsized early-stage rounds in tech and healthcare..enture investment in U.S. startups rose sequentially in the second quarter of 2017, boosted by large, late-stage financings and a few outsized early-stage rounds in tech and healthcare..
-                       <a href="javascript:;"> Read More </a>
-                     </p>
-                     <div class="author">
-                       <img src="assets/img/michael.jpg" alt="..." class="avatar img-raised">
-                       <div class="text">
-                         <span class="name">Tom Hanks</span>
-                         <div class="meta">Drawn on 23 Jan</div>
-                       </div>
-                     </div>
-                   </div>
-                 </div>
-               </div>
-             </div>
-           </div>
-         </div>
-       </div>
-     </div>
         </div>
         <div class="col-sm-4">
             <!-- Blog Search Well -->
