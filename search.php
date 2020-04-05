@@ -2,50 +2,48 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-8">
-            <h1 class="title">Latest Blogposts</h1>
+            <h1 class="title">Search Results</h1>
             <?php
-            //query the database, select everything from the posts table
-            $query = "SELECT * FROM posts";
-            $select_all_posts_query = mysqli_query($connection, $query);
-            //create variables from the columns in the post table.
-            while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
-                $post_title = $row['post_title'];
-                $post_author = $row['post_author'];
-                $post_date = $row['post_date'];
-                $post_image = $row['post_image'];
-                $post_content = $row['post_content'];
-                $post_author_image = $row['post_author_image'];
-                ?>
-                <div class="card card-blog card-plain blog-horizontal">
+            // if submit  button is pressed
+            if (isset($_POST['submit'])) {
+                // store the contents of the search form into a variable called search
+                $search = $_POST['search'];
+                $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%' ";
+                $search_query = mysqli_query($connection, $query);
+                if (!$search_query) {
+                    die('Query Failed' . mysqli_error($connection));
+                }
+                $count = mysqli_num_rows($search_query);
+                if ($count == 0) {
+                    echo '<h3>Try again, we found no results for "' . $search . '"</h3>';
 
-                    <div class="card-image">
-                        <a href="javascript:;">
-                            <img class="img rounded" src="images/<?php echo $post_image; ?>.jpg" />
-                        </a>
-
-
-                        <div class="card-body">
-                            <h3 class="card-title">
-                                <a href="#"><?php echo $post_title; ?></a>
-                            </h3>
-                            <p class="card-description">
-                                <?php echo $post_content; ?>
-                                <a href="javascript:;"> Read More </a>
-                            </p>
-                            <div class="author">
-                                <img src="images/<?php echo $post_image; ?>.jpg" alt="<?php echo $post_image; ?>" class="avatar img-raised">
-                                <div class="text">
-                                    <span class="name"><?php echo $post_title; ?></span>
-                                    <div class="meta"><?php echo $post_date; ?></div>
+                } else {
+                    echo '<h3>Good going, we found the following results for "' . $search . '":</h3>';
+                    while ($row = mysqli_fetch_assoc($search_query)) {
+                        $post_title = $row['post_title'];
+                        $post_author = $row['post_author'];
+                        $post_date = $row['post_date'];
+                        $post_author_image = $row['post_author_image'];
+                        ?>
+                        <div class="card card-blog card-plain blog-horizontal">
+                                <div class="card-body">
+                                    <h3 class="card-title">
+                                        <a href="#"><?php echo $post_title; ?></a>
+                                    </h3>
+                                    <p class="card-description">
+                                        By <?php echo $post_author; ?> On <?php echo $post_date; ?>
+                                        <a href="javascript:;"> Read More </a>
+                                    </p>
                                 </div>
-
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <?php
+                        <?php
+                    }
+                }
             }
+
             ?>
+
+
         </div>
 
 
