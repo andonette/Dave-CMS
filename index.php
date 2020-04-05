@@ -2,15 +2,8 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-8">
-            <h1>Blog</h1>
-            <div class="section blogs-3">
-       <div class="container">
-         <div class="row">
-           <div class="col-md-10 ml-auto mr-auto">
-
-             <h2 class="title">Latest Blogposts 3</h2>
-             <br />
-             <?php
+            <h1 class="title">Latest Blogposts</h1>
+            <?php
             $query = "SELECT * FROM posts";
             $select_all_posts_query = mysqli_query($connection, $query);
             while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
@@ -22,38 +15,38 @@
                 $post_author_image = $row['post_author_image'];
                 ?>
                 <div class="card card-blog card-plain blog-horizontal">
-                  <div class="row">
-                    <div class="col-lg-4">
-                      <div class="card-image">
+
+                    <div class="card-image">
                         <a href="javascript:;">
-                          <img class="img rounded" src="assets/img/serge-kutuzov.jpg" />
+                            <img class="img rounded" src="images/<?php echo $post_image; ?>.jpg" />
                         </a>
-                      </div>
-                    </div>
-                    <div class="col-lg-8">
-                      <div class="card-body">
-                        <h3 class="card-title">
-                          <a href="#"><?php echo $post_title; ?></a>
-                        </h3>
-                        <p class="card-description">
-                          <?php echo $post_content; ?>
-                          <a href="javascript:;"> Read More </a>
-                        </p>
-                        <div class="author">
-                          <img src="<?php echo $post_image; ?>" alt="..." class="avatar img-raised">
-                          <div class="text">
-                            <span class="name"><?php echo $post_title; ?></span>
-                            <div class="meta"><?php echo $post_date; ?></div>
-                          </div>
+
+
+                        <div class="card-body">
+                            <h3 class="card-title">
+                                <a href="#"><?php echo $post_title; ?></a>
+                            </h3>
+                            <p class="card-description">
+                                <?php echo $post_content; ?>
+                                <a href="javascript:;"> Read More </a>
+                            </p>
+                            <div class="author">
+                                <img src="images/<?php echo $post_image; ?>.jpg" alt="<?php echo $post_image; ?>" class="avatar img-raised">
+                                <div class="text">
+                                    <span class="name"><?php echo $post_title; ?></span>
+                                    <div class="meta"><?php echo $post_date; ?></div>
+                                </div>
+
+                            </div>
                         </div>
-                      </div>
                     </div>
-                  </div>
                 </div>
                 <?php
-                }
-              ?>
+            }
+            ?>
         </div>
+
+
         <div class="col-sm-4">
             <!-- Blog Search Well -->
             <div class="well">
@@ -63,7 +56,7 @@
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="button">
                             <span class="glyphicon glyphicon-search"></span>
-                    </button>
+                        </button>
                     </span>
                 </div>
                 <!-- /.input-group -->
