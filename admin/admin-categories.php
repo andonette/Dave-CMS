@@ -56,7 +56,18 @@ if (isset($_POST['submit'])) {
                                     $cat_id = $row['cat_id'];
                                     echo '<tr>';
                                     echo "<td>{$cat_id}</td>";
-                                    echo "<td>{$cat_title}</td>";
+                                    echo "<td>{$cat_title}</td>";?>
+                                    <td><button type="button" rel="tooltip" class="btn btn-info btn-sm btn-round btn-icon">
+                <i class="tim-icons icon-single-02"></i>
+            </button>
+            <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-round btn-icon">
+                <i class="tim-icons icon-settings"></i>
+            </button>
+            <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-round btn-icon">
+                <i class="tim-icons icon-simple-remove"></i>
+            </button></tr>
+
+                                    <?php
                                     echo '</tr>';
                                 }
                                 ?>

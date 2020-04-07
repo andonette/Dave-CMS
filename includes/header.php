@@ -13,7 +13,7 @@
 
     <!-- Icons -->
     <link href="css/nucleo-icons.css" rel="stylesheet">
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/84146e01c9.js" crossorigin="anonymous"></script>
 
     <!-- BLK• CSS -->
     <link type="text/css" href="css/blk-design-system.min.css" rel="stylesheet">
@@ -42,7 +42,7 @@
                     }
                     ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="admin">Admin</a>
+                        <a class="nav-link" href="admin/admin-index.php">Admin</a>
                     </li>
                 </ul>
             </div>
