@@ -67,6 +67,27 @@ function update_category()
     }
 }
 
+function form_submit_update() {
+    global $connection;
+    if (isset($_GET['update'])) {
+        $cat_id = $_GET['update'];
+        $query = "SELECT * FROM categories WHERE cat_id = " . $cat_id;
+        $update_categories_query = mysqli_query($connection, $query);
+        while ($row = mysqli_fetch_assoc($update_categories_query)) {
+            $cat_title = $row['cat_title'];
+            $cat_id = $row['cat_id'];
+            ?>
+
+            <input type="text" class="form-control mt-2"
+            placeholder="search" name="cat_title" value="<?php if (isset($cat_title)) {
+                echo $cat_title;
+            } ?>">
+
+            <?php
+        }
+    }
+}
+
 function delete_category()
 {
     global $connection;
