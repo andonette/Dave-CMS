@@ -24,17 +24,50 @@ if (isset($_POST['submit'])) {
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-sm-6 mr-auto">
+                            <div class="col-12">
                                 <h1>Categories</h1>
+                            </div>
+                            <div class="col-sm-6 mr-auto">
                                 <form class="form" action="" method="post">
                                     <label for="cat_title">Add Category</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control mt-2" placeholder="search" name="cat_title">
+                                        <input type="text" class="form-control mt-2"
+                                        placeholder="search" name="cat_title">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="submit" name="submit">Add</button>
                                         </div>
                                     </div>
                                 </form>
+                            </div>
+                            <div class="col-sm-6 mr-auto">
+
+                                        <?php
+                                        if (isset($_GET['update'])) {
+                                            $cat_id = $_GET['update'];
+                                            $query = "SELECT * FROM categories WHERE cat_id = " . $cat_id;
+                                            $update_categories_query = mysqli_query($connection, $query);
+                                            while ($row = mysqli_fetch_assoc($update_categories_query)) {
+                                                $cat_title = $row['cat_title'];
+                                                $cat_id = $row['cat_id'];
+                                                ?>
+                                                <form class="form" action="" method="post">
+                                                    <label for="cat_title">Update Category</label>
+                                                    <div class="input-group">
+                                                <input type="text" class="form-control mt-2"
+                                                placeholder="search" name="cat_title" value="<?php if (isset($cat_title)) {
+                                                    echo $cat_title;
+                                                } ?>">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary" type="submit" name="submit">Update</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                                <?php
+                                            }
+                                        }
+
+                                        ?>
+
                             </div>
                         </div>
                     </div>
@@ -45,26 +78,30 @@ if (isset($_POST['submit'])) {
                             <thead>
                                 <th>ID</th>
                                 <th>Category Title</th>
-                                <th>Actions</th>
+                                <th class="text-right">Actions</th>
                             </thead>
                             <tbody>
                                 <?php
                                 $query = "SELECT * FROM categories";
-                                $select_all_categories_query = mysqli_query($connection, $query);
-                                while ($row = mysqli_fetch_assoc($select_all_categories_query)) {
+                                $display_all_categories_query = mysqli_query($connection, $query);
+                                while ($row = mysqli_fetch_assoc($display_all_categories_query)) {
                                     $cat_title = $row['cat_title'];
                                     $cat_id = $row['cat_id'];
                                     echo '<tr>';
                                     echo "<td>{$cat_id}</td>";
                                     echo "<td>{$cat_title}</td>";
                                     ?>
-                                    <td><a href ="admin-categories.php?view=<?php echo $cat_id; ?>" class="btn btn-info btn-sm btn-round btn-icon">
-                                        <i class="fal fa-eye pt-2"></i>
+                                    <td class="text-right">
+                                        <!-- <a href ="admin-categories.php?view=<?php echo $cat_id; ?>"
+                                        class="btn btn-info btn-sm btn-round btn-icon">
+                                        <i class="fal fa-eye pt-2"></i> -->
                                     </a>
-                                    <a href ="admin-categories.php?edit=<?php echo $cat_id; ?>" class="btn btn-success btn-sm btn-round btn-icon">
+                                    <a href ="admin-categories.php?update=<?php echo $cat_id; ?>"
+                                        class="btn btn-success btn-sm btn-round btn-icon">
                                         <i class="fal fa-edit pt-2"></i>
                                     </a>
-                                    <a href ="admin-categories.php?delete=<?php echo $cat_id; ?>" class="btn btn-danger btn-sm btn-round btn-icon">
+                                    <a href ="admin-categories.php?delete=<?php echo $cat_id; ?>"
+                                        class="btn btn-danger btn-sm btn-round btn-icon">
                                         <i class="fal fa-trash-alt pt-2"></i>
                                     </a>
 
