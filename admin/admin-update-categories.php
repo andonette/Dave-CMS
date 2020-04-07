@@ -23,5 +23,5 @@
         <div class="input-group-append">
             <button class="btn btn-primary" type="submit" name="update_category">Update</button>
         </div>
-        </div>
-        </form>
+    </div>
+</form>
