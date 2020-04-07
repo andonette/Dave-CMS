@@ -1,6 +1,6 @@
 <?php include 'includes/admin-header.php'; ?>
 <?php
-if (isset($_POST['submit'])) {
+if (isset($_POST['add_category'])) {
     $category_name = $_POST['cat_title'];
     if ($category_name == "" || empty($category_name)) {
         echo "You didn't enter owt";
@@ -34,7 +34,7 @@ if (isset($_POST['submit'])) {
                                         <input type="text" class="form-control mt-2"
                                         placeholder="search" name="cat_title">
                                         <div class="input-group-append">
-                                            <button class="btn btn-primary" type="submit" name="submit">Add</button>
+                                            <button class="btn btn-primary" type="submit" name="add_category">Add</button>
                                         </div>
                                     </div>
                                 </form>
@@ -58,12 +58,25 @@ if (isset($_POST['submit'])) {
                                                     echo $cat_title;
                                                 } ?>">
                                                 <div class="input-group-append">
-                                                    <button class="btn btn-primary" type="submit" name="submit">Update</button>
+                                                    <button class="btn btn-primary" type="submit" name="update_category">Update</button>
                                                 </div>
                                             </div>
                                         </form>
                                                 <?php
                                             }
+                                        }
+
+                                        if (isset($_POST['update_category'])) {
+                                            $the_cat_title = $_POST['cat_title'];
+                                            echo "update WORKING";
+                                            echo $the_cat_id;
+                                            $query = "UPDATE categories SET cat_title = '" . $the_cat_title . "' WHERE cat_id = '". $cat_id ."' ";
+                                            echo $query;
+                                            $update_category = mysqli_query($connection, $query);
+                                            header("Location: admin-categories.php");
+                                        } else {
+                                                echo "update NOT WORKING";
+                                                echo $query;
                                         }
 
                                         ?>
