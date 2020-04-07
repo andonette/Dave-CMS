@@ -28,14 +28,11 @@ function create_category()
     if (isset($_POST['add_category'])) {
         $category_name = $_POST['cat_title'];
         if ($category_name == "" || empty($category_name)) {
-            echo "You didn't enter owt";
+            echo "Form cannot be blank";
         } else {
             $query = "INSERT INTO categories (cat_title) ";
             $query .= "VALUES ('" . $category_name . "')" ;
-            echo $query;
             $create_category_query = mysqli_query($connection, $query);
-            echo $create_category_query;
-
             if (!$create_category_query) {
                 die('Query Failed' . mysqli_error($connection));
             }
@@ -51,19 +48,15 @@ function update_category()
     }
     if (isset($_GET['update'])) {
         $cat_id = $_GET['update'];
-        echo $cat_id . '<br>';
     }
     if (isset($_POST['update_category'])) {
         $the_cat_title = $_POST['cat_title'];
-        echo "update WORKING";
-        echo $the_cat_id;
         $query = "UPDATE categories SET cat_title = '" . $the_cat_title . "' WHERE cat_id = '". $cat_id ."' ";
-        echo $query;
         $update_category = mysqli_query($connection, $query);
-        //header("Location: admin-categories.php");
-    } else {
-            echo "update NOT WORKING";
-            echo $query;
+        header("Location: admin-categories.php");
+        if (!$update_category) {
+            die('Query Failed' . mysqli_error($connection));
+        }
     }
 }
 
@@ -76,14 +69,11 @@ function form_submit_update() {
         while ($row = mysqli_fetch_assoc($update_categories_query)) {
             $cat_title = $row['cat_title'];
             $cat_id = $row['cat_id'];
-            ?>
-
-            <input type="text" class="form-control mt-2"
-            placeholder="search" name="cat_title" value="<?php if (isset($cat_title)) {
-                echo $cat_title;
-            } ?>">
-
-            <?php
+            echo '<input type="text" class="form-control mt-2"
+            placeholder="search" name="cat_title" value="'.$cat_title.'">';
+            if (!$update_categories_query) {
+                die('Query Failed' . mysqli_error($connection));
+            }
         }
     }
 }
@@ -98,5 +88,8 @@ function delete_category()
         echo $query;
         $delete_category = mysqli_query($connection, $query);
         header("Location: admin-categories.php");
+        if (!$delete_category) {
+            die('Query Failed' . mysqli_error($connection));
+        }
     }
 }
