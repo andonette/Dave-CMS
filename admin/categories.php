@@ -1,20 +1,42 @@
 <?php include 'includes/header.php'; ?>
+<?php
+if (isset($_POST['submit'])) {
+    $category_name = $_POST['cat_title'];
+    if ($category_name == "" || empty($category_name)) {
+        echo "You didn't enter owt";
+    } else {
+        $query = "INSERT INTO categories (cat_title) ";
+        $query .= "VALUES ('" . $category_name . "')" ;
+        echo $query;
+        $create_category_query = mysqli_query($connection, $query);
+        echo $create_category_query;
+
+        if (!$create_category_query) {
+            die('Query Failed' . mysqli_error($connection));
+        }
+    }
+}
+ ?>
     <div class="content">
       <div class="container-fluid">
           <div class="row">
               <div class="col-sm-12">
                   <div class="card">
                      <div class="card-body">
-                         <h1>Categories</h1>
-                         <form class="form" action="search.php" method="post">
-                             <label for="cat_title">Add Category</label>
-                             <div class="input-group">
-                                 <input type="text" class="form-control mt-1" placeholder="search" name="cat_title">
-                                 <div class="input-group-append">
-                                     <button class="btn btn-primary" type="submit" name="submit">Add</button>
-                                 </div>
+                         <div class="row">
+                             <div class="col-sm-6 mr-auto">
+                                 <h1>Categories</h1>
+                                 <form class="form" action="" method="post">
+                                     <label for="cat_title">Add Category</label>
+                                     <div class="input-group">
+                                         <input type="text" class="form-control mt-2" placeholder="search" name="cat_title">
+                                         <div class="input-group-append">
+                                             <button class="btn btn-primary" type="submit" name="submit">Add</button>
+                                         </div>
+                                     </div>
+                                 </form>
                              </div>
-                         </form>
+                         </div>
                      </div>
                   </div><!-- end card -->
                   <div class="card">

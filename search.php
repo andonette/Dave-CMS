@@ -16,7 +16,8 @@
                 $count = mysqli_num_rows($search_query);
                 if ($count == 0) {
                     echo '<h3>Try again, we found no results for "' . $search . '"</h3>';
-
+                } elseif ($earch = "" || empty($search)) {
+                    echo '<h3>Search cannot be empty</h3>';
                 } else {
                     echo '<h3>Good going, we found the following results for "' . $search . '":</h3>';
                     while ($row = mysqli_fetch_assoc($search_query)) {
