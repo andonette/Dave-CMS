@@ -27,8 +27,7 @@
 <script src="js/core/popper.min.js" type="text/javascript"></script>
 <script src="js/core/bootstrap.min.js" type="text/javascript"></script>
 <script src="js/plugins/perfect-scrollbar.jquery.min.js"></script>
-<!--  Google Maps Plugin    -->
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+
 <!-- Chartist JS -->
 <script src="js/plugins/chartjs.min.js"></script>
 <!--  Notifications Plugin    -->

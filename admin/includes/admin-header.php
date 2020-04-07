@@ -1,3 +1,4 @@
+<?php ob_start(); ?>
 <?php include '../includes/db.php'; ?>
 <!doctype html>
 <html lang="en">
@@ -10,7 +11,7 @@
     <!--  Fonts and icons  -->
       <!--     Fonts and icons     -->
 <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
-<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+<script src="https://kit.fontawesome.com/84146e01c9.js" crossorigin="anonymous"></script>
 
     <!-- Black Dashboard CSS -->
     <link href="css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
@@ -56,7 +57,7 @@
             </a>
           </li>
           <li>
-            <a href="categories.php">
+            <a href="admin-categories.php">
               <i class="tim-icons icon-pin"></i>
               <p>Categories</p>
             </a>

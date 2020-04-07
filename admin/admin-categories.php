@@ -1,4 +1,4 @@
-<?php include 'includes/header.php'; ?>
+<?php include 'includes/admin-header.php'; ?>
 <?php
 if (isset($_POST['submit'])) {
     $category_name = $_POST['cat_title'];
@@ -16,32 +16,32 @@ if (isset($_POST['submit'])) {
         }
     }
 }
- ?>
-    <div class="content">
-      <div class="container-fluid">
-          <div class="row">
-              <div class="col-sm-12">
-                  <div class="card">
-                     <div class="card-body">
-                         <div class="row">
-                             <div class="col-sm-6 mr-auto">
-                                 <h1>Categories</h1>
-                                 <form class="form" action="" method="post">
-                                     <label for="cat_title">Add Category</label>
-                                     <div class="input-group">
-                                         <input type="text" class="form-control mt-2" placeholder="search" name="cat_title">
-                                         <div class="input-group-append">
-                                             <button class="btn btn-primary" type="submit" name="submit">Add</button>
-                                         </div>
-                                     </div>
-                                 </form>
-                             </div>
-                         </div>
-                     </div>
-                  </div><!-- end card -->
-                  <div class="card">
-                      <div class="card-body">
-                          <table class="table">
+?>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6 mr-auto">
+                                <h1>Categories</h1>
+                                <form class="form" action="" method="post">
+                                    <label for="cat_title">Add Category</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control mt-2" placeholder="search" name="cat_title">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="submit" name="submit">Add</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- end card -->
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table">
                             <thead>
                                 <th>ID</th>
                                 <th>Category Title</th>
@@ -56,31 +56,41 @@ if (isset($_POST['submit'])) {
                                     $cat_id = $row['cat_id'];
                                     echo '<tr>';
                                     echo "<td>{$cat_id}</td>";
-                                    echo "<td>{$cat_title}</td>";?>
-                                    <td><button type="button" rel="tooltip" class="btn btn-info btn-sm btn-round btn-icon">
-                <i class="tim-icons icon-single-02"></i>
-            </button>
-            <button type="button" rel="tooltip" class="btn btn-success btn-sm btn-round btn-icon">
-                <i class="tim-icons icon-settings"></i>
-            </button>
-            <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-round btn-icon">
-                <i class="tim-icons icon-simple-remove"></i>
-            </button></tr>
+                                    echo "<td>{$cat_title}</td>";
+                                    ?>
+                                    <td><a href ="admin-categories.php?view=<?php echo $cat_id; ?>" class="btn btn-info btn-sm btn-round btn-icon">
+                                        <i class="fal fa-eye pt-2"></i>
+                                    </a>
+                                    <a href ="admin-categories.php?edit=<?php echo $cat_id; ?>" class="btn btn-success btn-sm btn-round btn-icon">
+                                        <i class="fal fa-edit pt-2"></i>
+                                    </a>
+                                    <a href ="admin-categories.php?delete=<?php echo $cat_id; ?>" class="btn btn-danger btn-sm btn-round btn-icon">
+                                        <i class="fal fa-trash-alt pt-2"></i>
+                                    </a>
 
                                     <?php
                                     echo '</tr>';
                                 }
+
+                                if (isset($_GET['delete'])) {
+                                    $the_cat_id = $_GET['delete'];
+                                    echo "WORKING";
+                                    $query = 'DELETE FROM categories WHERE cat_id = ' . $the_cat_id;
+                                    echo $query;
+                                    $delete_category = mysqli_query($connection, $query);
+                                    header("Location: admin-categories.php");
+                                }
                                 ?>
                             </tbody>
-                          </table>
-                      </div>
-                  </div><!-- end card -->
+                        </table>
+                    </div>
+                </div><!-- end card -->
 
 
-              </div>
+            </div>
 
-          </div>
+        </div>
 
-      </div>
     </div>
-<?php include 'includes/footer.php'; ?>
+</div>
+<?php include 'includes/admin-footer.php'; ?>
