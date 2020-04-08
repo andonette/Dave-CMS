@@ -38,6 +38,7 @@ if (isset($_POST['create_post'])) {
     $query .= "'{$post_comment_count}') ";
 
     echo $query;
+    $create_post_query = mysqli_query($connection, $query);
 }
 ?>
 <div class="card">
