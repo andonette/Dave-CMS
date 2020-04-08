@@ -45,18 +45,13 @@
           </li>
           <li class="nav-item dropdown">
          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-           Posts
+           Posts >
          </a>
          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-           <a class="dropdown-item" href="#">Action</a>
+           <a class="dropdown-item" href="admin-posts.php">View Posts</a>
+           <a class="dropdown-item" href="admin-create-posts.php">Add New Post</a>
          </div>
        </li>
-          <li>
-            <a href="./icons.html">
-              <i class="tim-icons icon-atom"></i>
-              <p>Posts</p>
-            </a>
-          </li>
           <li>
             <a href="admin-categories.php">
               <i class="tim-icons icon-pin"></i>
