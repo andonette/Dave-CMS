@@ -123,7 +123,15 @@ function display_posts()
         echo "<td>{$post_id}</td>";
         echo "<td>{$post_author}</td>";
         echo "<td>{$post_title}</td>";
-        echo "<td>{$post_category_id}</td>";
+
+        $query = "SELECT * FROM categories WHERE cat_id = " . $post_category_id;
+        $show_cat_name = mysqli_query($connection, $query);
+        while ($row = mysqli_fetch_assoc($show_cat_name)) {
+            $cat_title = $row['cat_title'];
+            $cat_id = $row['cat_id'];
+        }
+
+        echo "<td>{$cat_title}</td>";
         echo "<td>{$post_status}</td>";
         echo "<td><img class='img-fluid' src='../images/{$post_image}' alt='' style='max-width:150px;'/></td>";
         echo "<td>{$post_tags}</td>";
@@ -146,7 +154,7 @@ function create_post()
         $create_post = $_POST['create_post'];
 
         $post_title = $_POST['post_title'];
-        $post_cat_id = $_POST['post_cat_id'];
+        $post_cat_id = $_POST['post_category'];
         $post_author = $_POST['post_author'];
         $post_status = $_POST['post_status'];
         $post_image = $_FILES['post_image']['name'];
