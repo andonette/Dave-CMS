@@ -40,9 +40,7 @@ function create_category()
             $query = "INSERT INTO categories (cat_title) ";
             $query .= "VALUES ('" . $category_name . "')" ;
             $create_category_query = mysqli_query($connection, $query);
-            if (!$create_category_query) {
-                die('Query Failed' . mysqli_error($connection));
-            }
+            sql_error_check($create_category_query);
         }
     }
 }
@@ -67,7 +65,7 @@ function update_category()
     }
 }
 
-function form_submit_update() {
+function form_submit_update_category() {
     global $connection;
     if (isset($_GET['update'])) {
         $cat_id = $_GET['update'];
@@ -128,7 +126,7 @@ function display_posts()
         echo "<td>{$post_tags}</td>";
         echo "<td>{$post_comment_count}</td>";
         echo '<td class="text-right">';
-        echo '<a href ="admin-posts.php?update=' . $post_id . '"
+        echo '<a href ="admin-posts.php?source=update_post&p_id=' . $post_id . '"
             class="btn btn-success btn-sm btn-round btn-icon mr-2">
             <i class="fal fa-edit pt-2"></i></a>';
         echo '<a href ="admin-posts.php?delete=' . $post_id . '"
@@ -137,6 +135,54 @@ function display_posts()
         echo '</td>';
         echo '</tr>';
     }
+}
+function create_post()
+{
+    global $connection;
+    if (isset($_POST['create_post'])) {
+        $create_post = $_POST['create_post'];
+
+        $post_title = $_POST['post_title'];
+        $post_cat_id = $_POST['post_cat_id'];
+        $post_author = $_POST['post_author'];
+        $post_status = $_POST['post_status'];
+        $post_image = $_FILES['post_image']['name'];
+        $post_image_temp = $_FILES['post_image']['tmp_name'];
+        $post_tags = $_POST['post_tags'];
+        $post_content = $_POST['post_content'];
+        $post_date = date('d-m-y');
+        $post_comment_count = 4;
+
+        move_uploaded_file($post_image_temp, "../images/$post_image");
+
+        //Nice Looking Query
+        $query = "INSERT INTO posts ";
+        $query .= "(post_title, ";
+        $query .= "post_date, ";
+        $query .= "post_category_id, ";
+        $query .= "post_author, ";
+        $query .= "post_status, ";
+        $query .= "post_content, ";
+        $query .= "post_image, ";
+        $query .= "post_tags, ";
+        $query .= "post_comment_count) ";
+
+        $query .= "VALUES('{$post_title}', ";
+        $query .= "now(), ";
+        $query .= "{$post_cat_id}, ";
+        $query .= "'{$post_author}', ";
+        $query .= "'{$post_status}', ";
+        $query .= "'{$post_content}', ";
+        $query .= "'{$post_image}', ";
+        $query .= "'{$post_tags}', ";
+        $query .= "'{$post_comment_count}') ";
+
+        $create_post_query = mysqli_query($connection, $query);
+        sql_error_check($create_post_query);
+    }
+}
+function update_post() {
+    echo 'something';
 }
 function delete_posts()
 {

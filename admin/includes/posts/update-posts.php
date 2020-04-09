@@ -1,3 +1,4 @@
+<?php update_post(); ?>
 <div class="card">
     <div class="card-body">
         <h2>Edit Your Post</h2>
