@@ -4,12 +4,16 @@
         <div class="col-sm-8">
             <h1 class="title">Latest Blogposts</h1>
             <?php
+
+            if (isset($_GET['p_id'])) {
+                $the_post_id = $_GET['p_id'];
+                echo $the_post_id;
+            }
             //query the database, select everything from the posts table
             $query = "SELECT * FROM posts";
             $select_all_posts_query = mysqli_query($connection, $query);
             //create variables from the columns in the post table.
             while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
-                $post_id = $row['post_id'];
                 $post_title = $row['post_title'];
                 $post_author = $row['post_author'];
                 $post_date = $row['post_date'];
@@ -27,7 +31,7 @@
 
                         <div class="card-body">
                             <h3 class="card-title">
-                                <a href="post.php?p_id=<?php echo $post_id; ?>"><?php echo $post_title; ?></a>
+                                <a href="#"><?php echo $post_title; ?></a>
                             </h3>
                             <p class="card-description">
                                 <?php echo $post_content; ?>
