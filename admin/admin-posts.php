@@ -13,7 +13,7 @@
 
                             </div>
                             <div class="col-sm-6 mr-auto">
-                            
+
                             </div>
                         </div>
                     </div>
@@ -39,6 +39,7 @@
                         break;
                 }
                 ?>
+                <?php delete_posts(); ?>
             </div>
         </div>
     </div>

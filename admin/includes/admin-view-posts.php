@@ -15,7 +15,6 @@
             </thead>
             <tbody>
                 <?php display_posts(); ?>
-                <?php delete_category(); ?>
             </tbody>
         </table>
     </div>
