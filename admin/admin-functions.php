@@ -51,7 +51,7 @@ function update_category()
 {
     global $connection;
     if (isset($_GET['update'])) {
-        include 'admin-update-categories.php';
+        include 'includes/categories/update-categories.php';
     }
     if (isset($_GET['update'])) {
         $cat_id = $_GET['update'];

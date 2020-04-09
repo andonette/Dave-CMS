@@ -26,7 +26,7 @@
                 }
                 switch ($source) {
                     case 'create_post':
-                        include 'includes/admin-create-posts.php';
+                        include 'includes/posts/create-posts.php';
                         break;
                     case 20:
                         echo '20';
@@ -35,7 +35,7 @@
                         echo '30';
                         break;
                     default:
-                        include 'includes/admin-view-posts.php';
+                        include 'includes/posts/view-posts.php';
                         break;
                 }
                 ?>
