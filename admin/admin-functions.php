@@ -182,7 +182,7 @@ function create_post()
     }
 }
 function update_post() {
-    echo 'something';
+//
 }
 function delete_posts()
 {

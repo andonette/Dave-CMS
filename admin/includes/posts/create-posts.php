@@ -24,10 +24,6 @@
                 <input type="file" class="form-control-file" name="post_image" id="postImage">
             </div>
             <div class="form-group">
-                <label for="post_image_temp">Post Image Temp</label>
-                <input type="file" class="form-control-file" name="post_image_temp" id="postImageTemp">
-            </div>
-            <div class="form-group">
                 <label for="post_tags">Post Tags</label>
                 <input type="text" class="form-control" name="post_tags">
             </div>
