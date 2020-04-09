@@ -6,10 +6,10 @@
             <?php
 
             if (isset($_GET['p_id'])) {
-                $set_post_id = $_GET['p_id'];
+                $get_post_id = $_GET['p_id'];
 
                 //query the database, select everything from the posts table
-                $query = "SELECT * FROM posts WHERE post_id = $set_post_id";
+                $query = "SELECT * FROM posts WHERE post_id = $get_post_id";
                 $select_all_posts_query = mysqli_query($connection, $query);
                 //create variables from the columns in the post table.
                 while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
@@ -56,10 +56,19 @@
                     <h3>Leave A Comment</h3>
                     <?php
                     if (isset($_POST['submit_comment'])) {
+                        $get_post_id = $_GET['p_id'];
                         $submit_comment_form = $_POST['submit_comment'];
+                        $comment_author = $_POST['comment_author'];
+                        $comment_email = $_POST['comment_email'];
+                        $comment_content = $_POST['comment_content'];
+
+                        $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status, comment_date) ";
+                        $query .= "VALUES ($get_post_id, '{$comment_author}', '{$comment_email}', '{$comment_content}', 'unapproved', now())";
+
+                        $comment_form_query = mysqli_query($connection, $query);
                     }
                      ?>
-                    <form action="post.php" method="post">
+                    <form action="" method="post">
                         <div class="form-group">
                             <label for="comment_author">Author</label>
                             <input class="form-control" type="text" name="comment_author">
