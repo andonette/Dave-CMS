@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-body">
-        <table class="table">
+        <table class="table table-striped">
             <thead>
                 <th>ID</th>
                 <th>Date</th>

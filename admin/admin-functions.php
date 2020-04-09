@@ -118,9 +118,10 @@ function display_posts()
         $post_tags = $row['post_tags'];
         $post_image = $row['post_image'];
         $post_comment_count = $row['post_comment_count'];
+        
         echo '<tr>';
-        echo "<td>{$post_date}</td>";
         echo "<td>{$post_id}</td>";
+        echo "<td>{$post_date}</td>";
         echo "<td>{$post_author}</td>";
         echo "<td>{$post_title}</td>";
 
@@ -133,10 +134,10 @@ function display_posts()
 
         echo "<td>{$cat_title}</td>";
         echo "<td>{$post_status}</td>";
-        echo "<td><img class='img-fluid' src='../images/{$post_image}' alt='' style='max-width:150px;'/></td>";
+        echo "<td><img class='img-fluid' src='../images/{$post_image}' alt='' style='max-width:100px;'/></td>";
         echo "<td>{$post_tags}</td>";
         echo "<td>{$post_comment_count}</td>";
-        echo '<td class="text-right">';
+        echo '<td class="text-right" style="min-width: 100px;">';
         echo '<a href ="admin-posts.php?source=update_post&p_id=' . $post_id . '"
             class="btn btn-success btn-sm btn-round btn-icon mr-2">
             <i class="fal fa-edit pt-2"></i></a>';
@@ -247,20 +248,27 @@ function display_comments()
 
         echo '<tr>';
         echo "<td>{$comment_id}</td>";
+        echo "<td>{$comment_author}</td>";
+        echo "<td>{$comment_content}</td>";
+        echo "<td>{$comment_email}</td>";
         echo "<td>{$comment_post_id}</td>";
         echo "<td>{$comment_date}</td>";
-        echo "<td>{$comment_author}</td>";
-        echo "<td>{$comment_email}</td>";
 
-        echo "<td>{$comment_content}</td>";
+
+
+
         echo "<td>{$comment_status}</td>";
         echo '<td class="text-right">';
         echo '<a href ="admin-comments.php?source=update_comment&p_id=' . $comment_id . '"
             class="btn btn-success btn-sm btn-round btn-icon mr-2">
-            <i class="fal fa-edit pt-2"></i></a>';
+            <i class="fal fa-thumbs-up pt-2"></i></a>';
+        echo '<a href ="admin-comments.php?source=update_comment&p_id=' . $comment_id . '"
+            class="btn btn-warning btn-sm btn-round btn-icon mr-2">
+            <i class="fal fa-thumbs-down pt-2"></i></a>';
         echo '<a href ="admin-comments.php?delete=' . $comment_id . '"
             class="btn btn-danger btn-sm btn-round btn-icon">
             <i class="fal fa-trash-alt pt-2"></i></a>';
+
         echo '</td>';
         echo '</tr>';
     }

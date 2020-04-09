@@ -7,18 +7,20 @@
 
             if (isset($_GET['p_id'])) {
                 $set_post_id = $_GET['p_id'];
+
+                //query the database, select everything from the posts table
+                $query = "SELECT * FROM posts WHERE post_id = $set_post_id";
+                $select_all_posts_query = mysqli_query($connection, $query);
+                //create variables from the columns in the post table.
+                while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
+                    $post_title = $row['post_title'];
+                    $post_author = $row['post_author'];
+                    $post_date = $row['post_date'];
+                    $post_image = $row['post_image'];
+                    $post_content = $row['post_content'];
+                    $post_author_image = $row['post_author_image'];
             }
-            //query the database, select everything from the posts table
-            $query = "SELECT * FROM posts WHERE post_id = $set_post_id";
-            $select_all_posts_query = mysqli_query($connection, $query);
-            //create variables from the columns in the post table.
-            while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
-                $post_title = $row['post_title'];
-                $post_author = $row['post_author'];
-                $post_date = $row['post_date'];
-                $post_image = $row['post_image'];
-                $post_content = $row['post_content'];
-                $post_author_image = $row['post_author_image'];
+
                 ?>
                 <div class="card card-blog card-plain blog-horizontal">
 
@@ -49,23 +51,49 @@
                 </div>
                 <!-- End Card -->
             <?php } ?>
-            <div class="media">
-  <img class="mr-3" src="..." alt="Generic placeholder image">
-  <div class="media-body">
-    <h5 class="mt-0">Media heading</h5>
-    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+            <div class="card">
+                <div class="card-body">
+                    <h3>Leave A Comment</h3>
+                    <?php
+                    if (isset($_POST['submit_comment'])) {
+                        $submit_comment_form = $_POST['submit_comment'];
+                    }
+                     ?>
+                    <form action="post.php" method="post">
+                        <div class="form-group">
+                            <label for="comment_author">Author</label>
+                            <input class="form-control" type="text" name="comment_author">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" name="comment_email">
 
-    <div class="media mt-3">
-      <a class="pr-3" href="#">
-        <img src="..." alt="Generic placeholder image">
-      </a>
-      <div class="media-body">
-        <h5 class="mt-0">Media heading</h5>
-        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-      </div>
-    </div>
-  </div>
-</div>
+                        </div>
+                        <label for="comment_content">Comment</label>
+                         <textarea class="form-control" name="comment_content" rows="3"></textarea>
+
+                        <button type="submit" class="btn btn-primary" name="submit_comment">Submit Comment</button>
+                    </form>
+
+                </div>
+            </div>
+            <div class="media">
+                <img class="mr-3" src="..." alt="Generic placeholder image">
+                <div class="media-body">
+                    <h5 class="mt-0">Media heading</h5>
+                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+
+                    <div class="media mt-3">
+                        <a class="pr-3" href="#">
+                            <img src="..." alt="Generic placeholder image">
+                        </a>
+                        <div class="media-body">
+                            <h5 class="mt-0">Media heading</h5>
+                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- End Column -->
