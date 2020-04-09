@@ -49,7 +49,7 @@
          </a>
          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
            <a class="dropdown-item" href="admin-posts.php">View Posts</a>
-           <a class="dropdown-item" href="admin-create-posts.php">Add New Post</a>
+           <a class="dropdown-item" href="admin-posts.php?source=create_post">Add New Post</a>
          </div>
        </li>
           <li>
