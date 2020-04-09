@@ -228,3 +228,39 @@ function delete_posts()
         }
     }
 }
+
+//categories Functions
+function display_comments()
+{
+    global $connection;
+    $query = "SELECT * FROM comments";
+    $display_all_posts = mysqli_query($connection, $query);
+    while ($row = mysqli_fetch_assoc($display_all_posts)) {
+        $comment_id = $row['comment_id'];
+        $comment_post_id = $row['comment_post_id'];
+        $comment_date = $row['comment_date'];
+        $comment_author = $row['comment_author'];
+        $comment_email = $row['comment_email'];
+        $comment_content = $row['comment_content'];
+        $comment_status = $row['comment_status'];
+
+        echo '<tr>';
+        echo "<td>{$comment_id}</td>";
+        echo "<td>{$comment_post_id}</td>";
+        echo "<td>{$comment_date}</td>";
+        echo "<td>{$comment_author}</td>";
+        echo "<td>{$comment_email}</td>";
+
+        echo "<td>{$comment_content}</td>";
+        echo "<td>{$comment_status}</td>";
+        echo '<td class="text-right">';
+        echo '<a href ="admin-posts.php?source=update_comment&p_id=' . $comment_id . '"
+            class="btn btn-success btn-sm btn-round btn-icon mr-2">
+            <i class="fal fa-edit pt-2"></i></a>';
+        echo '<a href ="admin-posts.php?delete=' . $comment_id . '"
+            class="btn btn-danger btn-sm btn-round btn-icon">
+            <i class="fal fa-trash-alt pt-2"></i></a>';
+        echo '</td>';
+        echo '</tr>';
+    }
+}

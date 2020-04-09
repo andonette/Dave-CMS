@@ -23,7 +23,7 @@
                                  <th class="text-right">Actions</th>
                              </thead>
                              <tbody>
-                                 <?php display_posts(); ?>
+                                 <?php display_comments(); ?>
                              </tbody>
                          </table>
                      </div>
