@@ -29,7 +29,7 @@
             </div>
             <div class="form-group">
                 <label for="post_content">Post Content</label>
-                <input type="text" class="form-control" name="post_content">
+                <textarea rows="10" class="form-control" name="post_content"></textarea>
             </div>
             <div class="form-group">
                 <label for="post_date">Post Date</label>

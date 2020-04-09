@@ -28,8 +28,10 @@ while ($row = mysqli_fetch_assoc($select_post_by_id)) {
                 <input value="<?php echo $post_title; ?>" type="text" class="form-control" name="post_title">
             </div>
             <div class="form-group">
-                <label for="post_cat_id">Post Category ID</label>
-                <input value="<?php echo $post_category_id; ?>" type="text" class="form-control" name="post_cat_id">
+                <label for="post_cat_id">Category</label>
+                <select class="" name="">
+
+                </select>
             </div>
             <div class="form-group">
                 <label for="post_author">Post Author</label>
@@ -40,8 +42,7 @@ while ($row = mysqli_fetch_assoc($select_post_by_id)) {
                 <input value="<?php echo $post_status; ?>" type="text" class="form-control" name="post_status">
             </div>
             <div class="form-group">
-                <label for="post_image"><span class="btn">Upload Image</span></label>
-                <input value="<?php echo $post_image; ?>" type="file" class="form-control-file" name="post_image" id="postImage">
+                <img src="../images/<?php echo $post_image; ?>" alt="" style="max-width: 200px;">
             </div>
             <div class="form-group">
                 <label for="post_tags">Post Tags</label>
@@ -49,7 +50,7 @@ while ($row = mysqli_fetch_assoc($select_post_by_id)) {
             </div>
             <div class="form-group">
                 <label for="post_content">Post Content</label>
-                <input value="<?php echo $post_content; ?>" type="text" class="form-control" name="post_content">
+                <textarea value="<?php echo $post_content; ?>" rows="10" class="form-control" name="post_content"></textarea>
             </div>
             <div class="form-group">
                 <label for="post_date">Post Date</label>

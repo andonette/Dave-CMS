@@ -1,11 +1,13 @@
 <?php
 //Category Functions
-function sql_error_check($result) {
+function sql_error_check($result)
+{
     global $connection;
     if (!$result) {
         die('query failed' . mysqli_error($connection));
     }
 }
+
 function display_categories()
 {
     global $connection;
@@ -65,7 +67,8 @@ function update_category()
     }
 }
 
-function form_submit_update_category() {
+function form_submit_update_category()
+{
     global $connection;
     if (isset($_GET['update'])) {
         $cat_id = $_GET['update'];
@@ -181,7 +184,8 @@ function create_post()
         sql_error_check($create_post_query);
     }
 }
-function update_post() {
+function update_post()
+{
 //
 }
 function delete_posts()
