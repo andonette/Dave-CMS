@@ -22,11 +22,11 @@
                 </div><!-- end card -->
                 <?php
                 if (isset($_GET['source'])) {
-                    $source = $_GET['source'];
+                    $set_source = $_GET['source'];
                 } else {
-                    $source = '';
+                    $set_source = '';
                 }
-                switch ($source) {
+                switch ($set_source) {
                     case 'create_post':
                         include 'includes/posts/create-posts.php';
                         break;

@@ -14,7 +14,7 @@
                 $post_author = $row['post_author'];
                 $post_date = $row['post_date'];
                 $post_image = $row['post_image'];
-                $post_content = $row['post_content'];
+                substr($post_content = $row['post_content'], 0, 50);
                 $post_author_image = $row['post_author_image'];
                 ?>
                 <div class="card card-blog card-plain blog-horizontal">

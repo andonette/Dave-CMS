@@ -6,11 +6,11 @@
             <?php
 
             if (isset($_GET['category'])) {
-                $set_category = $_GET['category'];
+                $get_category = $_GET['category'];
             }
 
             //query the database, select everything from the posts table
-            $query = "SELECT * FROM posts";
+            $query = "SELECT * FROM posts WHERE post_category_id = $get_category";
             $select_all_posts_query = mysqli_query($connection, $query);
             //create variables from the columns in the post table.
             while ($row = mysqli_fetch_assoc($select_all_posts_query)) {

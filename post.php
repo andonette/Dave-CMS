@@ -6,10 +6,10 @@
             <?php
 
             if (isset($_GET['p_id'])) {
-                $the_post_id = $_GET['p_id'];
+                $set_post_id = $_GET['p_id'];
             }
             //query the database, select everything from the posts table
-            $query = "SELECT * FROM posts WHERE post_id = $the_post_id";
+            $query = "SELECT * FROM posts WHERE post_id = $set_post_id";
             $select_all_posts_query = mysqli_query($connection, $query);
             //create variables from the columns in the post table.
             while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
