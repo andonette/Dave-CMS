@@ -5,29 +5,23 @@
              <div class="col-12">
                  <div class="card">
                      <div class="card-body">
-                         <h1>Comments</h1>
-                     </div>
-                 </div>
-                 <!-- end Card -->
-                 <div class="card">
-                     <div class="card-body">
-                         <table class="table">
-                             <thead>
-                                 <th>ID</th>
-                                 <th>Post ID</th>
-                                 <th>Date</th>
-                                 <th>Author</th>
-                                 <th>Email</th>
-                                 <th>Comment</th>
-                                 <th>Status</th>
-                                 <th class="text-right">Actions</th>
-                             </thead>
-                             <tbody>
-                                 <?php display_comments(); ?>
-                             </tbody>
-                         </table>
+                         <div class="row">
+                             <div class="col-12">
+                                 <h1>Comments</h1>
+                                 <a href="admin-comments.php?source=create_comment" class="btn btn-primary">Create New Comment</a>
+                                 <a href="admin-comments.php" class="btn btn-success">View All Comments</a>
+                             </div>
+                             <div class="col-sm-6 mr-auto">
+
+                             </div>
+                             <div class="col-sm-6 mr-auto">
+
+                             </div>
+                         </div>
                      </div>
                  </div><!-- end card -->
+                 <?php switch_comment_content(); ?>
+                 <!-- end Card -->
 
              </div>
          </div>

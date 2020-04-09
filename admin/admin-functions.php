@@ -166,6 +166,7 @@ function switch_post_content()
             break;
     }
 }
+
 function create_post()
 {
     global $connection;
@@ -254,13 +255,32 @@ function display_comments()
         echo "<td>{$comment_content}</td>";
         echo "<td>{$comment_status}</td>";
         echo '<td class="text-right">';
-        echo '<a href ="admin-posts.php?source=update_comment&p_id=' . $comment_id . '"
+        echo '<a href ="admin-comments.php?source=update_comment&p_id=' . $comment_id . '"
             class="btn btn-success btn-sm btn-round btn-icon mr-2">
             <i class="fal fa-edit pt-2"></i></a>';
-        echo '<a href ="admin-posts.php?delete=' . $comment_id . '"
+        echo '<a href ="admin-comments.php?delete=' . $comment_id . '"
             class="btn btn-danger btn-sm btn-round btn-icon">
             <i class="fal fa-trash-alt pt-2"></i></a>';
         echo '</td>';
         echo '</tr>';
+    }
+}
+function switch_comment_content()
+{
+    if (isset($_GET['source'])) {
+        $set_source = $_GET['source'];
+    } else {
+        $set_source = '';
+    }
+    switch ($set_source) {
+        case 'create_comment':
+            include 'includes/comments/create-comments.php';
+            break;
+        case 'update_comment':
+            include 'includes/comments/update-comments.php';
+            break;
+        default:
+            include 'includes/comments/view-comments.php';
+            break;
     }
 }
