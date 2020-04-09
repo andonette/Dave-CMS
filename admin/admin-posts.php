@@ -28,11 +28,8 @@
                     case 'create_post':
                         include 'includes/posts/create-posts.php';
                         break;
-                    case 20:
-                        echo '20';
-                        break;
-                    case 30:
-                        echo '30';
+                    case 'update_post':
+                        include 'includes/posts/update-posts.php';
                         break;
                     default:
                         include 'includes/posts/view-posts.php';
