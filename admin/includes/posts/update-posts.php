@@ -1,5 +1,6 @@
 <?php update_post(); ?>
 <?php
+global $connection;
 if (isset($_GET['p_id'])) {
     $the_post_id = $_GET['p_id'];
 }

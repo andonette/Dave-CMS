@@ -147,6 +147,25 @@ function display_posts()
         echo '</tr>';
     }
 }
+function switch_post_content()
+{
+    if (isset($_GET['source'])) {
+        $set_source = $_GET['source'];
+    } else {
+        $set_source = '';
+    }
+    switch ($set_source) {
+        case 'create_post':
+            include 'includes/posts/create-posts.php';
+            break;
+        case 'update_post':
+            include 'includes/posts/update-posts.php';
+            break;
+        default:
+            include 'includes/posts/view-posts.php';
+            break;
+    }
+}
 function create_post()
 {
     global $connection;
