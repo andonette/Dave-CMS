@@ -1,3 +1,8 @@
+<?php
+/*
+Add a view 
+*/
+?>
 <?php include 'includes/admin-header.php'; ?>
 <div class="content">
     <div class="container-fluid">

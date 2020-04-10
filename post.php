@@ -61,22 +61,7 @@
             <div class="card">
                 <div class="card-body">
                     <h3>Leave A Comment</h3>
-                    <?php
-                    if (isset($_POST['submit_comment'])) {
-                        $get_post_id = $_GET['p_id'];
-                        $submit_comment_form = $_POST['submit_comment'];
-                        $comment_author = $_POST['comment_author'];
-                        $comment_email = $_POST['comment_email'];
-                        $comment_content = $_POST['comment_content'];
-
-                        $query = "INSERT INTO comments (comment_post_id, comment_author,
-                            comment_email, comment_content, comment_status, comment_date) ";
-                        $query .= "VALUES ($get_post_id, '{$comment_author}', '{$comment_email}',
-                        '{$comment_content}', 'unapproved', now())";
-
-                        $comment_form_query = mysqli_query($connection, $query);
-                    }
-                    ?>
+                    <?php comment_form(); ?>
                     <form action="" method="post">
                         <div class="form-group">
                             <label for="comment_author">Author</label>
@@ -95,24 +80,7 @@
                 </div>
             </div>
             <ul class="list-unstyled">
-                <?php
-                $query = "SELECT * FROM comments WHERE comment_post_id = {$get_post_id} ";
-                $query .= "AND comment_status = 'approved' ";
-                $query .= "ORDER BY comment_id DESC";
-                $display_all_comments = mysqli_query($connection, $query);
-                while ($row = mysqli_fetch_assoc($display_all_comments)) {
-                    $comment_date = $row['comment_date'];
-                    $comment_author = $row['comment_author'];
-                    $comment_content = $row['comment_content'];
-                    ?>
-                    <li class="media mb-3">
-                        <img class="mr-3" src="..." alt="Generic placeholder image">
-                        <div class="media-body">
-                            <h5 class="mt-0 mb-1">Posted By <?php echo $comment_author; ?> On <?php echo $comment_date; ?>  </h5>
-                            <?php echo $comment_content; ?>
-                        </div>
-                    </li>
-                <?php } ?>
+                <?php show_post_comments(); ?>
             </ul>
         </div>
         <!-- End Column -->

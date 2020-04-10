@@ -42,15 +42,6 @@
                 <label for="post_content">Post Content</label>
                 <textarea rows="10" class="form-control" name="post_content"></textarea>
             </div>
-            <div class="form-group">
-                <label for="post_date">Post Date</label>
-                <input type="text" class="form-control" name="post_date">
-            </div>
-            <div class="form-group">
-                <label for="post_comment_count">Post Comment Count</label>
-                <input type="text" class="form-control" name="post_comment_count">
-            </div>
-
             <button type="submit" class="btn btn-primary" name="create_post">Create Post</button>
         </form>
     </div>

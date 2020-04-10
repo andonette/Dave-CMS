@@ -5,7 +5,7 @@
             <h1 class="title">Latest Blogposts</h1>
             <?php
             //query the database, select everything from the posts table
-            $query = "SELECT * FROM posts";
+            $query = "SELECT * FROM posts WHERE post_status = 'published'";
             $select_all_posts_query = mysqli_query($connection, $query);
             //create variables from the columns in the post table.
             while ($row = mysqli_fetch_assoc($select_all_posts_query)) {

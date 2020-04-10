@@ -174,7 +174,7 @@ function create_post()
         $post_tags = $_POST['post_tags'];
         $post_content = $_POST['post_content'];
         $post_date = date('d-m-y');
-        $post_comment_count = 4;
+        //$post_comment_count = 4;
 
         move_uploaded_file($post_image_temp, "../images/$post_image");
 
@@ -187,8 +187,7 @@ function create_post()
         $query .= "post_status, ";
         $query .= "post_content, ";
         $query .= "post_image, ";
-        $query .= "post_tags, ";
-        $query .= "post_comment_count) ";
+        $query .= "post_tags) ";
 
         $query .= "VALUES('{$post_title}', ";
         $query .= "now(), ";
@@ -197,16 +196,12 @@ function create_post()
         $query .= "'{$post_status}', ";
         $query .= "'{$post_content}', ";
         $query .= "'{$post_image}', ";
-        $query .= "'{$post_tags}', ";
-        $query .= "'{$post_comment_count}') ";
+        $query .= "'{$post_tags}') ";
 
         $create_post_query = mysqli_query($connection, $query);
         sql_error_check($create_post_query);
+
     }
-}
-function update_post()
-{
-//
 }
 function delete_posts()
 {
@@ -286,7 +281,6 @@ function switch_comment_content()
             break;
     }
 }
-
 function delete_comment()
 {
     global $connection;

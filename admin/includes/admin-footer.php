@@ -1,10 +1,10 @@
 <footer class="footer">
   <div class="container-fluid">
     <nav class="float-left">
-      <ul>
+      <ul class="list-unstyled ml-5">
           <li>
-              <a href="https://www.creative-tim.com">
-                  Creative Tim
+              <a href="https://www.madebyfactory.com">
+                  Factory
               </a>
           </li>
       </ul>
@@ -13,8 +13,8 @@
         &copy;
         <script>
             document.write(new Date().getFullYear())
-        </script>, made with <i class="tim-icons icon-heart-2"></i> by
-        <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+        </script>, made by<i class="tim-icons icon-heart-2"></i>
+        <a href="https://www.madebyfactory.com" target="_blank">Factory</a>
     </div>
 
      <!-- your footer here -->
