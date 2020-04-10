@@ -1,12 +1,4 @@
 <?php
-//Category Functions
-function sql_error_check($result)
-{
-    global $connection;
-    if (!$result) {
-        die('query failed' . mysqli_error($connection));
-    }
-}
 
 function display_categories()
 {
@@ -261,11 +253,11 @@ function display_comments()
 
         echo "<td><a href='../post.php?p_id=$post_id'>{$post_title}</a></td>";
         echo "<td>{$comment_date}</td>";
-        echo '<td class="text-right">';
-        echo '<a href ="admin-comments.php?source=update_comment&p_id=' . $comment_id . '"
+        echo '<td class="text-right" style="min-width: 130px">';
+        echo '<a href ="admin-comments.php?approve=' . $comment_id . '"
             class="btn btn-success btn-sm btn-round btn-icon mr-2">
             <i class="fal fa-thumbs-up pt-2"></i></a>';
-        echo '<a href ="admin-comments.php?source=update_comment&p_id=' . $comment_id . '"
+        echo '<a href ="admin-comments.php?unapprove=' . $comment_id . '"
             class="btn btn-warning btn-sm btn-round btn-icon mr-2">
             <i class="fal fa-thumbs-down pt-2"></i></a>';
         echo '<a href ="admin-comments.php?delete=' . $comment_id . '"
@@ -300,13 +292,34 @@ function delete_comment()
     global $connection;
     if (isset($_GET['delete'])) {
         $the_comment_id = $_GET['delete'];
-        echo "WORKING";
         $query = 'DELETE FROM comments WHERE comment_id = ' . $the_comment_id;
-        echo $query;
         $delete_category = mysqli_query($connection, $query);
         header("Location: admin-comments.php");
         sql_error_check($delete_category);
-    } else {
-        echo 'not working yet';
+    }
+}
+
+function unapprove_comment()
+{
+    global $connection;
+    if (isset($_GET['unapprove'])) {
+        $the_comment_id = $_GET['unapprove'];
+        $query = 'UPDATE comments SET comment_status = "unapproved" WHERE comment_id =' . $the_comment_id;
+        $unapprove_category = mysqli_query($connection, $query);
+        header("Location: admin-comments.php");
+        sql_error_check($unapprove_category);
+    }
+}
+function approve_comment()
+{
+    global $connection;
+    if (isset($_GET['approve'])) {
+        $the_comment_id = $_GET['approve'];
+        echo $the_comment_id;
+        $query = 'UPDATE comments SET comment_status = "approved" WHERE comment_id =' . $the_comment_id;
+        echo $query;
+        $approve_category = mysqli_query($connection, $query);
+        header("Location: admin-comments.php");
+        sql_error_check($approve_category);
     }
 }

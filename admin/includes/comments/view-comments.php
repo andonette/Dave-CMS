@@ -13,6 +13,9 @@
             </thead>
             <tbody>
                 <?php display_comments(); ?>
+                <?php delete_comment(); ?>
+                <?php approve_comment(); ?>
+                <?php unapprove_comment(); ?>
             </tbody>
         </table>
     </div>

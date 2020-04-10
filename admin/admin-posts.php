@@ -21,7 +21,6 @@
                     </div>
                 </div><!-- end card -->
                 <?php switch_post_content(); ?>
-                <?php delete_posts(); ?>
             </div>
         </div>
     </div>
