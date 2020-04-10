@@ -1,3 +1,10 @@
+<?php
+/*
+1. Link author to user
+2. create user image
+*/
+
+ ?>
 <?php include 'includes/header.php' ?>
 <div class="container">
     <div class="row">
@@ -19,7 +26,7 @@
                     $post_image = $row['post_image'];
                     $post_content = $row['post_content'];
                     $post_author_image = $row['post_author_image'];
-            }
+                }
 
                 ?>
                 <div class="card card-blog card-plain blog-horizontal">
@@ -38,7 +45,8 @@
                                 <?php echo $post_content; ?>
                             </p>
                             <div class="author">
-                                <img src="images/<?php echo $post_image; ?>" alt="<?php echo $post_image; ?>" class="avatar img-raised">
+                                <img src="images/<?php echo $post_image; ?>" alt="<?php echo $post_image; ?>"
+                                class="avatar img-raised">
                                 <div class="text">
                                     <span class="name"><?php echo $post_title; ?></span>
                                     <div class="meta"><?php echo $post_date; ?></div>
@@ -61,12 +69,14 @@
                         $comment_email = $_POST['comment_email'];
                         $comment_content = $_POST['comment_content'];
 
-                        $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status, comment_date) ";
-                        $query .= "VALUES ($get_post_id, '{$comment_author}', '{$comment_email}', '{$comment_content}', 'unapproved', now())";
+                        $query = "INSERT INTO comments (comment_post_id, comment_author,
+                            comment_email, comment_content, comment_status, comment_date) ";
+                        $query .= "VALUES ($get_post_id, '{$comment_author}', '{$comment_email}',
+                        '{$comment_content}', 'unapproved', now())";
 
                         $comment_form_query = mysqli_query($connection, $query);
                     }
-                     ?>
+                    ?>
                     <form action="" method="post">
                         <div class="form-group">
                             <label for="comment_author">Author</label>
@@ -78,32 +88,33 @@
 
                         </div>
                         <label for="comment_content">Comment</label>
-                         <textarea class="form-control" name="comment_content" rows="3"></textarea>
-
+                        <textarea class="form-control" name="comment_content" rows="3"></textarea>
                         <button type="submit" class="btn btn-primary" name="submit_comment">Submit Comment</button>
                     </form>
 
                 </div>
             </div>
-            <div class="media">
-                <img class="mr-3" src="..." alt="Generic placeholder image">
-                <div class="media-body">
-                    <h5 class="mt-0">Media heading</h5>
-                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-
-                    <div class="media mt-3">
-                        <a class="pr-3" href="#">
-                            <img src="..." alt="Generic placeholder image">
-                        </a>
+            <ul class="list-unstyled">
+                <?php
+                $query = "SELECT * FROM comments WHERE comment_post_id = {$get_post_id} ";
+                $query .= "AND comment_status = 'approved' ";
+                $query .= "ORDER BY comment_id DESC";
+                $display_all_comments = mysqli_query($connection, $query);
+                while ($row = mysqli_fetch_assoc($display_all_comments)) {
+                    $comment_date = $row['comment_date'];
+                    $comment_author = $row['comment_author'];
+                    $comment_content = $row['comment_content'];
+                    ?>
+                    <li class="media mb-3">
+                        <img class="mr-3" src="..." alt="Generic placeholder image">
                         <div class="media-body">
-                            <h5 class="mt-0">Media heading</h5>
-                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                            <h5 class="mt-0 mb-1">Posted By <?php echo $comment_author; ?> On <?php echo $comment_date; ?>  </h5>
+                            <?php echo $comment_content; ?>
                         </div>
-                    </div>
-                </div>
-            </div>
+                    </li>
+                <?php } ?>
+            </ul>
         </div>
-
         <!-- End Column -->
         <div class="col-sm-4">
             <?php include 'includes/sidebar.php' ?>
