@@ -118,7 +118,7 @@ function display_posts()
         $post_tags = $row['post_tags'];
         $post_image = $row['post_image'];
         $post_comment_count = $row['post_comment_count'];
-        
+
         echo '<tr>';
         echo "<td>{$post_id}</td>";
         echo "<td>{$post_date}</td>";
@@ -173,7 +173,6 @@ function create_post()
     global $connection;
     if (isset($_POST['create_post'])) {
         $create_post = $_POST['create_post'];
-
         $post_title = $_POST['post_title'];
         $post_cat_id = $_POST['post_category'];
         $post_author = $_POST['post_author'];
@@ -251,13 +250,17 @@ function display_comments()
         echo "<td>{$comment_author}</td>";
         echo "<td>{$comment_content}</td>";
         echo "<td>{$comment_email}</td>";
-        echo "<td>{$comment_post_id}</td>";
-        echo "<td>{$comment_date}</td>";
-
-
-
-
         echo "<td>{$comment_status}</td>";
+
+        $query = "SELECT * FROM posts WHERE post_id = " . $comment_post_id;
+        $show_post_name = mysqli_query($connection, $query);
+        while ($row = mysqli_fetch_assoc($show_post_name)) {
+            $post_id = $row['post_id'];
+            $post_title = $row['post_title'];
+        }
+
+        echo "<td><a href='../post.php?p_id=$post_id'>{$post_title}</a></td>";
+        echo "<td>{$comment_date}</td>";
         echo '<td class="text-right">';
         echo '<a href ="admin-comments.php?source=update_comment&p_id=' . $comment_id . '"
             class="btn btn-success btn-sm btn-round btn-icon mr-2">
@@ -268,7 +271,6 @@ function display_comments()
         echo '<a href ="admin-comments.php?delete=' . $comment_id . '"
             class="btn btn-danger btn-sm btn-round btn-icon">
             <i class="fal fa-trash-alt pt-2"></i></a>';
-
         echo '</td>';
         echo '</tr>';
     }
@@ -290,5 +292,21 @@ function switch_comment_content()
         default:
             include 'includes/comments/view-comments.php';
             break;
+    }
+}
+
+function delete_comment()
+{
+    global $connection;
+    if (isset($_GET['delete'])) {
+        $the_comment_id = $_GET['delete'];
+        echo "WORKING";
+        $query = 'DELETE FROM comments WHERE comment_id = ' . $the_comment_id;
+        echo $query;
+        $delete_category = mysqli_query($connection, $query);
+        header("Location: admin-comments.php");
+        sql_error_check($delete_category);
+    } else {
+        echo 'not working yet';
     }
 }

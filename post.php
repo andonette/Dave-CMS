@@ -36,7 +36,6 @@
                             </h3>
                             <p class="card-description">
                                 <?php echo $post_content; ?>
-                                <a href="javascript:;"> Read More </a>
                             </p>
                             <div class="author">
                                 <img src="images/<?php echo $post_image; ?>" alt="<?php echo $post_image; ?>" class="avatar img-raised">

@@ -11,6 +11,7 @@
                 <label for="post_category">Post Category</label><br>
                 <select class="" name="post_category">
                     <?php
+                    global $connection;
                     $query = "SELECT * FROM categories";
                     $display_all_categories_query = mysqli_query($connection, $query);
                     while ($row = mysqli_fetch_assoc($display_all_categories_query)) {

@@ -21,6 +21,7 @@
                      </div>
                  </div><!-- end card -->
                  <?php switch_comment_content(); ?>
+                 <?php delete_comment(); ?>
                  <!-- end Card -->
 
              </div>
