@@ -14,3 +14,12 @@ if (!$connection) {
 } else {
     //echo 'connected';
 }
+
+//check for errors in mysql connection
+function sql_error_check($result)
+{
+    global $connection;
+    if (!$result) {
+        die('query failed' . mysqli_error($connection));
+    }
+}

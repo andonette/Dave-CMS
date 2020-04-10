@@ -1,5 +1,5 @@
 <?php ob_start() ?>
-<?php include 'includes/db.php' ?>
+<?php include 'includes/config.php' ?>
 <!DOCTYPE html>
 <html>
 <head>
