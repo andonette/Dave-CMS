@@ -51,7 +51,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./notifications.html">
+                    <a href="admin-users.php">
                         <i class="fal fa-users"></i>
                         <p>Users</p>
                     </a>

@@ -262,25 +262,7 @@ function display_comments()
         echo '</tr>';
     }
 }
-function switch_comment_content()
-{
-    if (isset($_GET['source'])) {
-        $set_source = $_GET['source'];
-    } else {
-        $set_source = '';
-    }
-    switch ($set_source) {
-        case 'create_comment':
-            include 'includes/comments/create-comments.php';
-            break;
-        case 'update_comment':
-            include 'includes/comments/update-comments.php';
-            break;
-        default:
-            include 'includes/comments/view-comments.php';
-            break;
-    }
-}
+
 function delete_comment()
 {
     global $connection;
@@ -313,5 +295,76 @@ function approve_comment()
         $approve_category = mysqli_query($connection, $query);
         header("Location: admin-comments.php");
         sql_error_check($approve_category);
+    }
+}
+
+//Users functions
+function switch_user_content()
+{
+    if (isset($_GET['source'])) {
+        $set_source = $_GET['source'];
+    } else {
+        $set_source = '';
+    }
+    switch ($set_source) {
+        case 'create_user':
+            include 'includes/users/create-user.php';
+            break;
+        case 'update_user':
+            include 'includes/users/update-user.php';
+            break;
+        default:
+            include 'includes/users/view-users.php';
+            break;
+    }
+}
+
+function display_users()
+{
+    global $connection;
+    $query = "SELECT * FROM users";
+    $display_all_users = mysqli_query($connection, $query);
+    while ($row = mysqli_fetch_assoc($display_all_users)) {
+        $user_id = $row['user_id'];
+        $user_name = $row['user_name'];
+        $user_firstname = $row['user_firstname'];
+        $user_lastname = $row['user_lastname'];
+        $user_password = $row['user_password'];
+        $user_email = $row['user_email'];
+        $user_role = $row['user_role'];
+
+        echo '<tr>';
+        echo "<td>{$user_id}</td>";
+        echo "<td>{$user_name}</td>";
+        echo "<td>{$user_firstname} {$user_lastname}</td>";
+        echo "<td>{$user_password}</td>";
+        echo "<td>{$user_email}</td>";
+        echo "<td>{$user_role}</td>";
+        echo '<td class="text-right" style="min-width: 130px">';
+        echo '<a href ="admin-comments.php?approve=' . $comment_id . '"
+            class="btn btn-success btn-sm btn-round btn-icon mr-2">
+            <i class="fal fa-thumbs-up pt-2"></i></a>';
+        echo '<a href ="admin-comments.php?unapprove=' . $comment_id . '"
+            class="btn btn-warning btn-sm btn-round btn-icon mr-2">
+            <i class="fal fa-thumbs-down pt-2"></i></a>';
+        echo '<a href ="admin-comments.php?delete=' . $comment_id . '"
+            class="btn btn-danger btn-sm btn-round btn-icon">
+            <i class="fal fa-trash-alt pt-2"></i></a>';
+        echo '</td>';
+        echo '</tr>';
+    }
+}
+
+function delete_user()
+{
+    global $connection;
+    if (isset($_GET['delete'])) {
+        $the_user_id = $_GET['delete'];
+        $query = 'DELETE FROM users WHERE cat_id = ' . $the_user_id;
+        $delete_user = mysqli_query($connection, $query);
+        header("Location: admin-users.php");
+        if (!$delete_user) {
+            die('Query Failed' . mysqli_error($connection));
+        }
     }
 }

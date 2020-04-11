@@ -8,8 +8,6 @@
                          <div class="row">
                              <div class="col-12">
                                  <h1>Comments</h1>
-                                 <a href="admin-comments.php?source=create_comment" class="btn btn-primary">Create New Comment</a>
-                                 <a href="admin-comments.php" class="btn btn-success">View All Comments</a>
                              </div>
                              <div class="col-sm-6 mr-auto">
 
@@ -20,7 +18,7 @@
                          </div>
                      </div>
                  </div><!-- end card -->
-                 <?php switch_comment_content(); ?>
+                 <?php include 'includes/comments/view-comments.php'; ?>
                  <!-- end Card -->
 
              </div>
