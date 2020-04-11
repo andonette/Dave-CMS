@@ -309,9 +309,7 @@ function approve_comment()
     global $connection;
     if (isset($_GET['approve'])) {
         $the_comment_id = $_GET['approve'];
-        echo $the_comment_id;
         $query = 'UPDATE comments SET comment_status = "approved" WHERE comment_id =' . $the_comment_id;
-        echo $query;
         $approve_category = mysqli_query($connection, $query);
         header("Location: admin-comments.php");
         sql_error_check($approve_category);
