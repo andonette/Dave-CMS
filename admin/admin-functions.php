@@ -337,7 +337,6 @@ function display_users()
         echo "<td>{$user_id}</td>";
         echo "<td>{$user_name}</td>";
         echo "<td>{$user_firstname} {$user_lastname}</td>";
-        echo "<td>{$user_password}</td>";
         echo "<td>{$user_email}</td>";
         echo "<td>{$user_role}</td>";
         echo '<td class="text-right" style="min-width: 130px">';

@@ -5,7 +5,6 @@
                 <th>ID</th>
                 <th>Username</th>
                 <th>Name</th>
-                <th>Password</th>
                 <th>Email</th>
                 <th>Role</th>
                 <th class="text-right">Actions</th>
