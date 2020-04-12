@@ -342,13 +342,13 @@ function display_users()
         echo "<td>{$user_email}</td>";
         echo "<td>{$user_role}</td>";
         echo '<td class="text-right" style="min-width: 130px">';
-        echo '<a href ="admin-comments.php?approve=' . $user_id . '"
+        echo '<a href ="admin-users.php?approve=' . $user_id . '"
             class="btn btn-success btn-sm btn-round btn-icon mr-2">
             <i class="fal fa-thumbs-up pt-2"></i></a>';
         echo '<a href ="admin-comments.php?unapprove=' . $user_id . '"
             class="btn btn-warning btn-sm btn-round btn-icon mr-2">
             <i class="fal fa-thumbs-down pt-2"></i></a>';
-        echo '<a href ="admin-comments.php?delete=' . $user_id . '"
+        echo '<a href ="admin-users.php?delete=' . $user_id . '"
             class="btn btn-danger btn-sm btn-round btn-icon">
             <i class="fal fa-trash-alt pt-2"></i></a>';
         echo '</td>';
@@ -399,7 +399,7 @@ function delete_user()
     global $connection;
     if (isset($_GET['delete'])) {
         $the_user_id = $_GET['delete'];
-        $query = 'DELETE FROM users WHERE cat_id = ' . $the_user_id;
+        $query = 'DELETE FROM users WHERE user_id = ' . $the_user_id;
         $delete_user = mysqli_query($connection, $query);
         header("Location: admin-users.php");
         if (!$delete_user) {
