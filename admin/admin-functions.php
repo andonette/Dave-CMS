@@ -353,7 +353,45 @@ function display_users()
         echo '</tr>';
     }
 }
+function create_user()
+{
+    global $connection;
+    if (isset($_POST['create_user'])) {
+        $create_user = $_POST['create_user'];
+        $user_name = $_POST['user_name'];
+        $user_email = $_POST['user_email'];
+        $user_firstname = $_POST['user_firstname'];
+        $user_lastname = $_POST['user_lastname'];
+        $user_password = $_POST['user_password'];
+        $user_role = $_POST['user_role'];
+        $user_image = $_FILES['user_image']['name'];
+        $user_image_temp = $_FILES['user_image']['tmp_name'];
 
+        move_uploaded_file($post_image_temp, "../images/$post_image");
+
+        //Nice Looking Query
+        $query = "INSERT INTO users ";
+        $query .= "(user_name, ";
+        $query .= "user_email, ";
+        $query .= "user_firstname, ";
+        $query .= "user_lastname, ";
+        $query .= "user_password, ";
+        $query .= "user_role, ";
+        $query .= "user_image) ";
+
+        $query .= "VALUES('{$user_name}', ";
+        $query .= "'{$user_email}', ";
+        $query .= "'{$user_firstname}', ";
+        $query .= "'{$user_lastname}', ";
+        $query .= "'{$user_password}', ";
+        $query .= "'{$user_role}', ";
+        $query .= "'{$user_image}') ";
+
+        $create_user_query = mysqli_query($connection, $query);
+        sql_error_check($create_user_query);
+
+    }
+}
 function delete_user()
 {
     global $connection;

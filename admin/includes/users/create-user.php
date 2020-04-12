@@ -1,4 +1,4 @@
-<?php create_post(); ?>
+<?php create_user(); ?>
 <div class="card">
   <div class="card-body">
     <h2>Create A New User</h2>
@@ -32,7 +32,13 @@
         </div>
       </div>
       <div class="form-row">
-      <div class="col-md-4 col-sm-12">
+        <div class="col-md-6 col-sm-12">
+          <div class="form-group">
+            <label for="user_password">Password</label>
+            <input type="password" class="form-control" name="user_password">
+          </div>
+        </div>
+      <div class="col-md-6 col-sm-12">
           <div class="form-group">
             <label for="user_role">Select Role</label><br>
             <select class="" name="user_role">
@@ -42,13 +48,7 @@
             </select>
           </div>
         </div>
-        <div class="col-md-4 col-sm-12">
-          <div class="form-group">
-            <label for="user_password">Password</label>
-            <input type="password" class="form-control" name="user_password">
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-12">
+        <div class="col-md-6 col-sm-12">
           <div class="form-group">
             <label for="user_image"><span class="btn btn-success">Profile Image</span></label>
             <input type="file" class="form-control-file" name="user_image" id="postImage">
