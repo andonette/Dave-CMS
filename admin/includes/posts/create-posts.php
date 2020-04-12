@@ -8,7 +8,7 @@ if (isset($_POST['create_post'])) {
   $create_post = $_POST['create_post'];
   $post_title = $_POST['post_title'];
   $post_cat_id = $_POST['post_category'];
-  $post_author = $_POST['post_author'];
+  $post_author_id = $_POST['post_author_id'];
   $post_status = $_POST['post_status'];
   $post_image = $_FILES['post_image']['name'];
   $post_image_temp = $_FILES['post_image']['tmp_name'];
@@ -24,7 +24,7 @@ if (isset($_POST['create_post'])) {
   $query .= "(post_title, ";
   $query .= "post_date, ";
   $query .= "post_category_id, ";
-  $query .= "post_author, ";
+  $query .= "post_author_id, ";
   $query .= "post_status, ";
   $query .= "post_content, ";
   $query .= "post_image, ";
@@ -33,12 +33,12 @@ if (isset($_POST['create_post'])) {
   $query .= "VALUES('{$post_title}', ";
   $query .= "now(), ";
   $query .= "{$post_cat_id}, ";
-  $query .= "'{$post_author}', ";
+  $query .= "{$post_author_id}, ";
   $query .= "'{$post_status}', ";
   $query .= "'{$post_content}', ";
   $query .= "'{$post_image}', ";
   $query .= "'{$post_tags}') ";
-
+  //echo $query;
   $create_post_query = mysqli_query($connection, $query);
   sql_error_check($create_post_query);
 
@@ -71,12 +71,26 @@ if (isset($_POST['create_post'])) {
           }
           ?>
         </select>
+        <br>
+        <label for="post_author_id">Post Author</label><br>
+        <select class="" name="post_author_id">
+          <?php
+          //gets the database connection
+          global $connection;
+          //create mysql query for users table
+          $query = "SELECT * FROM users";
+          //connect to database, and run query
+          $display_all_users = mysqli_query($connection, $query);
+          //loop through all available rows in table and get data
+          while ($row = mysqli_fetch_assoc($display_all_users)) {
+            $user_name = $row['user_name'];
+            $user_id = $row['user_id'];
+            // echo out data as options in a form dropdown
+            echo "<option value='{$user_id}'>{$user_name}</option>";
+          }
+          ?>
+        </select>
       </div>
-      <div class="form-group">
-        <label for="post_author">Post Author</label>
-        <input type="text" class="form-control" name="post_author">
-      </div>
-
       <div class="form-group">
         <label for="post_status">Post Status</label><br>
         <select class="" name="post_status">
