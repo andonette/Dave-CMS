@@ -11,7 +11,8 @@ if (isset($_GET['u_id'])) {
   $url_user_id = $_GET['u_id'];
 }
 //query the post by its selected id, which is displayed in the url
-$query = "SELECT * FROM users WHERE user_id = {$url_user_id}";
+$query = "SELECT * FROM users WHERE user_id = $url_user_id";
+echo $query;
 //assign to a new variable
 $select_user_by_id = mysqli_query($connection, $query);
 //loop through rows and get the data
@@ -59,7 +60,8 @@ if (isset($_POST['update_user'])) {
   $query .= "user_lastname = '{$user_lastname}', ";
   $query .= "user_role = '{$user_role}', ";
   $query .= "user_password = '{$user_password}', ";
-  $query .= "user_image = '{$user_image}' ";
+  $query .= "user_image = '{$user_image} ' ";
+  $query .= "WHERE user_id = {$url_user_id}";
 
   $update_user = mysqli_query($connection, $query);
   echo $query;
