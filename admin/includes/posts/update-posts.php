@@ -33,7 +33,7 @@ while ($row = mysqli_fetch_assoc($select_post_by_id)) {
 if (isset($_POST['update_post'])) {
   $post_title = $_POST['post_title'];
   $post_content = $_POST['post_content'];
-  $post_author = $_POST['post_author'];
+  $post_author_id = $_POST['post_author_id'];
   $post_category_id = $_POST['post_cat_id'];
   $post_status = $_POST['post_status'];
   $post_tags = $_POST['post_tags'];
@@ -65,7 +65,7 @@ if (isset($_POST['update_post'])) {
   $query .= "post_image = '{$post_image}', ";
   $query .= "post_tags = '{$post_tags}' ";
   $query .= "WHERE post_id = {$url_post_id}";
-
+  //echo $query;
   $update_post = mysqli_query($connection, $query);
   sql_error_check($update_post);
 }
@@ -84,16 +84,6 @@ if (isset($_POST['update_post'])) {
         <br>
         <select class="" name="post_cat_id">
           <?php
-          //add the already selected category to the default option
-          // this is a bit hacky because it shows the category twice
-          $query = "SELECT * FROM categories WHERE cat_id = $post_category_id";
-          $display_all_categories_query = mysqli_query($connection, $query);
-          while ($row = mysqli_fetch_assoc($display_all_categories_query)) {
-            $cat_title = $row['cat_title'];}
-          $default_state = $cat_title;
-          ?>
-          <option value=""><?php echo $default_state; ?></option>
-          <?php
           //displays the categories in the update form
           $query = "SELECT * FROM categories";
           $display_all_categories_query = mysqli_query($connection, $query);
@@ -105,10 +95,25 @@ if (isset($_POST['update_post'])) {
           ?>
         </select>
       </div>
-      <div class="form-group">
-        <label for="post_author">Post Author</label>
-        <input value="<?php echo $post_author; ?>" type="text" class="form-control" name="post_author">
-      </div>
+      <br>
+      <label for="post_author_id">Post Author</label><br>
+      <select class="" name="post_author_id">
+        <?php
+        //gets the database connection
+        global $connection;
+        //create mysql query for users table
+        $query = "SELECT * FROM users";
+        //connect to database, and run query
+        $display_all_users = mysqli_query($connection, $query);
+        //loop through all available rows in table and get data
+        while ($row = mysqli_fetch_assoc($display_all_users)) {
+          $user_name = $row['user_name'];
+          $user_id = $row['user_id'];
+          // echo out data as options in a form dropdown
+          echo "<option value='{$user_id}'>{$user_name}</option>";
+        }
+        ?>
+      </select>
 
       <div class="form-group">
         <label for="post_status">Post Status</label><br>
