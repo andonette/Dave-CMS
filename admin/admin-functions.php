@@ -97,51 +97,7 @@ function delete_category()
 }
 
 //Post functions
-function display_posts()
-{
-    global $connection;
-    $query = "SELECT * FROM posts";
-    $display_all_posts = mysqli_query($connection, $query);
-    while ($row = mysqli_fetch_assoc($display_all_posts)) {
-        $post_id = $row['post_id'];
-        $post_title = $row['post_title'];
-        $post_date = $row['post_date'];
-        $post_author = $row['post_author'];
-        $post_category_id = $row['post_category_id'];
-        $post_status = $row['post_status'];
-        $post_tags = $row['post_tags'];
-        $post_image = $row['post_image'];
-        $post_comment_count = $row['post_comment_count'];
 
-        echo '<tr>';
-        echo "<td>{$post_id}</td>";
-        echo "<td>{$post_date}</td>";
-        echo "<td>{$post_author}</td>";
-        echo "<td>{$post_title}</td>";
-
-        $query = "SELECT * FROM categories WHERE cat_id = " . $post_category_id;
-        $show_cat_name = mysqli_query($connection, $query);
-        while ($row = mysqli_fetch_assoc($show_cat_name)) {
-            $cat_title = $row['cat_title'];
-            $cat_id = $row['cat_id'];
-        }
-
-        echo "<td>{$cat_title}</td>";
-        echo "<td>{$post_status}</td>";
-        echo "<td><img class='img-fluid' src='../images/{$post_image}' alt='' style='max-width:100px;'/></td>";
-        echo "<td>{$post_tags}</td>";
-        echo "<td>{$post_comment_count}</td>";
-        echo '<td class="text-right" style="min-width: 100px;">';
-        echo '<a href ="admin-posts.php?source=update_post&p_id=' . $post_id . '"
-            class="btn btn-success btn-sm btn-round btn-icon mr-2">
-            <i class="fal fa-edit pt-2"></i></a>';
-        echo '<a href ="admin-posts.php?delete=' . $post_id . '"
-            class="btn btn-danger btn-sm btn-round btn-icon">
-            <i class="fal fa-trash-alt pt-2"></i></a>';
-        echo '</td>';
-        echo '</tr>';
-    }
-}
 function switch_post_content()
 {
     if (isset($_GET['source'])) {
@@ -162,49 +118,6 @@ function switch_post_content()
     }
 }
 
-function create_post()
-{
-    global $connection;
-    if (isset($_POST['create_post'])) {
-        $create_post = $_POST['create_post'];
-        $post_title = $_POST['post_title'];
-        $post_cat_id = $_POST['post_category'];
-        $post_author = $_POST['post_author'];
-        $post_status = $_POST['post_status'];
-        $post_image = $_FILES['post_image']['name'];
-        $post_image_temp = $_FILES['post_image']['tmp_name'];
-        $post_tags = $_POST['post_tags'];
-        $post_content = $_POST['post_content'];
-        $post_date = date('d-m-y');
-        //$post_comment_count = 4;
-
-        move_uploaded_file($post_image_temp, "../images/$post_image");
-
-        //Nice Looking Query
-        $query = "INSERT INTO posts ";
-        $query .= "(post_title, ";
-        $query .= "post_date, ";
-        $query .= "post_category_id, ";
-        $query .= "post_author, ";
-        $query .= "post_status, ";
-        $query .= "post_content, ";
-        $query .= "post_image, ";
-        $query .= "post_tags) ";
-
-        $query .= "VALUES('{$post_title}', ";
-        $query .= "now(), ";
-        $query .= "{$post_cat_id}, ";
-        $query .= "'{$post_author}', ";
-        $query .= "'{$post_status}', ";
-        $query .= "'{$post_content}', ";
-        $query .= "'{$post_image}', ";
-        $query .= "'{$post_tags}') ";
-
-        $create_post_query = mysqli_query($connection, $query);
-        sql_error_check($create_post_query);
-
-    }
-}
 function delete_posts()
 {
     global $connection;
@@ -318,80 +231,6 @@ function switch_user_content()
         default:
             include 'includes/users/view-users.php';
             break;
-    }
-}
-
-function display_users()
-{
-    global $connection;
-    $query = "SELECT * FROM users";
-    $display_all_users = mysqli_query($connection, $query);
-    while ($row = mysqli_fetch_assoc($display_all_users)) {
-        $user_id = $row['user_id'];
-        $user_name = $row['user_name'];
-        $user_firstname = $row['user_firstname'];
-        $user_lastname = $row['user_lastname'];
-        $user_password = $row['user_password'];
-        $user_email = $row['user_email'];
-        $user_role = $row['user_role'];
-
-        echo '<tr>';
-        echo "<td>{$user_id}</td>";
-        echo "<td>{$user_name}</td>";
-        echo "<td>{$user_firstname} {$user_lastname}</td>";
-        echo "<td>{$user_email}</td>";
-        echo "<td>{$user_role}</td>";
-        echo '<td class="text-right" style="min-width: 130px">';
-        echo '<a href ="admin-users.php?approve=' . $user_id . '"
-            class="btn btn-success btn-sm btn-round btn-icon mr-2">
-            <i class="fal fa-thumbs-up pt-2"></i></a>';
-        echo '<a href ="admin-comments.php?unapprove=' . $user_id . '"
-            class="btn btn-warning btn-sm btn-round btn-icon mr-2">
-            <i class="fal fa-thumbs-down pt-2"></i></a>';
-        echo '<a href ="admin-users.php?delete=' . $user_id . '"
-            class="btn btn-danger btn-sm btn-round btn-icon">
-            <i class="fal fa-trash-alt pt-2"></i></a>';
-        echo '</td>';
-        echo '</tr>';
-    }
-}
-function create_user()
-{
-    global $connection;
-    if (isset($_POST['create_user'])) {
-        $create_user = $_POST['create_user'];
-        $user_name = $_POST['user_name'];
-        $user_email = $_POST['user_email'];
-        $user_firstname = $_POST['user_firstname'];
-        $user_lastname = $_POST['user_lastname'];
-        $user_password = $_POST['user_password'];
-        $user_role = $_POST['user_role'];
-        $user_image = $_FILES['user_image']['name'];
-        $user_image_temp = $_FILES['user_image']['tmp_name'];
-
-        move_uploaded_file($post_image_temp, "../images/$post_image");
-
-        //Nice Looking Query
-        $query = "INSERT INTO users ";
-        $query .= "(user_name, ";
-        $query .= "user_email, ";
-        $query .= "user_firstname, ";
-        $query .= "user_lastname, ";
-        $query .= "user_password, ";
-        $query .= "user_role, ";
-        $query .= "user_image) ";
-
-        $query .= "VALUES('{$user_name}', ";
-        $query .= "'{$user_email}', ";
-        $query .= "'{$user_firstname}', ";
-        $query .= "'{$user_lastname}', ";
-        $query .= "'{$user_password}', ";
-        $query .= "'{$user_role}', ";
-        $query .= "'{$user_image}') ";
-
-        $create_user_query = mysqli_query($connection, $query);
-        sql_error_check($create_user_query);
-
     }
 }
 function delete_user()

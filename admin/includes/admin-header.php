@@ -33,15 +33,21 @@ The Template for the admin global header
 
         <div class="sidebar-wrapper">
             <ul class="nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <!--       <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fal fa-pencil-alt"></i>
+                  <p>Posts</p>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="admin-posts.php">View Posts</a>
+                  <a class="dropdown-item" href="admin-posts.php?source=create_post">Add New Post</a>
+              </div>
+          </li> -->
+                <li>
+                    <a href="admin-posts.php">
                         <i class="fal fa-pencil-alt"></i>
                         <p>Posts</p>
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="admin-posts.php">View Posts</a>
-                        <a class="dropdown-item" href="admin-posts.php?source=create_post">Add New Post</a>
-                    </div>
                 </li>
                 <li>
                     <a href="admin-categories.php">

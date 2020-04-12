@@ -42,7 +42,7 @@ if (isset($_POST['update_post'])) {
 
   // this gets the image and moves it
   //don't really understand how this works at the minute
-  move_uploaded_file($post_image_temp, "../images/$post_image");
+  move_uploaded_file($post_image_temp, "../images/posts/$post_image");
 
   // this  prevents the post image from showing empty
   // when the form is updated
