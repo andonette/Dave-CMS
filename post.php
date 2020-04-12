@@ -21,11 +21,11 @@
                 //create variables from the columns in the post table.
                 while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
                     $post_title = $row['post_title'];
-                    $post_author = $row['post_author'];
-                    $post_date = $row['post_date'];
+                    //$post_author = $row['post_author'];
+                    $post_date = date_create($row['post_date']);
                     $post_image = $row['post_image'];
                     $post_content = $row['post_content'];
-                    $post_author_image = $row['post_author_image'];
+                    //$post_author_image = $row['post_author_image'];
                 }
 
                 ?>
@@ -48,8 +48,7 @@
                                 <img src="images/posts/<?php echo $post_image; ?>" alt="<?php echo $post_image; ?>"
                                 class="avatar img-raised">
                                 <div class="text">
-                                    <span class="name"><?php echo $post_title; ?></span>
-                                    <div class="meta"><?php echo $post_date; ?></div>
+                                  <span class="name">Posted By <?php //echo $post_author; ?> On <?php echo date_format($post_date, 'D dS M Y'); ?></span>
                                 </div>
 
                             </div>

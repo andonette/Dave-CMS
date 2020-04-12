@@ -16,11 +16,11 @@ include 'includes/header.php'
             while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
                 $post_id = $row['post_id'];
                 $post_title = $row['post_title'];
-                $post_author = $row['post_author'];
-                $post_date = $row['post_date'];
+                //$post_author = $row['post_author'];
+                $post_date = date_create($row['post_date']);
                 $post_image = $row['post_image'];
                 substr($post_content = $row['post_content'], 0, 50);
-                $post_author_image = $row['post_author_image'];
+                //$post_author_image = $row['post_author_image'];
                 ?>
                 <div class="card card-blog card-plain blog-horizontal">
 
@@ -42,9 +42,7 @@ include 'includes/header.php'
                             <div class="author">
                                 <img src="images/posts/<?php echo $post_image; ?>" alt="<?php echo $post_image; ?>" class="avatar img-raised">
                                 <div class="text">
-                                    <span class="name"><?php echo $post_title; ?></span>
-                                    <div class="meta"><?php echo $post_date; ?></div>
-                                </div>
+                                  <span class="name">Posted By <?php //echo $post_author; ?> On <?php echo date_format($post_date, 'D dS M Y'); ?></span>
 
                             </div>
                         </div>
