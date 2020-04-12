@@ -1,3 +1,8 @@
+<?php
+/*
+Sidebar
+*/
+?>
 <!-- Blog Search Well -->
 <div class="card">
     <div class="card-body">

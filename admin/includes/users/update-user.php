@@ -1,4 +1,8 @@
-<?php create_post(); ?>
+<?php
+/*
+The Template for updating a user
+*/
+?>
 <div class="card">
   <div class="card-body">
     <h2>Create A New User</h2>

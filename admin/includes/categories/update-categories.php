@@ -1,3 +1,10 @@
+<?php
+/*
+The Template for updating a category
+included from the admin category page
+when edit button is selected
+*/
+?>
 <form class="form" action="" method="post">
     <label for="cat_title">Update Category</label>
     <div class="input-group">

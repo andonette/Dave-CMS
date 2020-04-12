@@ -1,3 +1,8 @@
+<?php
+/*
+Site Footer
+*/
+?>
 <!-- Core -->
 <script src="js/core/jquery.min.js"></script>
 <script src="js/core/popper.min.js"></script>

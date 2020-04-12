@@ -1,3 +1,9 @@
+<?php
+/*
+The Template for creating a user
+includes create user function
+*/
+?>
 <?php create_user(); ?>
 <div class="card">
   <div class="card-body">

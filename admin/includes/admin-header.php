@@ -1,3 +1,8 @@
+<?php
+/*
+The Template for the admin global header
+*/
+?>
 <?php ob_start(); ?>
 <?php include '../includes/config.php'; ?>
 <?php include 'admin-functions.php'; ?>

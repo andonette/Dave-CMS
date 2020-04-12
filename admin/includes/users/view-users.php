@@ -1,3 +1,8 @@
+<?php
+/*
+The Template for viewing users
+*/
+?>
 <div class="card">
     <div class="card-body">
         <table class="table table-hover">

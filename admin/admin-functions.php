@@ -3,8 +3,10 @@
 function display_categories()
 {
     global $connection;
+    //query the category table
     $query = "SELECT * FROM categories";
     $display_all_categories_query = mysqli_query($connection, $query);
+    //add results to a table
     while ($row = mysqli_fetch_assoc($display_all_categories_query)) {
         $cat_title = $row['cat_title'];
         $cat_id = $row['cat_id'];
@@ -340,13 +342,13 @@ function display_users()
         echo "<td>{$user_email}</td>";
         echo "<td>{$user_role}</td>";
         echo '<td class="text-right" style="min-width: 130px">';
-        echo '<a href ="admin-comments.php?approve=' . $comment_id . '"
+        echo '<a href ="admin-comments.php?approve=' . $user_id . '"
             class="btn btn-success btn-sm btn-round btn-icon mr-2">
             <i class="fal fa-thumbs-up pt-2"></i></a>';
-        echo '<a href ="admin-comments.php?unapprove=' . $comment_id . '"
+        echo '<a href ="admin-comments.php?unapprove=' . $user_id . '"
             class="btn btn-warning btn-sm btn-round btn-icon mr-2">
             <i class="fal fa-thumbs-down pt-2"></i></a>';
-        echo '<a href ="admin-comments.php?delete=' . $comment_id . '"
+        echo '<a href ="admin-comments.php?delete=' . $user_id . '"
             class="btn btn-danger btn-sm btn-round btn-icon">
             <i class="fal fa-trash-alt pt-2"></i></a>';
         echo '</td>';

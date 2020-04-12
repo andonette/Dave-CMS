@@ -1,3 +1,9 @@
+<?php
+/*
+The Template for viewing post
+includes view and delete posts functionality
+*/
+?>
 <div class="card">
     <div class="card-body">
         <table class="table table-striped">

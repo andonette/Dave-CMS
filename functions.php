@@ -1,14 +1,18 @@
 <?php
+/* front end functions
+*/
 function comment_form()
 {
     global $connection;
+    //if submit comment button is clicked
+    //get all the values from the form
     if (isset($_POST['submit_comment'])) {
         $get_post_id = $_GET['p_id'];
         $submit_comment_form = $_POST['submit_comment'];
         $comment_author = $_POST['comment_author'];
         $comment_email = $_POST['comment_email'];
         $comment_content = $_POST['comment_content'];
-
+        //create a query from the post valyes
         $query = "INSERT INTO comments (comment_post_id, comment_author,
             comment_email, comment_content, comment_status, comment_date) ";
         $query .= "VALUES ($get_post_id, '{$comment_author}', '{$comment_email}',
@@ -16,6 +20,7 @@ function comment_form()
 
         $comment_form_query = mysqli_query($connection, $query);
     }
+    //update the comment count by 1 on the relevant post
     $query = "UPDATE posts SET post_comment_count = post_comment_count +1 ";
     $query .= "WHERE post_id = $get_post_id ";
     $update_comment_count = mysqli_query($connection, $query);
@@ -24,6 +29,8 @@ function show_post_comments()
 {
     global $connection;
     global $get_post_id;
+    //this gets the post id from the comment
+    //and displays comments with a status of approved
     $query = "SELECT * FROM comments WHERE comment_post_id = {$get_post_id} ";
     $query .= "AND comment_status = 'approved' ";
     $query .= "ORDER BY comment_id DESC";

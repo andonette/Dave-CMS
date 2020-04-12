@@ -1,6 +1,11 @@
-<?php ob_start() ?>
-<?php include 'includes/config.php' ?>
-<?php include 'functions.php' ?>
+<?php
+/*
+Site Header
+*/
+ob_start();
+include 'includes/config.php';
+include 'functions.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>

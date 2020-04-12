@@ -13,12 +13,15 @@
                 if (!$search_query) {
                     die('Query Failed' . mysqli_error($connection));
                 }
+                // if there are no results echo a message
                 $count = mysqli_num_rows($search_query);
                 if ($count == 0) {
                     echo '<h3>Try again, we found no results for "' . $search . '"</h3>';
+                    //if the search box is empty, display a message
                 } elseif ($earch = "" || empty($search)) {
                     echo '<h3>Search cannot be empty</h3>';
                 } else {
+                    //show the results
                     echo '<h3>Good going, we found the following results for "' . $search . '":</h3>';
                     while ($row = mysqli_fetch_assoc($search_query)) {
                         $post_title = $row['post_title'];

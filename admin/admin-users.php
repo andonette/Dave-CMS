@@ -1,4 +1,9 @@
-<?php include 'includes/admin-header.php'; ?>
+<?php
+/*
+The Template for the users page
+*/
+include 'includes/admin-header.php';
+?>
     <div class="content">
       <div class="container-fluid">
          <div class="row">

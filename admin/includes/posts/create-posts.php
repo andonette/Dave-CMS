@@ -1,3 +1,9 @@
+<?php
+/*
+The Template for creating a post
+includes create post function
+*/
+?>
 <?php create_post(); ?>
 <div class="card">
   <div class="card-body">
@@ -11,12 +17,17 @@
         <label for="post_category">Post Category</label><br>
         <select class="" name="post_category">
           <?php
+          //gets the database connection
           global $connection;
+          //create mysql query for categories table
           $query = "SELECT * FROM categories";
-          $display_all_categories_query = mysqli_query($connection, $query);
-          while ($row = mysqli_fetch_assoc($display_all_categories_query)) {
+          //connect to database, and run query
+          $display_all_categories = mysqli_query($connection, $query);
+          //loop through all available rows in table and get data
+          while ($row = mysqli_fetch_assoc($display_all_categories)) {
             $cat_title = $row['cat_title'];
             $cat_id = $row['cat_id'];
+            // echo out data as options in a form dropdown
             echo "<option value='{$cat_id}'>{$cat_title}</option>";
           }
           ?>

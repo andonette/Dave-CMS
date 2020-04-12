@@ -1,9 +1,9 @@
 <?php
 /*
-Add a view 
+The Template for the posts page
 */
+include 'includes/admin-header.php';
 ?>
-<?php include 'includes/admin-header.php'; ?>
 <div class="content">
     <div class="container-fluid">
         <div class="row">
