@@ -33,7 +33,7 @@
 
                     <div class="card-image">
                         <a href="javascript:;">
-                            <img class="img rounded" src="images/<?php echo $post_image; ?>" />
+                            <img class="img rounded" src="images/posts/<?php echo $post_image; ?>" />
                         </a>
 
 
@@ -45,7 +45,7 @@
                                 <?php echo $post_content; ?>
                             </p>
                             <div class="author">
-                                <img src="images/<?php echo $post_image; ?>" alt="<?php echo $post_image; ?>"
+                                <img src="images/posts/<?php echo $post_image; ?>" alt="<?php echo $post_image; ?>"
                                 class="avatar img-raised">
                                 <div class="text">
                                     <span class="name"><?php echo $post_title; ?></span>
