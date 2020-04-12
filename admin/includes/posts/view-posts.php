@@ -37,7 +37,10 @@ function display_posts()
         echo "<td><img class='img-fluid' src='../images/posts/{$post_image}' alt='' style='max-width:100px;'/></td>";
         echo "<td>{$post_tags}</td>";
         echo "<td>{$post_comment_count}</td>";
-        echo '<td class="text-right" style="min-width: 100px;">';
+        echo '<td class="text-right" style="min-width: 130px;">';
+        echo '<a href ="../post.php?p_id=' . $post_id . '"
+            class="btn btn-warning btn-sm btn-round btn-icon mr-2">
+            <i class="fal fa-eye pt-2"></i></a>';
         echo '<a href ="admin-posts.php?source=update_post&p_id=' . $post_id . '"
             class="btn btn-success btn-sm btn-round btn-icon mr-2">
             <i class="fal fa-edit pt-2"></i></a>';

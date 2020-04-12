@@ -64,7 +64,7 @@ if (isset($_POST['update_user'])) {
   $query .= "WHERE user_id = {$url_user_id}";
 
   $update_user = mysqli_query($connection, $query);
-  echo $query;
+  //echo $query;
   sql_error_check($update_user);
 }
 ?>
@@ -111,6 +111,10 @@ if (isset($_POST['update_user'])) {
           <div class="form-group">
             <label for="user_role">Select Role</label><br>
             <select class="" name="user_role">
+              <?php
+                $default_state = $user_role;
+               ?>
+            <option value="<?php echo $user_role; ?>"><?php echo $user_role; ?></option>
             <option value="Administrator">Administrator</option>
             <option value="Editor">Editor</option>
             <option value="Subscriber">Subscriber</option>

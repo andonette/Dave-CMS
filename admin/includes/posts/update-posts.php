@@ -84,6 +84,16 @@ if (isset($_POST['update_post'])) {
         <br>
         <select class="" name="post_cat_id">
           <?php
+          //add the already selected category to the default option
+          // this is a bit hacky because it shows the category twice
+          $query = "SELECT * FROM categories WHERE cat_id = $post_category_id";
+          $display_all_categories_query = mysqli_query($connection, $query);
+          while ($row = mysqli_fetch_assoc($display_all_categories_query)) {
+            $cat_title = $row['cat_title'];}
+          $default_state = $cat_title;
+          ?>
+          <option value=""><?php echo $default_state; ?></option>
+          <?php
           //displays the categories in the update form
           $query = "SELECT * FROM categories";
           $display_all_categories_query = mysqli_query($connection, $query);
