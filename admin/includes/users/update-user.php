@@ -107,20 +107,22 @@ if (isset($_POST['update_user'])) {
             <input type="password" class="form-control" name="user_password" value="<?php echo $user_password; ?>">
           </div>
         </div>
-      <div class="col-md-6 col-sm-12">
+        <div class="col-md-6 col-sm-12">
           <div class="form-group">
             <label for="user_role">Select Role</label><br>
             <select class="" name="user_role">
               <?php
-                $default_state = $user_role;
-               ?>
-            <option value="<?php echo $user_role; ?>"><?php echo $user_role; ?></option>
-            <option value="Administrator">Administrator</option>
-            <option value="Editor">Editor</option>
-            <option value="Subscriber">Subscriber</option>
+              $default_state = $user_role;
+              ?>
+              <option value="<?php echo $user_role; ?>"><?php echo $user_role; ?></option>
+              <option value="Administrator">Administrator</option>
+              <option value="Editor">Editor</option>
+              <option value="Subscriber">Subscriber</option>
             </select>
           </div>
         </div>
+      </div>
+      <div class="form-row">
         <div class="col-md-6 col-sm-12">
           <div class="form-group">
             <img src="../images/users/<?php echo $user_image; ?>" alt="" style="max-width: 200px;">
@@ -129,8 +131,8 @@ if (isset($_POST['update_user'])) {
             <label for="user_image"><span class="btn btn-info">Replace Image</span></label>
             <input type="file" class="form-control-file" name="user_image" id="postImage">
           </div>
+        </div>
       </div>
-    </div>
       <button type="submit" class="btn btn-primary" name="update_user">Update User</button>
     </form>
   </div>

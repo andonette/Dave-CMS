@@ -77,7 +77,7 @@ if (!isset($_SESSION['user_role'])) {
                     </a>
                 </li>
                 <li>
-                    <a href="./user.html">
+                    <a href="profile.php">
                         <i class="fal fa-user-circle"></i>
                         <p>Profile</p>
                     </a>
