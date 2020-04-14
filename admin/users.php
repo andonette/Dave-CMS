@@ -2,7 +2,7 @@
 /*
 The Template for the users page
 */
-include 'includes/admin-header.php';
+include 'includes/header.php';
 ?>
     <div class="content">
       <div class="container-fluid">
@@ -13,8 +13,8 @@ include 'includes/admin-header.php';
                          <div class="row">
                              <div class="col-12">
                                  <h1>Users</h1>
-                                 <a href="admin-users.php?source=create_user" class="btn btn-primary">Create New User</a>
-                                 <a href="admin-users.php" class="btn btn-success">View All Users</a>
+                                 <a href="users.php?source=create_user" class="btn btn-primary">Create New User</a>
+                                 <a href="users.php" class="btn btn-success">View All Users</a>
                              </div>
                              <div class="col-sm-6 mr-auto">
 
@@ -32,4 +32,4 @@ include 'includes/admin-header.php';
          </div>
       </div>
     </div>
-<?php include 'includes/admin-footer.php'; ?>
+<?php include 'includes/footer.php'; ?>

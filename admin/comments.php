@@ -2,7 +2,7 @@
 /*
 The Template for the main comments page
 */
-include 'includes/admin-header.php';
+include 'includes/header.php';
 ?>
     <div class="content">
       <div class="container-fluid">
@@ -30,4 +30,4 @@ include 'includes/admin-header.php';
          </div>
       </div>
     </div>
-<?php include 'includes/admin-footer.php'; ?>
+<?php include 'includes/footer.php'; ?>

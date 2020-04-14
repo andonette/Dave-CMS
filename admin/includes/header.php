@@ -5,7 +5,7 @@ The Template for the admin global header
 ?>
 <?php ob_start(); ?>
 <?php include '../includes/config.php'; ?>
-<?php include 'admin-functions.php'; ?>
+<?php include 'functions.php'; ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -26,7 +26,7 @@ The Template for the admin global header
     <div class="wrapper ">
         <div class="sidebar" data-color="purple" data-background-color="white">
         <div class="logo">
-            <a href="admin-index.php" class="simple-text">
+            <a href="index.php" class="simple-text">
                 <img src="../images/dave.png" alt="" class="img-fluid pr-5">
             </a>
         </div>
@@ -39,30 +39,30 @@ The Template for the admin global header
                   <p>Posts</p>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="admin-posts.php">View Posts</a>
-                  <a class="dropdown-item" href="admin-posts.php?source=create_post">Add New Post</a>
+                  <a class="dropdown-item" href="posts.php">View Posts</a>
+                  <a class="dropdown-item" href="posts.php?source=create_post">Add New Post</a>
               </div>
           </li> -->
                 <li>
-                    <a href="admin-posts.php">
+                    <a href="posts.php">
                         <i class="fal fa-pencil-alt"></i>
                         <p>Posts</p>
                     </a>
                 </li>
                 <li>
-                    <a href="admin-categories.php">
+                    <a href="categories.php">
                         <i class="fal fa-folder-open"></i>
                         <p>Categories</p>
                     </a>
                 </li>
                 <li>
-                    <a href="admin-comments.php">
+                    <a href="comments.php">
                         <i class="fal fa-comment-smile"></i>
                         <p>Comments</p>
                     </a>
                 </li>
                 <li>
-                    <a href="admin-users.php">
+                    <a href="users.php">
                         <i class="fal fa-users"></i>
                         <p>Users</p>
                     </a>

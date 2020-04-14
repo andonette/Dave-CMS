@@ -7,7 +7,7 @@ Sidebar
 <div class="card">
   <div class="card-body">
     <h4>Log In</h4>
-    <form class="form" action="" method="post">
+    <form class="form" action="includes/login.php" method="post">
       <label for="username">Username</label>
       <input type="text" class="form-control" name="username">
       <label for="password">Password</label>
@@ -57,8 +57,6 @@ Sidebar
     </ul>
   </div>
 </div>
-<!-- /.col-lg-6 -->
-
 <!-- /.col-lg-6 -->
 
 <!-- Side Widget Well -->
