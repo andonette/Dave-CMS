@@ -23,9 +23,10 @@ include 'includes/header.php';
                          </div>
                      </div>
                  </div><!-- end card -->
-                 <?php include 'includes/comments/view-comments.php'; ?>
+                <?php include 'includes/comments/view-comments.php'; ?>
+                <?php include 'includes/comments/update-comment.php'; ?>
+                <?php include 'includes/comments/delete-comment.php'; ?>
                  <!-- end Card -->
-
              </div>
          </div>
       </div>

@@ -32,7 +32,7 @@ if (isset($_POST['login'])) {
   }
 }
 // if the username and password match, create variables for the session
-if ($username === $db_user_name & $password !=== $db_user_password) {
+if ($username === $db_user_name & $password === $db_user_password) {
   $_SESSION['username'] = $db_user_name;
   $_SESSION['firstname'] = $db_user_firstname;
   $_SESSION['lastname'] = $db_user_lastname;
