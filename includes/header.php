@@ -2,9 +2,9 @@
 /*
 Site Header
 */
-ob_start();
 include 'includes/config.php';
 include 'functions.php';
+ob_start();
 ?>
 <!DOCTYPE html>
 <html>

@@ -10,7 +10,8 @@ include 'includes/header.php';
              <div class="col-12">
                  <div class="card">
                      <div class="card-body">
-                         <h1>Welcome To Your Dashboard Author</h1>
+                       <!-- echo out the username from the session -->
+                         <h1>Welcome To Your Dashboard  <?php echo $_SESSION['username']; ?></h1>
                      </div>
                  </div>
              </div>
