@@ -95,25 +95,26 @@ if (isset($_POST['update_post'])) {
           ?>
         </select>
       </div>
-      <br>
-      <label for="post_author_id">Post Author</label><br>
-      <select class="" name="post_author_id">
-        <?php
-        //gets the database connection
-        global $connection;
-        //create mysql query for users table
-        $query = "SELECT * FROM users";
-        //connect to database, and run query
-        $display_all_users = mysqli_query($connection, $query);
-        //loop through all available rows in table and get data
-        while ($row = mysqli_fetch_assoc($display_all_users)) {
-          $user_name = $row['user_name'];
-          $user_id = $row['user_id'];
-          // echo out data as options in a form dropdown
-          echo "<option value='{$user_id}'>{$user_name}</option>";
-        }
-        ?>
-      </select>
+      <div class="form-group">
+        <label for="post_author_id">Post Author</label><br>
+        <select class="" name="post_author_id">
+          <?php
+          //gets the database connection
+          global $connection;
+          //create mysql query for users table
+          $query = "SELECT * FROM users";
+          //connect to database, and run query
+          $display_all_users = mysqli_query($connection, $query);
+          //loop through all available rows in table and get data
+          while ($row = mysqli_fetch_assoc($display_all_users)) {
+            $user_name = $row['user_name'];
+            $user_id = $row['user_id'];
+            // echo out data as options in a form dropdown
+            echo "<option value='{$user_id}'>{$user_name}</option>";
+          }
+          ?>
+        </select>
+      </div>
 
       <div class="form-group">
         <label for="post_status">Post Status</label><br>
@@ -142,7 +143,15 @@ if (isset($_POST['update_post'])) {
       </div>
       <div class="form-group">
         <label for="post_content">Post Content</label>
-        <textarea rows="10" class="form-control" name="post_content"><?php echo $post_content; ?></textarea>
+        <textarea name="post_content" id="editor" value="<?php echo $post_content; ?>"></textarea>
+        <script>
+        ClassicEditor
+                 .create( document.querySelector( '#editor' ) )
+                 .catch( error => {
+                     console.error( error );
+                 } );
+
+        </script>
       </div>
       <button type="submit" class="btn btn-primary" name="update_post">Update Post</button>
     </form>

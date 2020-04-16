@@ -17,7 +17,6 @@ if (!isset($_SESSION['user_role'])) {
 ?>
 <!doctype html>
 <html lang="en">
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <head>
     <title>Dave CMS. The Best CMS on The Planet</title>
     <!-- Required meta tags -->
@@ -25,12 +24,17 @@ if (!isset($_SESSION['user_role'])) {
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <!--  Fonts and icons  -->
-    <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
+    <script src="https://cdn.ckeditor.com/ckeditor5/18.0.0/classic/ckeditor.js"></script>
     <script src="https://kit.fontawesome.com/84146e01c9.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="js/scripts.js">
 
+    </script>
     <!-- Black Dashboard CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
     <link href="css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
     <div class="wrapper ">

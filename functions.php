@@ -21,6 +21,7 @@ function comment_form()
         $comment_form_query = mysqli_query($connection, $query);
     }
     //update the comment count by 1 on the relevant post
+    $get_post_id = $_GET['p_id'];
     $query = "UPDATE posts SET post_comment_count = post_comment_count +1 ";
     $query .= "WHERE post_id = $get_post_id ";
     $update_comment_count = mysqli_query($connection, $query);
