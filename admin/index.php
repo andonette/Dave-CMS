@@ -3,6 +3,14 @@
 The Template for the main page
 */
 include 'includes/header.php';
+function count_rows($table){
+  global $connection;
+  $query = 'SELECT * FROM ' . $table;
+  $select = mysqli_query($connection, $query);
+  $count = mysqli_num_rows($select);
+  echo $count;
+}
+
 ?>
 <div class="content">
   <div class="container-fluid">
@@ -26,7 +34,7 @@ include 'includes/header.php';
                 <i class="fal fa-file fa-5x"></i>
               </div>
               <div class="col-sm-9 text-right">
-                <div class='h1'>12</div>
+                <div class='h1'><?php count_rows('posts'); ?></div>
                 <div>Posts</div>
               </div>
             </div>
@@ -47,7 +55,7 @@ include 'includes/header.php';
                 <i class="fal fa-comments fa-5x"></i>
               </div>
               <div class="col-sm-9 text-right">
-                <div class='h1'>23</div>
+                <div class='h1'><?php count_rows('comments'); ?></div>
                 <div>Comments</div>
               </div>
             </div>
@@ -68,7 +76,7 @@ include 'includes/header.php';
                 <i class="fal fa-users fa-5x"></i>
               </div>
               <div class="col-sm-9 text-right">
-                <div class='h1'>12</div>
+                <div class='h1'><?php count_rows('users'); ?></div>
                 <div>Users</div>
               </div>
             </div>
@@ -89,7 +97,7 @@ include 'includes/header.php';
                 <i class="fal fa-list fa-5x"></i>
               </div>
               <div class="col-sm-9 text-right">
-                <div class='h1'>13</div>
+                <div class='h1'><?php count_rows('categories'); ?></div>
                 <div>Categories</div>
               </div>
             </div>
