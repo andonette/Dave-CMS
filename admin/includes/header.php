@@ -17,6 +17,7 @@ if (!isset($_SESSION['user_role'])) {
 ?>
 <!doctype html>
 <html lang="en">
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <head>
     <title>Dave CMS. The Best CMS on The Planet</title>
     <!-- Required meta tags -->
