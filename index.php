@@ -24,7 +24,7 @@ include 'includes/header.php'
         ?>
         <div class="card card-blog card-plain blog-horizontal">
           <div class="card-image">
-            <a href="javascript:;">
+            <a href="post.php?p_id=<?php echo $post_id; ?>">
               <img class="img rounded" src="images/posts/<?php echo $post_image; ?>" />
             </a>
             <div class="card-body">

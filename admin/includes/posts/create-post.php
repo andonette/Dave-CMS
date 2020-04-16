@@ -41,7 +41,7 @@ if (isset($_POST['create_post'])) {
   //echo $query;
   $create_post_query = mysqli_query($connection, $query);
   sql_error_check($create_post_query);
-
+  echo '<div class="alert alert-success">Post Created: <a class="text-white" href="posts.php">View Posts</a></div>';
 }
 ?>
 <div class="card">

@@ -68,6 +68,7 @@ if (isset($_POST['update_post'])) {
   //echo $query;
   $update_post = mysqli_query($connection, $query);
   sql_error_check($update_post);
+  echo "<div class='alert alert-success'>Post Updated: <a class='text-white' href='../post.php?p_id={$url_post_id}'>View Post</a></div>";
 }
 ?>
 
