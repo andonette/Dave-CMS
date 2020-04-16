@@ -118,13 +118,19 @@ if (isset($_POST['update_post'])) {
       <div class="form-group">
         <label for="post_status">Post Status</label><br>
         <select class="" name="post_status">
-          <option value='Published'>Published</option>
-          <option value='Draft'>Draft</option>
+          <option value='<?php echo $post_status; ?>'><?php echo $post_status; ?></option>
+          <?php
+          if ($post_status == 'Published') {
+            echo '<option value="Draft">Make Draft</option>';
+          } else {
+            echo '<option value="Published">Publish</option>';
+          }
+           ?>
         </select>
       </div>
 
       <div class="form-group">
-        <img src="../images/<?php echo $post_image; ?>" alt="" style="max-width: 200px;">
+        <img src="../images/posts/<?php echo $post_image; ?>" alt="" style="max-width: 200px;">
       </div>
       <div class="form-group">
         <label for="post_image"><span class="btn btn-info">Replace Image</span></label>

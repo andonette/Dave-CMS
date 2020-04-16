@@ -25,6 +25,7 @@ function display_posts()
         echo "<td>{$post_author}</td>";
         echo "<td>{$post_title}</td>";
 
+        
         $query = "SELECT * FROM categories WHERE cat_id = " . $post_category_id;
         $show_cat_name = mysqli_query($connection, $query);
         while ($row = mysqli_fetch_assoc($show_cat_name)) {
