@@ -12,7 +12,7 @@ if (isset($_GET['u_id'])) {
 }
 //query the post by its selected id, which is displayed in the url
 $query = "SELECT * FROM users WHERE user_id = $url_user_id";
-echo $query;
+//echo $query;
 //assign to a new variable
 $select_user_by_id = mysqli_query($connection, $query);
 //loop through rows and get the data
@@ -66,6 +66,7 @@ if (isset($_POST['update_user'])) {
   $update_user = mysqli_query($connection, $query);
   //echo $query;
   sql_error_check($update_user);
+  echo '<div class="alert alert-success">User Updated: <a class="text-white" href="users.php">View Users</a></div>';
 }
 ?>
 <div class="card">
