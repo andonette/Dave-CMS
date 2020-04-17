@@ -5,6 +5,7 @@ Site Header
 include 'includes/config.php';
 include 'functions.php';
 ob_start();
+session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -50,6 +51,14 @@ ob_start();
                     <li class="nav-item">
                         <a class="nav-link" href="admin/index.php">Admin</a>
                     </li>
+                    <?php
+                      if (isset($_SESSION['user_role'])) {
+                        $post_edit_id = $_GET['p_id'];
+                        if (isset($_GET['p_id'])) {
+                          echo "<li class='nav-item'><a class='nav-link' href='admin/posts.php?source=update_post&p_id={$post_edit_id}'>Edit Post</a></li>";
+                        }
+                      }
+                     ?>
                 </ul>
             </div>
         </div>
