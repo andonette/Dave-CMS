@@ -118,7 +118,7 @@ function display_posts()
           </div>
         </div>
         <thead>
-          <th><input id="select" type="checkbox"></th>
+          <th><input id="selectAllBoxes" type="checkbox"></th>
           <th>ID</th>
           <th>Date</th>
           <th>Author</th>

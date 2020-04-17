@@ -28,6 +28,7 @@ The Template for the admin global footer
 </div>
 </div>
 <!--   Core JS Files   -->
+
 <script src="js/core/jquery.min.js" type="text/javascript"></script>
 <script src="js/core/popper.min.js" type="text/javascript"></script>
 <script src="js/core/bootstrap.min.js" type="text/javascript"></script>
@@ -39,4 +40,5 @@ The Template for the admin global footer
 <script src="js/plugins/bootstrap-notify.js"></script>
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="js/black-dashboard.js?v=1.0.0" type="text/javascript"></script></body>
+<script src="js/scripts.js" type="text/javascript"></script>
 </html>

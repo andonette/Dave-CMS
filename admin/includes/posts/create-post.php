@@ -114,11 +114,7 @@ if (isset($_POST['create_post'])) {
         <textarea name="post_content" id="editor"></textarea>
         <script>
         ClassicEditor
-                 .create( document.querySelector( '#editor' ) )
-                 .catch( error => {
-                     console.error( error );
-                 } );
-
+           .create( document.querySelector( '#editor' ) );
         </script>
       </div>
       <button type="submit" class="btn btn-primary" name="create_post">Create Post</button>

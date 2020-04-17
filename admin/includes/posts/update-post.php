@@ -147,11 +147,7 @@ if (isset($_POST['update_post'])) {
         <textarea name="post_content" id="editor" value="<?php echo $post_content; ?>"></textarea>
         <script>
         ClassicEditor
-                 .create( document.querySelector( '#editor' ) )
-                 .catch( error => {
-                     console.error( error );
-                 } );
-
+           .create( document.querySelector( '#editor' ) );
         </script>
       </div>
       <button type="submit" class="btn btn-primary" name="update_post">Update Post</button>
