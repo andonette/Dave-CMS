@@ -83,7 +83,7 @@ if (isset($_POST['update_post'])) {
       <div class="form-group">
         <label for="post_cat_id">Category</label>
         <br>
-        <select class="" name="post_cat_id">
+        <select class="form-control" name="post_cat_id">
           <?php
           //displays the categories in the update form
           $query = "SELECT * FROM categories";
@@ -98,7 +98,7 @@ if (isset($_POST['update_post'])) {
       </div>
       <div class="form-group">
         <label for="post_author_id">Post Author</label><br>
-        <select class="" name="post_author_id">
+        <select class="form-control" name="post_author_id">
           <?php
           //gets the database connection
           global $connection;
@@ -119,7 +119,7 @@ if (isset($_POST['update_post'])) {
 
       <div class="form-group">
         <label for="post_status">Post Status</label><br>
-        <select class="" name="post_status">
+        <select class="form-control" name="post_status">
           <option value='<?php echo $post_status; ?>'><?php echo $post_status; ?></option>
           <?php
           if ($post_status == 'Published') {

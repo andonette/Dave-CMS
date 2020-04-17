@@ -111,7 +111,7 @@ if (isset($_POST['update_user'])) {
         <div class="col-md-6 col-sm-12">
           <div class="form-group">
             <label for="user_role">Select Role</label><br>
-            <select class="" name="user_role">
+            <select class="form-control" name="user_role">
               <?php
               $default_state = $user_role;
               ?>

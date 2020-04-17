@@ -54,7 +54,7 @@ if (isset($_POST['create_post'])) {
       </div>
       <div class="form-group">
         <label for="post_category">Post Category</label><br>
-        <select class="" name="post_category">
+        <select class="form-control" name="post_category">
           <?php
           //gets the database connection
           global $connection;
@@ -73,7 +73,7 @@ if (isset($_POST['create_post'])) {
         </select>
         <br>
         <label for="post_author_id">Post Author</label><br>
-        <select class="" name="post_author_id">
+        <select class="form-control" name="post_author_id">
           <?php
           //gets the database connection
           global $connection;
@@ -93,7 +93,7 @@ if (isset($_POST['create_post'])) {
       </div>
       <div class="form-group">
         <label for="post_status">Post Status</label><br>
-        <select class="" name="post_status">
+        <select class="form-control" name="post_status">
           <option value='Published'>Published</option>
           <option value='Draft'>Draft</option>
         </select>

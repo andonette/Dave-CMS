@@ -20,12 +20,15 @@ function display_posts()
         $post_comment_count = $row['post_comment_count'];
 
         echo '<tr>';
+        ?>
+        <td><input class="checkboxes" type="checkbox" name="checkBoxArray[]" value ="<?php echo $post_id; ?>"></td>
+        <?php
         echo "<td>{$post_id}</td>";
         echo "<td>{$post_date}</td>";
         echo "<td>{$post_author}</td>";
         echo "<td>{$post_title}</td>";
 
-        
+
         $query = "SELECT * FROM categories WHERE cat_id = " . $post_category_id;
         $show_cat_name = mysqli_query($connection, $query);
         while ($row = mysqli_fetch_assoc($show_cat_name)) {
@@ -57,6 +60,7 @@ function display_posts()
     <div class="card-body">
         <table class="table table-striped">
             <thead>
+                <th><input id="select" type="checkbox"></th>
                 <th>ID</th>
                 <th>Date</th>
                 <th>Author</th>
