@@ -28,6 +28,7 @@ if (isset($_POST['create_post'])) {
   $query .= "post_status, ";
   $query .= "post_content, ";
   $query .= "post_image, ";
+  $query .= "post_comment_count, ";
   $query .= "post_tags) ";
 
   $query .= "VALUES('{$post_title}', ";
@@ -37,6 +38,7 @@ if (isset($_POST['create_post'])) {
   $query .= "'{$post_status}', ";
   $query .= "'{$post_content}', ";
   $query .= "'{$post_image}', ";
+  $query .= "0, ";
   $query .= "'{$post_tags}') ";
   //echo $query;
   $create_post_query = mysqli_query($connection, $query);

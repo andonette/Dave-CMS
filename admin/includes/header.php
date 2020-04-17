@@ -27,9 +27,6 @@ if (!isset($_SESSION['user_role'])) {
     <script src="https://cdn.ckeditor.com/ckeditor5/18.0.0/classic/ckeditor.js"></script>
     <script src="https://kit.fontawesome.com/84146e01c9.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript" src="js/scripts.js">
-
-    </script>
     <!-- Black Dashboard CSS -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
     <link href="css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
