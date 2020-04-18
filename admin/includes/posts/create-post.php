@@ -43,7 +43,9 @@ if (isset($_POST['create_post'])) {
   //echo $query;
   $create_post_query = mysqli_query($connection, $query);
   sql_error_check($create_post_query);
-  echo '<div class="alert alert-success">Post Created: <a class="text-white" href="posts.php">View Posts</a></div>';
+//this is going to grab the last id that we created
+  $post_id = mysqli_insert_id($connection);
+  echo "<div class='alert alert-success'>Post Created: <a class='text-white' href='../post.php?p_id={$post_id}'>View Post</a></div>";
 }
 ?>
 <div class="card">
