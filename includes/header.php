@@ -19,7 +19,6 @@ session_start();
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
 
     <!-- Icons -->
-    <link href="css/nucleo-icons.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/84146e01c9.js" crossorigin="anonymous"></script>
 
     <!-- BLK• CSS -->
@@ -50,6 +49,9 @@ session_start();
                     ?>
                     <li class="nav-item">
                         <a class="nav-link" href="admin/index.php">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ml-auto" href="registration.php">Register</a>
                     </li>
                     <?php
                       if (isset($_SESSION['user_role'])) {
