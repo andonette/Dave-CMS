@@ -3,6 +3,49 @@
 Site Index
 */
 include 'includes/header.php' ?>
+<?php
+/*form action */
+if (isset($_POST['register'])) {
+
+    $register = $_POST['register'];
+    $user_name = $_POST['username'];
+    $user_email = $_POST['email'];
+    $user_password = $_POST['password'];
+    echo $user_name . '<br>' . $user_email . '<br>' . $user_password;
+
+    $user_name = mysqli_real_escape_string($connection, $user_name);
+    $user_email = mysqli_real_escape_string($connection, $user_email);
+    $user_password = mysqli_real_escape_string($connection, $user_password);
+
+    $crypt = "SELECT randSalt from USERS";
+    $rand_salt_query = mysqli_query($connection, $query);
+
+    $row = mysqli_fetch_array($rand_salt_query);
+    $rand_salt = $row['randSalt'];
+
+    sql_error_check($rand_salt_query);
+    //Nice Looking Query
+    $query = "INSERT INTO users ";
+    $query .= "(user_name, ";
+    $query .= "user_email, ";
+    $query .= "user_password, ";
+    $query .= "user_role) ";
+
+    $query .= "VALUES('{$user_name}', ";
+    $query .= "'{$user_email}', ";
+    $query .= "'{$user_password}', ";
+    $query .= "'Subscriber') ";
+    echo $query;
+
+    if (!empty($user_name) && !empty($user_password) && !empty($user_email )) {
+        $register_query = mysqli_query($connection, $query);
+        sql_error_check($register_query);
+    }
+}
+
+
+
+ ?>
 <div class="page-header">
   <div class="page-header-image"></div>
   <div class="container">
@@ -11,35 +54,36 @@ include 'includes/header.php' ?>
         <div id="square7" class="square square-7"></div>
         <div id="square8" class="square square-8"></div>
         <div class="card card-register">
+            <form class="" action="" method="post">
           <div class="card-header">
             <img class="card-img" src="images/square1.png" alt="Card image">
             <h4 class="card-title">Register</h4>
           </div>
           <div class="card-body">
-            <form class="form">
+
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">
-                    <i class="tim-icons icon-single-02"></i>
+                    <i class="fal fa-user"></i>
                   </div>
                 </div>
-                <input type="text" class="form-control" placeholder="Full Name">
+                <input type="text" class="form-control" placeholder="Username" name="username">
               </div>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">
-                    <i class="tim-icons icon-email-85"></i>
+                    <i class="fal fa-envelope"></i>
                   </div>
                 </div>
-                <input type="text" placeholder="Email" class="form-control">
+                <input type="text" placeholder="Email" class="form-control" name="email">
               </div>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <div class="input-group-text">
-                    <i class="tim-icons icon-lock-circle"></i>
+                    <i class="fal fa-lock"></i>
                   </div>
                 </div>
-                <input type="text" class="form-control" placeholder="Password">
+                <input type="password" class="form-control" placeholder="Password" name="password">
               </div>
               <div class="form-check text-left">
                 <label class="form-check-label">
@@ -49,11 +93,11 @@ include 'includes/header.php' ?>
                   <a href="javascript:void(0)">terms and conditions</a>.
                 </label>
               </div>
-            </form>
           </div>
           <div class="card-footer">
-            <a href="javascript:void(0)" class="btn btn-info btn-round btn-lg">Get Started</a>
+              <button type="submit" name="register" value="Register" class="btn btn-info btn-round btn-lg">Register</button>
           </div>
+          </form>
         </div>
       </div>
     </div>
