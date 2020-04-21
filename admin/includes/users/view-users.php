@@ -28,7 +28,7 @@ function display_users()
         echo '<a href ="users.php?source=update_user&u_id=' . $user_id . '"
             class="btn btn-success btn-sm btn-round btn-icon mr-2">
             <i class="fal fa-edit pt-2"></i></a>';
-        echo '<a href ="users.php?delete=' . $user_id . '"
+        echo '<a onClick="javascript: return confirm(\'Are you sure you want to delete?\');" href ="users.php?delete=' . $user_id . '"
             class="btn btn-danger btn-sm btn-round btn-icon">
             <i class="fal fa-trash-alt pt-2"></i></a>';
         echo '</td>';

@@ -41,7 +41,7 @@ function display_comments()
         echo '<a href ="comments.php?unapprove=' . $comment_id . '"
             class="btn btn-warning btn-sm btn-round btn-icon mr-2">
             <i class="fal fa-thumbs-down pt-2"></i></a>';
-        echo '<a href ="comments.php?delete=' . $comment_id . '"
+        echo '<a onClick="javascript: return confirm(\'Are you sure you want to delete?\');" href ="comments.php?delete=' . $comment_id . '"
             class="btn btn-danger btn-sm btn-round btn-icon">
             <i class="fal fa-trash-alt pt-2"></i></a>';
         echo '</td>';

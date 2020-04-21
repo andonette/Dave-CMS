@@ -16,7 +16,7 @@ function display_categories()
         echo '<a href ="categories.php?update=' . $cat_id . '"
             class="btn btn-success btn-sm btn-round btn-icon mr-2">
             <i class="fal fa-edit pt-2"></i></a>';
-        echo '<a href ="categories.php?delete=' . $cat_id . '"
+        echo '<a onClick="javascript: return confirm(\'Are you sure you want to delete?\');" href ="categories.php?delete=' . $cat_id . '"
             class="btn btn-danger btn-sm btn-round btn-icon">
             <i class="fal fa-trash-alt pt-2"></i></a>';
         //echo '</td>';
