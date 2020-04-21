@@ -23,6 +23,8 @@ if (isset($_POST['register'])) {
     $row = mysqli_fetch_array($rand_salt_query);
     $rand_salt = $row['randSalt'];
 
+    $user_password = crypt($user_password, $rand_salt);
+
     sql_error_check($rand_salt_query);
     //Nice Looking Query
     $query = "INSERT INTO users ";
