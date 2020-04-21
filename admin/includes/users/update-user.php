@@ -38,6 +38,15 @@ if (isset($_POST['update_user'])) {
   $user_image = $_FILES['user_image']['name'];
   $user_image_temp = $_FILES['user_image']['tmp_name'];
 
+  $crypt = "SELECT randSalt from USERS";
+  $rand_salt_query = mysqli_query($connection, $query);
+
+  $row = mysqli_fetch_array($rand_salt_query);
+  $rand_salt = $row['randSalt'];
+
+  $encrypted_password = crypt($user_password, $rand_salt);
+
+
   // this gets the image and moves it
   //don't really understand how this works at the minute
   move_uploaded_file($user_image_temp, "../images/users/$user_image");
@@ -59,7 +68,7 @@ if (isset($_POST['update_user'])) {
   $query .= "user_firstname = '{$user_firstname}', ";
   $query .= "user_lastname = '{$user_lastname}', ";
   $query .= "user_role = '{$user_role}', ";
-  $query .= "user_password = '{$user_password}', ";
+  $query .= "user_password = '{$encrypted_password}', ";
   $query .= "user_image = '{$user_image} ' ";
   $query .= "WHERE user_id = {$url_user_id}";
 

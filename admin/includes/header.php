@@ -9,7 +9,7 @@ ob_start();
 
 //this is just checking if the user is an administrator
 if (!isset($_SESSION['user_role'])) {
-  if ($_SESSION['user_role'] !== 'Administrator') {
+  if ($_SESSION['user_role'] !== 'Administrator' || $_SESSION['user_role'] !== 'Subscriber') {
     //if not they can't access the admin page
     header("Location: ../index.php");
   }
