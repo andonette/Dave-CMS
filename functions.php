@@ -1,6 +1,20 @@
 <?php
 /* front end functions
 */
+// Count Stuff.
+function count_rows($table){
+  global $connection;
+  $query = 'SELECT * FROM ' . $table;
+  $select = mysqli_query($connection, $query);
+  $count = mysqli_num_rows($select);
+  return $count;
+}
+$post_count = count_rows('posts');
+$user_count = count_rows('users');
+$comment_count = count_rows('categories');
+$category_count = count_rows('comments');
+//echo $user_count;
+
 function comment_form()
 {
     global $connection;

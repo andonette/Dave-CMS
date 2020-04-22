@@ -16,7 +16,7 @@ include 'includes/header.php'
       while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
         $post_id = $row['post_id'];
         $post_title = $row['post_title'];
-        //$post_author = $row['post_author'];
+        $post_author = $row['post_author_id'];
         $post_date = date_create($row['post_date']);
         $post_image = $row['post_image'];
         substr($post_content = $row['post_content'], 0, 50);
@@ -37,9 +37,23 @@ include 'includes/header.php'
                 <a href="post.php?p_id=<?php echo $post_id; ?>">Read More...</a>
               </p>
               <div class="author">
-                <img src="images/posts/<?php echo $post_image; ?>" alt="<?php echo $post_image; ?>" class="avatar img-raised">
+                    <?php
+                    //gets the database connection
+                    global $connection;
+                    //create mysql query for categories table
+                    $query = "SELECT * FROM users WHERE user_id = $post_author";
+                    //connect to database, and run query
+                    $display_all_categories = mysqli_query($connection, $query);
+                    $row = mysqli_fetch_assoc($display_all_categories);
+                    sql_error_check($display_all_categories);
+                      $user_firstname = $row['user_firstname'];
+                    $user_lastname = $row['user_lastname'];
+                    $user_image = $row['user_image'];
+                    $user_fullname = $user_firstname . ' ' . $user_lastname;
+                    ?>
+                <img src="images/users/<?php echo $user_image; ?>" alt="<?php echo $post_image; ?>" class="avatar img-raised">
                 <div class="text">
-                  <span class="name">Posted By <?php //echo $post_author; ?> On <?php echo date_format($post_date, 'D dS M Y'); ?></span>
+                  <span class="name">Posted By <?php echo $user_fullname; ?> On <?php echo date_format($post_date, 'D dS M Y'); ?></span>
 
                 </div>
               </div>

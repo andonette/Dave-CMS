@@ -40,9 +40,10 @@ session_start();
                     $select_all_categories_query = mysqli_query($connection, $query);
                     while ($row = mysqli_fetch_assoc($select_all_categories_query)) {
                         $cat_title = $row['cat_title'];
+                        $cat_id = $row['cat_id'];
                         ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><?php echo $cat_title; ?></a>
+                            <a class="nav-link" href="category.php?category=<?php echo $cat_id; ?>"><?php echo $cat_title; ?></a>
                         </li>
                         <?php
                     }
