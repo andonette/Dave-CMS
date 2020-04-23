@@ -26,6 +26,15 @@ while ($row = mysqli_fetch_assoc($select_user_by_id)) {
   $user_password = $row['user_password'];
   $user_image = $row['user_image'];
 }
+
+$crypt = "SELECT randSalt from USERS";
+$rand_salt_query = mysqli_query($connection, $query);
+
+$row = mysqli_fetch_array($rand_salt_query);
+$rand_salt = $row['randSalt'];
+
+$encrypted_password = crypt($user_password, $rand_salt);
+
 //Functionality for the update form.
 //Get the form data on submit
 if (isset($_POST['update_user'])) {
@@ -37,15 +46,6 @@ if (isset($_POST['update_user'])) {
   $user_password = $_POST['user_password'];
   $user_image = $_FILES['user_image']['name'];
   $user_image_temp = $_FILES['user_image']['tmp_name'];
-
-  $crypt = "SELECT randSalt from USERS";
-  $rand_salt_query = mysqli_query($connection, $query);
-
-  $row = mysqli_fetch_array($rand_salt_query);
-  $rand_salt = $row['randSalt'];
-
-  $encrypted_password = crypt($user_password, $rand_salt);
-
 
   // this gets the image and moves it
   //don't really understand how this works at the minute
@@ -78,6 +78,10 @@ if (isset($_POST['update_user'])) {
   echo '<div class="alert alert-success">User Updated: <a class="text-white" href="users.php">View Users</a></div>';
 }
 ?>
+<?php
+echo $user_password;
+echo $encrypted_password;
+ ?>
 <div class="card">
   <div class="card-body">
     <h2>Edit User</h2>

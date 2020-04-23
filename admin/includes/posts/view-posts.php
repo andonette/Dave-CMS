@@ -77,6 +77,53 @@ function display_posts()
           header("Location: posts.php");
           sql_error_check($update_status);
           break;
+          case 'Duplicate':
+          global $connection;
+          $query = "SELECT * FROM posts WHERE post_id = $checkBoxValue";
+          $update_status = mysqli_query($connection, $query);
+          while ($row = mysqli_fetch_assoc($update_status)) {
+            $post_id = $row['post_id'];
+            $post_title = $row['post_title'];
+            $post_date = $row['post_date'];
+            $post_author = $row['post_author'];
+            $post_author_id = $row['post_author_id'];
+            $post_category_id = $row['post_category_id'];
+            $post_status = $row['post_status'];
+            $post_content = $row['post_content'];
+            $post_tags = $row['post_tags'];
+            $post_image = $row['post_image'];
+            $post_comment_count = $row['post_comment_count'];
+
+            //Nice Looking Query
+            $query = "INSERT INTO posts ";
+            $query .= "(post_title, ";
+            $query .= "post_date, ";
+            $query .= "post_category_id, ";
+            $query .= "post_author_id, ";
+            $query .= "post_status, ";
+            $query .= "post_content, ";
+            $query .= "post_image, ";
+            $query .= "post_comment_count, ";
+            $query .= "post_tags) ";
+
+            $query .= "VALUES('{$post_title}', ";
+            $query .= "now(), ";
+            $query .= "{$post_category_id}, ";
+            $query .= "{$post_author_id}, ";
+            $query .= "'{$post_status}', ";
+            $query .= "'{$post_content}', ";
+            $query .= "'{$post_image}', ";
+            $query .= "0, ";
+            $query .= "'{$post_tags}') ";
+
+            $create_post_query = mysqli_query($connection, $query);
+            echo $query;
+            sql_error_check($create_post_query);
+        }
+          echo $query;
+          header("Location: posts.php");
+          sql_error_check($update_status);
+          break;
           case 'Draft':
           global $connection;
           $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = $checkBoxValue";
@@ -108,6 +155,7 @@ function display_posts()
           <div class="form-group">
             <select class="form-control" name="bulk_options">
               <option value="">Select Options</option>
+              <option value="Duplicate">Duplicate</option>
               <option value="Published">Publish</option>
               <option value="Draft">Draft</option>
               <option value="delete">Delete</option>
