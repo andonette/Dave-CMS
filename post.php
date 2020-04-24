@@ -15,6 +15,9 @@
             if (isset($_GET['p_id'])) {
                 $get_post_id = $_GET['p_id'];
 
+                $view_query ="UPDATE posts SET post_views_count = post_views_count + 1 WHERE post_id = $get_post_id";
+                mysqli_query($connection, $view_query);
+
                 //query the database, select everything from the posts table
                 $query = "SELECT * FROM posts WHERE post_id = $get_post_id";
                 $select_all_posts_query = mysqli_query($connection, $query);
@@ -26,7 +29,7 @@
                     $post_image = $row['post_image'];
                     $post_content = $row['post_content'];
                     //$post_author_image = $row['post_author_image'];
-                }
+
 
                 ?>
                 <div class="card card-blog card-plain blog-horizontal">
@@ -69,7 +72,11 @@
                     </div>
                 </div>
                 <!-- End Card -->
-            <?php } ?>
+            <?php }
+        } else {
+            header("Location: index.php");
+        }
+            ?>
             <div class="card">
                 <div class="card-body">
                     <h3>Leave A Comment</h3>

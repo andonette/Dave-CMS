@@ -18,6 +18,7 @@ function display_posts()
     $post_tags = $row['post_tags'];
     $post_image = $row['post_image'];
     $post_comment_count = $row['post_comment_count'];
+    $post_views_count = $row['post_views_count'];
 
     echo '<tr>';
     ?>
@@ -41,6 +42,7 @@ function display_posts()
     echo "<td><img class='img-fluid' src='../images/posts/{$post_image}' alt='' style='max-width:100px;'/></td>";
     echo "<td>{$post_tags}</td>";
     echo "<td>{$post_comment_count}</td>";
+    echo "<td>{$post_views_count}</td>";
     echo '<td class="text-right" style="min-width: 130px;">';
     echo '<a href ="../post.php?p_id=' . $post_id . '"
     class="btn btn-warning btn-sm btn-round btn-icon mr-2">
@@ -140,6 +142,14 @@ function display_posts()
           header("Location: posts.php");
           sql_error_check($delete_post);
           break;
+          case 'reset':
+          global $connection;
+          $query = "UPDATE posts SET post_views_count = 0 WHERE post_id = $checkBoxValue";
+          $update_status = mysqli_query($connection, $query);
+          echo $query;
+          header("Location: posts.php");
+          sql_error_check($update_status);
+          break;
 
           default:
           // code...
@@ -159,6 +169,7 @@ function display_posts()
               <option value="Published">Publish</option>
               <option value="Draft">Draft</option>
               <option value="delete">Delete</option>
+              <option value="reset">Reset Views</option>
             </select>
           </div>
           <div class="form-group">
@@ -176,6 +187,7 @@ function display_posts()
           <th>Image</th>
           <th>Tags</th>
           <th>Comments</th>
+          <th>Views</th>
           <th class="text-right">Actions</th>
         </thead>
         <tbody>
