@@ -71,6 +71,19 @@
                             </div>
                         </div>
                     </div>
+                    <nav aria-label="Page navigation example">
+  <ul class="pagination py-5">
+      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+      <?php
+        for ($i=1; $i < $count; $i++) {
+            ?>
+        <li class="page-item"><a class="page-link" href="index.php?page=<?php echo $i ?>"><?php echo $i ?></a></li>
+            <?php
+        }
+       ?>
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+  </ul>
+</nav>
                 </div>
                 <!-- End Card -->
             <?php } ?>
