@@ -3,7 +3,29 @@
 The Template for the main page
 */
 include 'includes/header.php';
+$session = session_id();
+$time = time();
+$time_out_in_seconds = 60;
+$time_out = $time - $time_out_in_seconds;
+
+$query = "SELECT * FROM users_online WHERE session = '$session'";
+$session_query = mysqli_query($connection, $query);
+$count = mysqli_num_rows($session_query);
+
+if ($count == NULL) {
+    $db_query = "INSERT INTO users_online(session, time) VALUES('$session', $time)";
+    mysqli_query($connection, $db_query);
+} else {
+    $db_query = "UPDATE users_online SET time = $time WHERE session = '$session'";
+    mysqli_query($connection, $db_query);
+}
+
+$users_online = "SELECT * FROM users_online WHERE time > '$time_out'";
+$users_online_query = mysqli_query($connection, $users_online);
+$count_user = mysqli_num_rows($users_online_query);
+sql_error_check($users_online_query);
 ?>
+
 <div class="content">
   <div class="container-fluid">
     <div class="row">
@@ -12,6 +34,11 @@ include 'includes/header.php';
           <div class="card-body">
             <!-- echo out the username from the session -->
             <h1 class="h3">Welcome To The Dashboard  <?php echo $_SESSION['username']; ?></h1>
+            <?php
+            echo '<h2> Users Online: ';
+            echo $count_user;
+            echo '</h2>';
+            ?>
           </div>
         </div>
 
