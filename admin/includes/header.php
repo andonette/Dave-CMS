@@ -31,7 +31,7 @@ if (!isset($_SESSION['user_role'])) {
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
     <link href="css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/scripts.js" type="text/javascript"></script>
+
 
 </head>
 <body>

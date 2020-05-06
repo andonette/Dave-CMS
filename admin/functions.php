@@ -1,30 +1,40 @@
 <?php
-// Count Stuff.
-function count_rows($table){
-  global $connection;
-  $query = 'SELECT * FROM ' . $table;
-  $select = mysqli_query($connection, $query);
-  $count = mysqli_num_rows($select);
-  return $count;
-}
-$post_count = count_rows('posts');
-$user_count = count_rows('users');
-$comment_count = count_rows('categories');
-$category_count = count_rows('comments');
-//echo $user_count;
 
-function count_draft($table, $row, $status){
-  global $connection;
-  $query = 'SELECT * FROM ' . $table . ' WHERE ' . $row .  ' = ' . $status;
-  $select = mysqli_query($connection, $query);
-  $count = mysqli_num_rows($select);
-  return $count;
+// users online
+function onlineUsers(){
+// i have no idea how this get request works
+//but it does.
+    if (isset($_GET['users_online'])) {
+        global $connection;
+        if (!$connection) {
+            $session = session_id();
+            include("../includes/config.php");
+            $time = time();
+            $time_out_in_seconds = 60;
+            $time_out = $time - $time_out_in_seconds;
+
+            $query = "SELECT * FROM users_online WHERE session = '$session'";
+            $session_query = mysqli_query($connection, $query);
+            $count = mysqli_num_rows($session_query);
+
+            if ($count == NULL) {
+                $db_query = "INSERT INTO users_online(session, time) VALUES('$session', $time)";
+                mysqli_query($connection, $db_query);
+            } else {
+                $db_query = "UPDATE users_online SET time = $time WHERE session = '$session'";
+                mysqli_query($connection, $db_query);
+            }
+
+            $users_online = "SELECT * FROM users_online WHERE time > '$time_out'";
+            $users_online_query = mysqli_query($connection, $users_online);
+
+            $count_user = mysqli_num_rows($users_online_query);
+            sql_error_check($users_online_query);
+            echo $count_user;
+        }
+    }
 }
-//echo $user_count;
-$draft_post_count = count_draft('posts', 'post_status','"Draft"');
-$admin_user_count = count_draft('users', 'user_role','"Administrator"');
-$admin_subscriber_count = count_draft('users', 'user_role','"Subscriber"');
-$draft_comment_count = count_draft('comments', 'comment_status','"unapproved"');
+onlineUsers();
 
 //Post functions
 

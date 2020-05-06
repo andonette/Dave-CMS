@@ -3,29 +3,7 @@
 The Template for the main page
 */
 include 'includes/header.php';
-$session = session_id();
-$time = time();
-$time_out_in_seconds = 60;
-$time_out = $time - $time_out_in_seconds;
-
-$query = "SELECT * FROM users_online WHERE session = '$session'";
-$session_query = mysqli_query($connection, $query);
-$count = mysqli_num_rows($session_query);
-
-if ($count == NULL) {
-    $db_query = "INSERT INTO users_online(session, time) VALUES('$session', $time)";
-    mysqli_query($connection, $db_query);
-} else {
-    $db_query = "UPDATE users_online SET time = $time WHERE session = '$session'";
-    mysqli_query($connection, $db_query);
-}
-
-$users_online = "SELECT * FROM users_online WHERE time > '$time_out'";
-$users_online_query = mysqli_query($connection, $users_online);
-$count_user = mysqli_num_rows($users_online_query);
-sql_error_check($users_online_query);
 ?>
-
 <div class="content">
   <div class="container-fluid">
     <div class="row">
@@ -34,11 +12,7 @@ sql_error_check($users_online_query);
           <div class="card-body">
             <!-- echo out the username from the session -->
             <h1 class="h3">Welcome To The Dashboard  <?php echo $_SESSION['username']; ?></h1>
-            <?php
-            echo '<h2> Users Online: ';
-            echo $count_user;
-            echo '</h2>';
-            ?>
+            <h2>Users Online: <span class="users-online"></span></h2>
           </div>
         </div>
 
@@ -53,6 +27,11 @@ sql_error_check($users_online_query);
                 <i class="fal fa-file fa-5x"></i>
               </div>
               <div class="col-sm-9 text-right">
+                  <?php
+                  $query = 'SELECT * FROM posts';
+                  $select = mysqli_query($connection, $query);
+                  $post_count = mysqli_num_rows($select);
+                   ?>
                 <div class='h1'><?php echo $post_count; ?></div>
                 <div>Posts</div>
               </div>
@@ -74,7 +53,12 @@ sql_error_check($users_online_query);
                 <i class="fal fa-comments fa-5x"></i>
               </div>
               <div class="col-sm-9 text-right">
-                <div class='h1'><?php echo $comment_count; ?></div>
+                  <?php
+                  $query = 'SELECT * FROM comments';
+                  $select = mysqli_query($connection, $query);
+                  $comment_count = mysqli_num_rows($select);
+                   ?>
+                <div class='h1'><?php echo $comment_count ?></div>
                 <div>Comments</div>
               </div>
             </div>
@@ -95,6 +79,11 @@ sql_error_check($users_online_query);
                 <i class="fal fa-users fa-5x"></i>
               </div>
               <div class="col-sm-9 text-right">
+                  <?php
+                  $query = 'SELECT * FROM users';
+                  $select = mysqli_query($connection, $query);
+                  $user_count = mysqli_num_rows($select);
+                   ?>
                 <div class='h1'><?php echo $user_count; ?></div>
                 <div>Users</div>
               </div>
@@ -116,6 +105,11 @@ sql_error_check($users_online_query);
                 <i class="fal fa-list fa-5x"></i>
               </div>
               <div class="col-sm-9 text-right">
+                  <?php
+                  $query = 'SELECT * FROM categories';
+                  $select = mysqli_query($connection, $query);
+                  $category_count = mysqli_num_rows($select);
+                   ?>
                 <div class='h1'><?php echo $category_count; ?></div>
                 <div>Categories</div>
               </div>
@@ -143,6 +137,22 @@ sql_error_check($users_online_query);
 
                      ['Data', 'Count'],
                      <?php
+                     $query = 'SELECT * FROM posts WHERE post_status = "Draft"';
+                     $select = mysqli_query($connection, $query);
+                     $draft_post_count = mysqli_num_rows($select);
+
+                     $query = 'SELECT * FROM comments WHERE comment_status = "unapproved"';
+                     $select = mysqli_query($connection, $query);
+                     $draft_comment_count = mysqli_num_rows($select);
+
+                     $query = 'SELECT * FROM users WHERE user_role = "Administrator"';
+                     $select = mysqli_query($connection, $query);
+                     $admin_user_count = mysqli_num_rows($select);
+
+                     $query = 'SELECT * FROM users WHERE user_role = "Subscriber"';
+                     $select = mysqli_query($connection, $query);
+                     $admin_subscriber_count = mysqli_num_rows($select);
+
                       $element_text = ['Active Posts', 'Draft Posts', 'Comments', 'Pending', 'Users', 'Admin', 'Subscribers', 'Categories'];
                       $element_count = [$post_count, $draft_post_count, $comment_count, $draft_comment_count, $user_count,  $admin_user_count, $admin_subscriber_count, $category_count];
                       for ($i=0; $i < 8; $i++) {
