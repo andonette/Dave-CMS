@@ -24,7 +24,7 @@ include 'includes/header.php';
                         </div>
                     </div>
                 </div><!-- end card -->
-                <?php include 'includes/categories/view-categories-form.php'; ?>
+                <?php include 'includes/categories/view-categories.php'; ?>
                 <?php delete_category(); ?>
             </div>
         </div>
