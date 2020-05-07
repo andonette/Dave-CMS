@@ -6,7 +6,6 @@ include 'includes/header.php' ?>
 <?php
 /*form action */
 if (isset($_POST['register'])) {
-
     $register = $_POST['register'];
     $user_name = $_POST['username'];
     $user_email = $_POST['email'];
@@ -17,15 +16,9 @@ if (isset($_POST['register'])) {
     $user_email = mysqli_real_escape_string($connection, $user_email);
     $user_password = mysqli_real_escape_string($connection, $user_password);
 
-    $crypt = "SELECT randSalt from USERS";
-    $rand_salt_query = mysqli_query($connection, $query);
+    $user_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12 ));
 
-    $row = mysqli_fetch_array($rand_salt_query);
-    $rand_salt = $row['randSalt'];
 
-    $user_password = crypt($user_password, $rand_salt);
-
-    sql_error_check($rand_salt_query);
     //Nice Looking Query
     $query = "INSERT INTO users ";
     $query .= "(user_name, ";
@@ -39,15 +32,12 @@ if (isset($_POST['register'])) {
     $query .= "'Subscriber') ";
     echo $query;
 
-    if (!empty($user_name) && !empty($user_password) && !empty($user_email )) {
+    if (!empty($user_name) && !empty($user_password) && !empty($user_email)) {
         $register_query = mysqli_query($connection, $query);
         sql_error_check($register_query);
     }
 }
-
-
-
- ?>
+?>
 <div class="page-header">
   <div class="page-header-image"></div>
   <div class="container">

@@ -17,13 +17,7 @@ if (isset($_POST['create_user'])) {
 
     move_uploaded_file($user_image_temp, "../images/$post_image");
 
-    $crypt = "SELECT randSalt from USERS";
-    $rand_salt_query = mysqli_query($connection, $query);
-
-    $row = mysqli_fetch_array($rand_salt_query);
-    $rand_salt = $row['randSalt'];
-
-    $user_password = crypt($user_password, $rand_salt);
+    $user_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12 ));
 
     //Nice Looking Query
     $query = "INSERT INTO users ";

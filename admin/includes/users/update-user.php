@@ -9,7 +9,7 @@ global $connection;
 //and then assign that to a variable called $url_post_id;
 if (isset($_GET['u_id'])) {
   $url_user_id = $_GET['u_id'];
-}
+
 //query the post by its selected id, which is displayed in the url
 $query = "SELECT * FROM users WHERE user_id = $url_user_id";
 //echo $query;
@@ -22,18 +22,11 @@ while ($row = mysqli_fetch_assoc($select_user_by_id)) {
   $user_email = $row['user_email'];
   $user_firstname = $row['user_firstname'];
   $user_lastname = $row['user_lastname'];
-  $user_role = $row['user_role'];
   $user_password = $row['user_password'];
   $user_image = $row['user_image'];
 }
 
-$crypt = "SELECT randSalt from USERS";
-$rand_salt_query = mysqli_query($connection, $query);
-
-$row = mysqli_fetch_array($rand_salt_query);
-$rand_salt = $row['randSalt'];
-
-$encrypted_password = crypt($user_password, $rand_salt);
+$user_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12 ));
 
 //Functionality for the update form.
 //Get the form data on submit
@@ -42,7 +35,6 @@ if (isset($_POST['update_user'])) {
   $user_firstname = $_POST['user_firstname'];
   $user_lastname = $_POST['user_lastname'];
   $user_email = $_POST['user_email'];
-  $user_role = $_POST['user_role'];
   $user_password = $_POST['user_password'];
   $user_image = $_FILES['user_image']['name'];
   $user_image_temp = $_FILES['user_image']['tmp_name'];
@@ -61,13 +53,19 @@ if (isset($_POST['update_user'])) {
     }
   }
 
+if (!empty($user_password)) {
+    $query_password = "SELECT user_password FROM users where user_id = $url_user_id";
+    $get_user = mysqli_query($connection, $query_password);
+    sql_error_check($get_user);
+    $row = mysqli_fetch_array($get_user);
+    $db_user_password = $row['user_password'];
+}
   //Nice Looking Query
   $query = "UPDATE users SET ";
   $query .= "user_name = '{$user_name}', ";
   $query .= "user_email = '{$user_email}', ";
   $query .= "user_firstname = '{$user_firstname}', ";
   $query .= "user_lastname = '{$user_lastname}', ";
-  $query .= "user_role = '{$user_role}', ";
   $query .= "user_password = '{$encrypted_password}', ";
   $query .= "user_image = '{$user_image} ' ";
   $query .= "WHERE user_id = {$url_user_id}";
@@ -77,11 +75,11 @@ if (isset($_POST['update_user'])) {
   sql_error_check($update_user);
   echo '<div class="alert alert-success">User Updated: <a class="text-white" href="users.php">View Users</a></div>';
 }
+} else {
+    header("Location: index.php");
+}
 ?>
-<?php
-echo $user_password;
-echo $encrypted_password;
- ?>
+
 <div class="card">
   <div class="card-body">
     <h2>Edit User</h2>
@@ -118,21 +116,7 @@ echo $encrypted_password;
         <div class="col-md-6 col-sm-12">
           <div class="form-group">
             <label for="user_password">Password</label>
-            <input type="password" class="form-control" name="user_password" value="<?php echo $user_password; ?>">
-          </div>
-        </div>
-        <div class="col-md-6 col-sm-12">
-          <div class="form-group">
-            <label for="user_role">Select Role</label><br>
-            <select class="form-control" name="user_role">
-              <?php
-              $default_state = $user_role;
-              ?>
-              <option value="<?php echo $user_role; ?>"><?php echo $user_role; ?></option>
-              <option value="Administrator">Administrator</option>
-              <option value="Editor">Editor</option>
-              <option value="Subscriber">Subscriber</option>
-            </select>
+            <input autocomplete="off" type="password" class="form-control" name="user_password" value="">
           </div>
         </div>
       </div>

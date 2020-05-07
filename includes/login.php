@@ -31,9 +31,9 @@ if (isset($_POST['login'])) {
     $db_user_lastname = $row['user_lastname'];
     $db_user_role = $row['user_role'];
   }
-    $password = crypt($password, $db_user_password);
+
   // if the username and password match, create variables for the session
-  if ($username === $db_user_name & $password === $db_user_password) {
+  if (password_verify($password, $db_user_password)) {
     $_SESSION['username'] = $db_user_name;
     $_SESSION['firstname'] = $db_user_firstname;
     $_SESSION['lastname'] = $db_user_lastname;
