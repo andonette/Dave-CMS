@@ -25,7 +25,7 @@ includes view and delete posts functionality
                         </select>
                     </div>
                     <div class="form-group">
-                        <button type="submit" name="apply" class="btn btn-primary">Apply</button>
+                        <button onClick="javascript: return confirm(\'Are you sure you want to delete?\');" type="submit" name="apply" class="btn btn-primary">Apply</button>
                     </div>
                 </div>
                 <thead>
@@ -50,3 +50,13 @@ includes view and delete posts functionality
         </form>
     </div>
 </div><!-- end card -->
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".delete-link").on('click', function(){
+            var id = $(this).attr("rel");
+            var deleteUrl = "posts.php?delete=" + id + " ";
+            $(".modal-delete-link").attr("href", deleteUrl);
+            $("#confirmDelete").modal('show');
+        });
+    });
+</script>

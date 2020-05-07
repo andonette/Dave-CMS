@@ -126,7 +126,7 @@ function display_posts()
         $comment_count_query = "SELECT * FROM comments WHERE comment_post_id = " . $post_id;
         $comment_query = mysqli_query($connection, $comment_count_query);
         $row = mysqli_fetch_array($comment_query);
-        $comment_id = isset($row['comment_id']);
+        $comment_id = $row['comment_post_id'];
         $comment_count = mysqli_num_rows($comment_query);
 
         echo "<td><a href='comments-filtered.php?id=$comment_id'>{$comment_count}</a></td>";
@@ -139,8 +139,7 @@ function display_posts()
         echo '<a href ="posts.php?source=update_post&p_id=' . $post_id . '"
         class="btn btn-success btn-sm btn-round btn-icon mr-2">
         <i class="fal fa-edit pt-2"></i></a>';
-        echo '<a onClick="javascript: return confirm(\'Are you sure you want to delete?\');" href="posts.php?delete=' . $post_id . '"
-        class="btn btn-danger btn-sm btn-round btn-icon">
+        echo '<a rel="'.$post_id.'" href="javascript:void(0)" class="btn btn-danger btn-sm btn-round btn-icon delete-link">
         <i class="fal fa-trash-alt pt-2"></i></a>';
         echo '</td>';
         echo '</tr>';
@@ -467,8 +466,7 @@ function display_comments()
         echo '<a href ="comments.php?unapprove=' . $comment_id . '"
         class="btn btn-warning btn-sm btn-round btn-icon mr-2">
         <i class="fal fa-thumbs-down pt-2"></i></a>';
-        echo '<a onClick="javascript: return confirm(\'Are you sure you want to delete?\');" href ="comments.php?delete=' . $comment_id . '"
-        class="btn btn-danger btn-sm btn-round btn-icon">
+        echo '<a rel="'.$comment_id.'" href="javascript:void(0)" class="btn btn-danger btn-sm btn-round btn-icon delete-link">
         <i class="fal fa-trash-alt pt-2"></i></a>';
         echo '</td>';
         echo '</tr>';
@@ -511,8 +509,7 @@ function display_comments_filtered()
         echo '<a href ="comments.php?unapprove=' . $comment_id . '"
         class="btn btn-warning btn-sm btn-round btn-icon mr-2">
         <i class="fal fa-thumbs-down pt-2"></i></a>';
-        echo '<a onClick="javascript: return confirm(\'Are you sure you want to delete?\');" href ="comments.php?delete=' . $comment_id . '"
-        class="btn btn-danger btn-sm btn-round btn-icon">
+        echo '<a rel="'.$comment_id.'" href="javascript:void(0)" class="btn btn-danger btn-sm btn-round btn-icon delete-link">
         <i class="fal fa-trash-alt pt-2"></i></a>';
         echo '</td>';
         echo '</tr>';
@@ -640,8 +637,7 @@ function display_users()
         echo '<a href ="users.php?source=update_user&u_id=' . $user_id . '"
         class="btn btn-success btn-sm btn-round btn-icon mr-2">
         <i class="fal fa-edit pt-2"></i></a>';
-        echo '<a onClick="javascript: return confirm(\'Are you sure you want to delete?\');" href ="users.php?delete=' . $user_id . '"
-        class="btn btn-danger btn-sm btn-round btn-icon">
+        echo '<a rel="'.$user_id.'" href="javascript:void(0)" class="btn btn-danger btn-sm btn-round btn-icon delete-link">
         <i class="fal fa-trash-alt pt-2"></i></a>';
         echo '</td>';
         echo '</tr>';
@@ -699,8 +695,7 @@ function display_categories()
         echo '<a href ="categories.php?update=' . $cat_id . '"
         class="btn btn-success btn-sm btn-round btn-icon mr-2">
         <i class="fal fa-edit pt-2"></i></a>';
-        echo '<a onClick="javascript: return confirm(\'Are you sure you want to delete?\');" href ="categories.php?delete=' . $cat_id . '"
-        class="btn btn-danger btn-sm btn-round btn-icon">
+        echo '<a rel="'.$cat_id.'" href="javascript:void(0)" class="btn btn-danger btn-sm btn-round btn-icon delete-link">
         <i class="fal fa-trash-alt pt-2"></i></a>';
         //echo '</td>';
         echo '</tr>';

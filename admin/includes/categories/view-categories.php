@@ -12,3 +12,13 @@
         </table>
     </div>
 </div><!-- end card -->
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".delete-link").on('click', function(){
+            var id = $(this).attr("rel");
+            var deleteUrl = "categories.php?delete=" + id + " ";
+            $(".modal-delete-link").attr("href", deleteUrl);
+            $("#confirmDelete").modal('show');
+        });
+    });
+</script>

@@ -28,8 +28,6 @@ The Template for the admin global footer
 </div>
 </div>
 <!--   Core JS Files   -->
-
-<script src="js/core/jquery.min.js" type="text/javascript"></script>
 <script src="js/scripts.js" type="text/javascript"></script>
 <script src="js/core/popper.min.js" type="text/javascript"></script>
 <script src="js/core/bootstrap.min.js" type="text/javascript"></script>
