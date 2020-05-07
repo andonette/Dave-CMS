@@ -23,14 +23,14 @@ function display_users()
         echo "<td>{$user_firstname} {$user_lastname}</td>";
         echo "<td>{$user_email}</td>";
         echo "<td>{$user_role}</td>";
-          echo "<td><img class='img-fluid' src='../images/users/{$user_image}' alt='' style='max-width:100px;'/></td>";
+        echo "<td><img class='img-fluid' src='../images/users/{$user_image}' alt='' style='max-width:100px;'/></td>";
         echo '<td class="text-right" style="min-width: 130px">';
         echo '<a href ="users.php?source=update_user&u_id=' . $user_id . '"
-            class="btn btn-success btn-sm btn-round btn-icon mr-2">
-            <i class="fal fa-edit pt-2"></i></a>';
+        class="btn btn-success btn-sm btn-round btn-icon mr-2">
+        <i class="fal fa-edit pt-2"></i></a>';
         echo '<a onClick="javascript: return confirm(\'Are you sure you want to delete?\');" href ="users.php?delete=' . $user_id . '"
-            class="btn btn-danger btn-sm btn-round btn-icon">
-            <i class="fal fa-trash-alt pt-2"></i></a>';
+        class="btn btn-danger btn-sm btn-round btn-icon">
+        <i class="fal fa-trash-alt pt-2"></i></a>';
         echo '</td>';
         echo '</tr>';
     }

@@ -40,7 +40,6 @@ if (isset($_POST['create_user'])) {
     $create_user_query = mysqli_query($connection, $query);
     sql_error_check($create_user_query);
     echo '<div class="alert alert-success">User Created: <a class="text-white" href="users.php">View Users</a></div>';
-
 }
 ?>
 

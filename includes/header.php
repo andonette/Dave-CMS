@@ -55,13 +55,13 @@ session_start();
                         <a class="nav-link ml-auto" href="registration.php">Register</a>
                     </li>
                     <?php
-                      if (isset($_SESSION['user_role'])) {
+                    if (isset($_SESSION['user_role'])) {
                         if (isset($_GET['p_id'])) {
-                          $post_edit_id = $_GET['p_id'];
-                          echo "<li class='nav-item'><a class='nav-link' href='admin/posts.php?source=update_post&p_id={$post_edit_id}'>Edit Post</a></li>";
+                            $post_edit_id = $_GET['p_id'];
+                            echo "<li class='nav-item'><a class='nav-link' href='admin/posts.php?source=update_post&p_id={$post_edit_id}'>Edit Post</a></li>";
                         }
-                      }
-                     ?>
+                    }
+                    ?>
                 </ul>
             </div>
         </div>

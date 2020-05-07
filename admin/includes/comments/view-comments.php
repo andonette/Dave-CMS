@@ -36,14 +36,14 @@ function display_comments()
         echo "<td>{$comment_date}</td>";
         echo '<td class="text-right" style="min-width: 130px">';
         echo '<a href ="comments.php?approve=' . $comment_id . '"
-            class="btn btn-success btn-sm btn-round btn-icon mr-2">
-            <i class="fal fa-thumbs-up pt-2"></i></a>';
+        class="btn btn-success btn-sm btn-round btn-icon mr-2">
+        <i class="fal fa-thumbs-up pt-2"></i></a>';
         echo '<a href ="comments.php?unapprove=' . $comment_id . '"
-            class="btn btn-warning btn-sm btn-round btn-icon mr-2">
-            <i class="fal fa-thumbs-down pt-2"></i></a>';
+        class="btn btn-warning btn-sm btn-round btn-icon mr-2">
+        <i class="fal fa-thumbs-down pt-2"></i></a>';
         echo '<a onClick="javascript: return confirm(\'Are you sure you want to delete?\');" href ="comments.php?delete=' . $comment_id . '"
-            class="btn btn-danger btn-sm btn-round btn-icon">
-            <i class="fal fa-trash-alt pt-2"></i></a>';
+        class="btn btn-danger btn-sm btn-round btn-icon">
+        <i class="fal fa-trash-alt pt-2"></i></a>';
         echo '</td>';
         echo '</tr>';
     }

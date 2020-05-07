@@ -4,7 +4,7 @@
 2. create user image
 */
 
- ?>
+?>
 <?php include 'includes/header.php' ?>
 <div class="container">
     <div class="row">
@@ -31,51 +31,51 @@
                     //$post_author_image = $row['post_author_image'];
 
 
-                ?>
-                <div class="card card-blog card-plain blog-horizontal">
+                    ?>
+                    <div class="card card-blog card-plain blog-horizontal">
 
-                    <div class="card-image">
-                        <a href="javascript:;">
-                            <img class="img rounded" src="images/posts/<?php echo $post_image; ?>" />
-                        </a>
+                        <div class="card-image">
+                            <a href="javascript:;">
+                                <img class="img rounded" src="images/posts/<?php echo $post_image; ?>" />
+                            </a>
 
 
-                        <div class="card-body">
-                            <h3 class="card-title">
-                                <a href="#"><?php echo $post_title; ?></a>
-                            </h3>
-                            <p class="card-description">
-                                <?php echo $post_content; ?>
-                            </p>
-                            <div class="author">
-                                  <?php
-                                  //gets the database connection
-                                  global $connection;
-                                  //create mysql query for categories table
-                                  $query = "SELECT * FROM users WHERE user_id = $post_author";
-                                  //connect to database, and run query
-                                  $display_all_categories = mysqli_query($connection, $query);
-                                  $row = mysqli_fetch_assoc($display_all_categories);
-                                  sql_error_check($display_all_categories);
-                                  $user_firstname = $row['user_firstname'];
-                                  $user_lastname = $row['user_lastname'];
-                                  $user_image = $row['user_image'];
-                                  $user_fullname = $user_firstname . ' ' . $user_lastname;
-                                  ?>
-                              <img src="images/users/<?php echo $user_image; ?>" alt="<?php echo $post_image; ?>" class="avatar img-raised">
-                              <div class="text">
-                                    <span class="name">Posted By <a href="author.php?author=<?php echo $post_author; ?>"><?php echo $user_fullname; ?></a> On <?php echo date_format($post_date, 'D dS M Y'); ?></span>
+                            <div class="card-body">
+                                <h3 class="card-title">
+                                    <a href="#"><?php echo $post_title; ?></a>
+                                </h3>
+                                <p class="card-description">
+                                    <?php echo $post_content; ?>
+                                </p>
+                                <div class="author">
+                                    <?php
+                                    //gets the database connection
+                                    global $connection;
+                                    //create mysql query for categories table
+                                    $query = "SELECT * FROM users WHERE user_id = $post_author";
+                                    //connect to database, and run query
+                                    $display_all_categories = mysqli_query($connection, $query);
+                                    $row = mysqli_fetch_assoc($display_all_categories);
+                                    sql_error_check($display_all_categories);
+                                    $user_firstname = $row['user_firstname'];
+                                    $user_lastname = $row['user_lastname'];
+                                    $user_image = $row['user_image'];
+                                    $user_fullname = $user_firstname . ' ' . $user_lastname;
+                                    ?>
+                                    <img src="images/users/<?php echo $user_image; ?>" alt="<?php echo $post_image; ?>" class="avatar img-raised">
+                                    <div class="text">
+                                        <span class="name">Posted By <a href="author.php?author=<?php echo $post_author; ?>"><?php echo $user_fullname; ?></a> On <?php echo date_format($post_date, 'D dS M Y'); ?></span>
 
-                              </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- End Card -->
-            <?php }
-        } else {
-            header("Location: index.php");
-        }
+                    <!-- End Card -->
+                <?php }
+            } else {
+                header("Location: index.php");
+            }
             ?>
             <div class="card">
                 <div class="card-body">

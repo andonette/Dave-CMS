@@ -17,7 +17,6 @@ function display_posts()
     $post_status = $row['post_status'];
     $post_tags = $row['post_tags'];
     $post_image = $row['post_image'];
-    $post_comment_count = $row['post_comment_count'];
     $post_views_count = $row['post_views_count'];
 
     echo '<tr>';
@@ -41,7 +40,16 @@ function display_posts()
     echo "<td>{$post_status}</td>";
     echo "<td><img class='img-fluid' src='../images/posts/{$post_image}' alt='' style='max-width:100px;'/></td>";
     echo "<td>{$post_tags}</td>";
-    echo "<td>{$post_comment_count}</td>";
+
+    $comment_count_query = "SELECT * FROM comments WHERE comment_post_id = " . $post_id;
+    $comment_query = mysqli_query($connection, $comment_count_query);
+    $row = mysqli_fetch_array($comment_query);
+    $comment_id = $row['comment_id'];
+    //sdecho $comment_id;
+    $comment_count = mysqli_num_rows($comment_query);
+
+    echo "<td><a href='comment.php?id=$comment_id'>{$comment_count}</a></td>";
+
     echo "<td>{$post_views_count}</td>";
     echo '<td class="text-right" style="min-width: 130px;">';
     echo '<a href ="../post.php?p_id=' . $post_id . '"

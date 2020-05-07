@@ -1,9 +1,10 @@
 <?php
 
 // users online
-function onlineUsers(){
-// i have no idea how this get request works
-//but it does.
+function onlineUsers()
+{
+    // i have no idea how this get request works
+    //but it does.
     if (isset($_GET['users_online'])) {
         global $connection;
         if (!$connection) {

@@ -8,17 +8,17 @@ function update_category()
 {
     global $connection;
     if (isset($_GET['update'])) {
-    ?>
-    <form class="form" action="" method="post">
-        <label for="cat_title">Update Category</label>
-        <div class="input-group">
-            <?php form_submit_update_category(); ?>
-            <div class="input-group-append">
-                <button class="btn btn-primary" type="submit" name="update_category">Update</button>
+        ?>
+        <form class="form" action="" method="post">
+            <label for="cat_title">Update Category</label>
+            <div class="input-group">
+                <?php form_submit_update_category(); ?>
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit" name="update_category">Update</button>
+                </div>
             </div>
-        </div>
-    </form>
-    <?php
+        </form>
+        <?php
     }
     if (isset($_GET['update'])) {
         $cat_id = $_GET['update'];
