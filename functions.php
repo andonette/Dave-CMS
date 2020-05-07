@@ -1,6 +1,32 @@
 <?php
 /* front end functions
 */
+
+function category_nav()
+{
+    global $connection;
+    $query = "SELECT * FROM categories";
+    $select_all_categories_query = mysqli_query($connection, $query);
+    while ($row = mysqli_fetch_assoc($select_all_categories_query)) {
+        $cat_title = $row['cat_title'];
+        $cat_id = $row['cat_id'];
+        ?>
+        <li class="nav-item">
+            <a class="nav-link" href="category.php?category=<?php echo $cat_id; ?>"><?php echo $cat_title; ?></a>
+        </li>
+        <?php
+    }
+}
+
+function show_update()
+{
+    if (isset($_SESSION['user_role'])) {
+        if (isset($_GET['p_id'])) {
+            $post_edit_id = $_GET['p_id'];
+            echo "<li class='nav-item'><a class='nav-link' href='admin/posts.php?source=update_post&p_id={$post_edit_id}'>Edit Post</a></li>";
+        }
+    }
+}
 // Count Stuff.
 function count_rows($table)
 {
