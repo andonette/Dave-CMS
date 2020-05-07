@@ -2,8 +2,25 @@
 /*
 Site Index
 */
-include 'includes/header.php'
-?>
+include 'includes/header.php';
+
+if (isset($_POST['submit'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $subject = $_POST['subject'];
+    $message = $_POST['message'];
+
+    $msg = "New email from: " . $name . " at " . $email;
+    $msg .= "Message: " .$message;
+
+    $to = 'andi@madebyfactory.com';
+    $header = "From: " . $_POST['email'];
+
+
+    mail($to, $subject ,$msg, $header);
+
+}
+ ?>
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -29,13 +46,10 @@ include 'includes/header.php'
                                 <textarea class="form-control" name="message" rows="8" cols="80"></textarea>
                             </div>
                         </div>
-                        <button type="submit" name="register" value="Register" class="btn btn-info btn-round btn-lg">Send</button>
+                        <button type="submit" name="submit" value="Register" class="btn btn-info btn-round btn-lg">Send</button>
                     </div>
                 </div>
-
-
             </form>
-
         </div>
     </div>
     <!-- End Row -->
