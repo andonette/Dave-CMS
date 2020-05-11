@@ -116,7 +116,7 @@ function display_posts()
         while ($row = mysqli_fetch_assoc($show_cat_name)) {
             $cat_title = $row['cat_title'];
             $cat_id = $row['cat_id'];
-        }
+
 
         echo "<td>{$cat_title}</td>";
         echo "<td>{$post_status}</td>";
@@ -143,6 +143,7 @@ function display_posts()
         <i class="fal fa-trash-alt pt-2"></i></a>';
         echo '</td>';
         echo '</tr>';
+    }
     }
 }
 
@@ -498,7 +499,7 @@ function display_comments_filtered()
         while ($row = mysqli_fetch_assoc($show_post_name)) {
             $post_id = $row['post_id'];
             $post_title = $row['post_title'];
-        }
+
 
         echo "<td><a href='../post.php?p_id=$post_id'>{$post_title}</a></td>";
         echo "<td>{$comment_date}</td>";
@@ -513,6 +514,7 @@ function display_comments_filtered()
         <i class="fal fa-trash-alt pt-2"></i></a>';
         echo '</td>';
         echo '</tr>';
+    }
     }
 }
 
