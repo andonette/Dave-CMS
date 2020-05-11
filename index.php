@@ -22,14 +22,33 @@ include 'includes/header.php'
                 $page_num_1 = ($page_num *5 - 5);
             }
 
+            if (isset($_SESSION['user_role'])) {
+                if ($_SESSION['user_role'] == 'Administrator') {
+                $query = "SELECT * FROM posts";
+                } else {
+                $query = "SELECT * FROM posts WHERE post_status = 'published'";
+                }
+            }
+
             //query the database, select everything from the posts table
-            $query = "SELECT * FROM posts WHERE post_status = 'published'";
+            $query;
             $count_query = mysqli_query($connection, $query);
             $count = mysqli_num_rows($count_query);
             $pages_count = ceil($count / 3);
 
+            if ($count < 1) {
+                echo '<h2>No Posts To Show</h2>';
+            }
+
             //query the database, select everything from the posts table
-            $query = "SELECT * FROM posts WHERE post_status = 'published' LIMIT $page_num_1, 5";
+            if (isset($_SESSION['user_role'])) {
+                if ($_SESSION['user_role'] == 'Administrator') {
+                $query = "SELECT * FROM posts LIMIT $page_num_1, 5";
+                } else {
+                $query = "SELECT * FROM posts WHERE post_status = 'published' LIMIT $page_num_1, 5";
+                }
+            }
+
             $select_all_posts_query = mysqli_query($connection, $query);
 
             //create variables from the columns in the post table.

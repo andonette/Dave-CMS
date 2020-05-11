@@ -117,33 +117,32 @@ function display_posts()
             $cat_title = $row['cat_title'];
             $cat_id = $row['cat_id'];
 
+            echo "<td>{$cat_title}</td>";
+            echo "<td>{$post_status}</td>";
+            echo "<td><img class='img-fluid' src='../images/posts/{$post_image}' alt='' style='max-width:100px;'/></td>";
+            echo "<td>{$post_tags}</td>";
 
-        echo "<td>{$cat_title}</td>";
-        echo "<td>{$post_status}</td>";
-        echo "<td><img class='img-fluid' src='../images/posts/{$post_image}' alt='' style='max-width:100px;'/></td>";
-        echo "<td>{$post_tags}</td>";
+            $comment_count_query = "SELECT * FROM comments WHERE comment_post_id = {$post_id}";
+            $comment_query = mysqli_query($connection, $comment_count_query);
+            $row = mysqli_fetch_array($comment_query);
+            $comment_id = $row['comment_post_id'];
+            $comment_count = mysqli_num_rows($comment_query);
 
-        $comment_count_query = "SELECT * FROM comments WHERE comment_post_id = " . $post_id;
-        $comment_query = mysqli_query($connection, $comment_count_query);
-        $row = mysqli_fetch_array($comment_query);
-        $comment_id = $row['comment_post_id'];
-        $comment_count = mysqli_num_rows($comment_query);
+            echo "<td><a href='comments-filtered.php?id=$comment_id'>{$comment_count}</a></td>";
 
-        echo "<td><a href='comments-filtered.php?id=$comment_id'>{$comment_count}</a></td>";
-
-        echo "<td>{$post_views_count}</td>";
-        echo '<td class="text-right" style="min-width: 130px;">';
-        echo '<a href ="../post.php?p_id=' . $post_id . '"
-        class="btn btn-warning btn-sm btn-round btn-icon mr-2">
-        <i class="fal fa-eye pt-2"></i></a>';
-        echo '<a href ="posts.php?source=update_post&p_id=' . $post_id . '"
-        class="btn btn-success btn-sm btn-round btn-icon mr-2">
-        <i class="fal fa-edit pt-2"></i></a>';
-        echo '<a rel="'.$post_id.'" href="javascript:void(0)" class="btn btn-danger btn-sm btn-round btn-icon delete-link">
-        <i class="fal fa-trash-alt pt-2"></i></a>';
-        echo '</td>';
-        echo '</tr>';
-    }
+            echo "<td>{$post_views_count}</td>";
+            echo '<td class="text-right" style="min-width: 130px;">';
+            echo '<a href ="../post.php?p_id=' . $post_id . '"
+            class="btn btn-warning btn-sm btn-round btn-icon mr-2">
+            <i class="fal fa-eye pt-2"></i></a>';
+            echo '<a href ="posts.php?source=update_post&p_id=' . $post_id . '"
+            class="btn btn-success btn-sm btn-round btn-icon mr-2">
+            <i class="fal fa-edit pt-2"></i></a>';
+            echo '<a rel="'.$post_id.'" href="javascript:void(0)" class="btn btn-danger btn-sm btn-round btn-icon delete-link">
+            <i class="fal fa-trash-alt pt-2"></i></a>';
+            echo '</td>';
+            echo '</tr>';
+        }
     }
 }
 
