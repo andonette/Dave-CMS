@@ -2,6 +2,39 @@
 /*
 The Template for viewing users
 */
+function display_users()
+{
+    global $connection;
+    $query = "SELECT * FROM users";
+    $display_all_users = mysqli_query($connection, $query);
+    while ($row = mysqli_fetch_assoc($display_all_users)) {
+        $user_id = $row['user_id'];
+        $user_name = $row['user_name'];
+        $user_firstname = $row['user_firstname'];
+        $user_lastname = $row['user_lastname'];
+        $user_password = $row['user_password'];
+        $user_email = $row['user_email'];
+        $user_role = $row['user_role'];
+        $user_image = $row['user_image'];
+
+        echo '<tr>';
+        echo "<td>{$user_id}</td>";
+        echo "<td>{$user_name}</td>";
+        echo "<td>{$user_firstname} {$user_lastname}</td>";
+        echo "<td>{$user_email}</td>";
+        echo "<td>{$user_role}</td>";
+          echo "<td><img class='img-fluid' src='../images/users/{$user_image}' alt='' style='max-width:100px;'/></td>";
+        echo '<td class="text-right" style="min-width: 130px">';
+        echo '<a href ="users.php?source=update_user&u_id=' . $user_id . '"
+            class="btn btn-success btn-sm btn-round btn-icon mr-2">
+            <i class="fal fa-edit pt-2"></i></a>';
+        echo '<a onClick="javascript: return confirm(\'Are you sure you want to delete?\');" href ="users.php?delete=' . $user_id . '"
+            class="btn btn-danger btn-sm btn-round btn-icon">
+            <i class="fal fa-trash-alt pt-2"></i></a>';
+        echo '</td>';
+        echo '</tr>';
+    }
+}
 ?>
 <div class="card">
     <div class="card-body">
@@ -24,13 +57,3 @@ The Template for viewing users
         </table>
     </div>
 </div><!-- end card -->
-<script type="text/javascript">
-    $(document).ready(function(){
-        $(".delete-link").on('click', function(){
-            var id = $(this).attr("rel");
-            var deleteUrl = "users.php?delete=" + id + " ";
-            $(".modal-delete-link").attr("href", deleteUrl);
-            $("#confirmDelete").modal('show');
-        });
-    });
-</script>

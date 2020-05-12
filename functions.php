@@ -1,40 +1,13 @@
 <?php
 /* front end functions
 */
-
-function category_nav()
-{
-    global $connection;
-    $query = "SELECT * FROM categories";
-    $select_all_categories_query = mysqli_query($connection, $query);
-    while ($row = mysqli_fetch_assoc($select_all_categories_query)) {
-        $cat_title = $row['cat_title'];
-        $cat_id = $row['cat_id'];
-        ?>
-        <li class="nav-item">
-            <a class="nav-link" href="category.php?category=<?php echo $cat_id; ?>"><?php echo $cat_title; ?></a>
-        </li>
-        <?php
-    }
-}
-
-function show_update()
-{
-    if (isset($_SESSION['user_role'])) {
-        if (isset($_GET['p_id'])) {
-            $post_edit_id = $_GET['p_id'];
-            echo "<li class='nav-item'><a class='nav-link' href='admin/posts.php?source=update_post&p_id={$post_edit_id}'>Edit Post</a></li>";
-        }
-    }
-}
 // Count Stuff.
-function count_rows($table)
-{
-    global $connection;
-    $query = 'SELECT * FROM ' . $table;
-    $select = mysqli_query($connection, $query);
-    $count = mysqli_num_rows($select);
-    return $count;
+function count_rows($table){
+  global $connection;
+  $query = 'SELECT * FROM ' . $table;
+  $select = mysqli_query($connection, $query);
+  $count = mysqli_num_rows($select);
+  return $count;
 }
 $post_count = count_rows('posts');
 $user_count = count_rows('users');
@@ -48,6 +21,7 @@ function comment_form()
     //if submit comment button is clicked
     //get all the values from the form
     if (isset($_POST['submit_comment'])) {
+
         $get_post_id = $_GET['p_id'];
         $submit_comment_form = $_POST['submit_comment'];
         $comment_author = $_POST['comment_author'];
@@ -58,14 +32,23 @@ function comment_form()
             //create a query from the post valyes
             $query = "INSERT INTO comments (comment_post_id, comment_author,
                 comment_email, comment_content, comment_status, comment_date) ";
-                $query .= "VALUES ($get_post_id, '{$comment_author}', '{$comment_email}',
-                '{$comment_content}', 'unapproved', now())";
+            $query .= "VALUES ($get_post_id, '{$comment_author}', '{$comment_email}',
+            '{$comment_content}', 'unapproved', now())";
 
-                $comment_form_query = mysqli_query($connection, $query);
+            $comment_form_query = mysqli_query($connection, $query);
+            //update the comment count by 1 on the relevant post
+            $get_post_id = $_GET['p_id'];
+            $query = "UPDATE posts SET post_comment_count = post_comment_count +1 ";
+            $query .= "WHERE post_id = $get_post_id ";
+            $update_comment_count = mysqli_query($connection, $query);
         } else {
             echo '<script>alert("Comment cannot be empty")</script>';
         }
+
+
+
     }
+
 }
 function show_post_comments()
 {

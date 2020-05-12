@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-$_SESSION['username']  = null;
-$_SESSION['firstname'] = null;
-$_SESSION['lastname']  = null;
-$_SESSION['user_role'] = null;
+  $_SESSION['username'] = NULL;
+  $_SESSION['firstname'] = NULL;
+  $_SESSION['lastname'] = NULL;
+  $_SESSION['user_role'] = NULL;
 
-header("Location: ../index.php");
+  header("Location: ../index.php");
