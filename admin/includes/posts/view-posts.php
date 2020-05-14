@@ -3,6 +3,7 @@
 The Template for viewing post
 includes view and delete posts functionality
 */
+include 'includes/delete-modal.php';
 ?>
 <div class="card">
     <div class="card-body">
