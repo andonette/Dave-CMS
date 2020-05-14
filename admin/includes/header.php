@@ -26,13 +26,10 @@ if (!isset($_SESSION['user_role'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <!--  Fonts and icons  -->
     <script src="https://cdn.ckeditor.com/ckeditor5/18.0.0/classic/ckeditor.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,300,700' rel='stylesheet' type='text/css'>
     <script src="https://kit.fontawesome.com/84146e01c9.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="js/core/jquery.min.js" type="text/javascript"></script>
-    <!-- Black Dashboard CSS -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
-    <link href="css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
-    <link rel="stylesheet" href="css/style.css">
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="assets/css/blk-design-system-pro.css">
 
 
 </head>
@@ -106,7 +103,7 @@ if (!isset($_SESSION['user_role'])) {
 <div class="main-panel">
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
+<nav class="navbar navbar-expand-lg bg-dark">
         <div class="container-fluid">
             <div class="navbar-wrapper">
                 <div class="navbar-toggle d-inline">
