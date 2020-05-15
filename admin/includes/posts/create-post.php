@@ -45,7 +45,10 @@ create_post();
                 <textarea name="post_content" id="editor"></textarea>
                 <script>
                 ClassicEditor
-                .create( document.querySelector( '#editor' ) );
+                .create( document.querySelector( '#editor' ) )
+                .catch( error => {
+                    console.error( error );
+                } );
                 </script>
             </div>
             <button type="submit" class="btn btn-primary" name="create_post">Create Post</button>

@@ -3,7 +3,7 @@
 Site Header
 */
 include 'includes/config.php';
-include 'functions.php';
+include 'admin/functions.php';
 ob_start();
 session_start();
 ?>
