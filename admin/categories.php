@@ -16,16 +16,16 @@ include 'includes/header.php';
                                 <h1>Categories</h1>
                             </div>
                             <div class="col-sm-6 mr-auto">
-                            <?php include 'includes/categories/create-category.php' ?>
+                            <?php include 'includes/categories/create-category-form.php' ?>
                             </div>
                             <div class="col-sm-6 mr-auto">
-                            <?php include 'includes/categories/update-category.php'; ?>
+                            <?php update_category(); ?>
                             </div>
                         </div>
                     </div>
                 </div><!-- end card -->
                 <?php include 'includes/categories/view-categories.php'; ?>
-                <?php include 'includes/categories/delete-category.php'; ?>
+                <?php delete_category(); ?>
             </div>
         </div>
     </div>

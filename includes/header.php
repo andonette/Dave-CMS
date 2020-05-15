@@ -31,33 +31,31 @@ session_start();
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <?php
-                    $query = "SELECT * FROM categories";
-                    $select_all_categories_query = mysqli_query($connection, $query);
-                    while ($row = mysqli_fetch_assoc($select_all_categories_query)) {
-                        $cat_title = $row['cat_title'];
-                        $cat_id = $row['cat_id'];
-                        ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="category.php?category=<?php echo $cat_id; ?>"><?php echo $cat_title; ?></a>
+                    <li class="dropdown nav-item">
+                        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                            Categories</a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-danger">
+                                <?php
+                                $query = "SELECT * FROM categories";
+                                $select_all_categories = mysqli_query($connection, $query);
+                                while ($row = mysqli_fetch_assoc($select_all_categories)) {
+                                    $category_title = $row['cat_title'];
+                                    echo "<a class='dropdown-item'>{$category_title}</a>";
+                                }
+                                ?>
+                            </div>
                         </li>
-                        <?php
-                    }
-                    ?>
-                    <li class="nav-item">
-                        <a class="nav-link" href="admin/index.php">Admin</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link ml-auto" href="registration.php">Register</a>
-                    </li>
-                    <?php
-                      if (isset($_SESSION['user_role'])) {
-                        if (isset($_GET['p_id'])) {
-                          $post_edit_id = $_GET['p_id'];
-                          echo "<li class='nav-item'><a class='nav-link' href='admin/posts.php?source=update_post&p_id={$post_edit_id}'>Edit Post</a></li>";
-                        }
-                      }
-                     ?>
-                </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="admin/index.php">Admin</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link ml-auto" href="contact.php">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link ml-auto" href="registration.php">Register</a>
+                        </li>
+                        <?php show_update(); ?>
+                    </ul>
+                </div>
             </div>
         </nav>

@@ -1,26 +1,25 @@
 <?php
 /*
-The Template for viewing users
+The Template for diaplaying comments
+includes functionality to display, approve and unapprove
 */
-include 'includes/delete-modal.php';
+//categories Functions
 ?>
 <div class="card">
     <div class="card-body">
         <table class="table table-hover">
             <thead>
                 <th>ID</th>
-                <th>Username</th>
-                <th>Name</th>
+                <th>Author</th>
+                <th>Comment</th>
                 <th>Email</th>
-                <th>Role</th>
-                <th>Avatar</th>
+                <th>Status</th>
+                <th>Posted On</th>
+                <th>Date</th>
                 <th class="text-right">Actions</th>
             </thead>
             <tbody>
-                <?php display_users(); ?>
-                <?php delete_user(); ?>
-                <?php //approve_comment(); ?>
-                <?php //unapprove_comment(); ?>
+                <?php display_comments_filtered(); ?>
             </tbody>
         </table>
     </div>
@@ -29,7 +28,7 @@ include 'includes/delete-modal.php';
     $(document).ready(function(){
         $(".delete-link").on('click', function(){
             var id = $(this).attr("rel");
-            var deleteUrl = "users.php?delete=" + id + " ";
+            var deleteUrl = "comments.php?delete=" + id + " ";
             $(".modal-delete-link").attr("href", deleteUrl);
             $("#confirmDelete").modal('show');
         });

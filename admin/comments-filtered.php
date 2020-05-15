@@ -23,7 +23,7 @@ include 'includes/header.php';
                          </div>
                      </div>
                  </div><!-- end card -->
-                <?php include 'includes/comments/view-comments.php'; ?>
+                <?php include 'includes/comments/view-comments-filtered.php'; ?>
                 <?php approve_comment(); ?>
                 <?php unapprove_comment(); ?>
                 <?php delete_comment(); ?>

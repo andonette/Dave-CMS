@@ -11,6 +11,7 @@ $(document).ready(function(){
     }
   });
 });
+
 function loadUsersOnline() {
     $.get("../admin/functions.php?users_online=result", function(data){
         $(".users-online").text(data);

@@ -3,51 +3,8 @@
 The Template for creating a user
 includes create user function
 */
-global $connection;
-if (isset($_POST['create_user'])) {
-    $create_user = $_POST['create_user'];
-    $user_name = $_POST['user_name'];
-    $user_email = $_POST['user_email'];
-    $user_firstname = $_POST['user_firstname'];
-    $user_lastname = $_POST['user_lastname'];
-    $user_password = $_POST['user_password'];
-    $user_role = $_POST['user_role'];
-    $user_image = $_FILES['user_image']['name'];
-    $user_image_temp = $_FILES['user_image']['tmp_name'];
 
-    move_uploaded_file($user_image_temp, "../images/$post_image");
-
-    $crypt = "SELECT randSalt from USERS";
-    $rand_salt_query = mysqli_query($connection, $query);
-
-    $row = mysqli_fetch_array($rand_salt_query);
-    $rand_salt = $row['randSalt'];
-
-    $user_password = crypt($user_password, $rand_salt);
-
-    //Nice Looking Query
-    $query = "INSERT INTO users ";
-    $query .= "(user_name, ";
-    $query .= "user_email, ";
-    $query .= "user_firstname, ";
-    $query .= "user_lastname, ";
-    $query .= "user_password, ";
-    $query .= "user_role, ";
-    $query .= "user_image) ";
-
-    $query .= "VALUES('{$user_name}', ";
-    $query .= "'{$user_email}', ";
-    $query .= "'{$user_firstname}', ";
-    $query .= "'{$user_lastname}', ";
-    $query .= "'{$user_password}', ";
-    $query .= "'{$user_role}', ";
-    $query .= "'{$user_image}') ";
-
-    $create_user_query = mysqli_query($connection, $query);
-    sql_error_check($create_user_query);
-    echo '<div class="alert alert-success">User Created: <a class="text-white" href="users.php">View Users</a></div>';
-
-}
+create_user();
 ?>
 
 <div class="card">
