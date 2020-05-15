@@ -17,6 +17,7 @@
 
                 $view_query ="UPDATE posts SET post_views_count = post_views_count + 1 WHERE post_id = $get_post_id";
                 mysqli_query($connection, $view_query);
+                sql_error_check($view_query);
 
                 //query the database, select everything from the posts table
                 $query = "SELECT * FROM posts WHERE post_id = $get_post_id";
@@ -72,11 +73,6 @@
                         </div>
                     </div>
                     <!-- End Card -->
-                <?php }
-            } else {
-                header("Location: index.php");
-            }
-            ?>
             <div class="card">
                 <div class="card-body">
                     <h3>Leave A Comment</h3>
@@ -98,10 +94,15 @@
 
                 </div>
             </div>
-            <ul class="list-unstyled">
+            <ul class="list-unstyled mt-5">
                 <?php show_post_comments(); ?>
             </ul>
         </div>
+    <?php }
+} else {
+    header("Location: index.php");
+}
+?>
         <!-- End Column -->
         <div class="col-sm-4">
             <?php include 'includes/sidebar.php' ?>

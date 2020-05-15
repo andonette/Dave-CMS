@@ -8,29 +8,36 @@ include 'includes/header.php'
 <div class="row">
     <div class="col-sm-8">
         <h1 class="title">Latest Blogposts</h1>
+
         <?php
         if (isset($_GET['page'])) {
             $page = $_GET['page'];
         } else {
             $page = "";
         }
+        $posts_per_page = 2;
         if ($page == "" || $page == 1) {
-            $page_1 = 0;
+            $page_counter = 0;
         } else {
-            $page_1 = ($page * 5) - 5;
+            $page_counter = ($page * $posts_per_page) - $posts_per_page;
+            echo 'i am another page <br>';
         }
         $query = "SELECT * FROM posts WHERE post_status = 'published'";
         //query the database, select everything from the posts table
         $count_query = mysqli_query($connection, $query);
         $count = mysqli_num_rows($count_query);
-        $pages_count = floor($count / 3);
-        echo '<h1>';
-        echo $pages_count;
-        echo '</h1>';
+        $pages_count = ceil($count / $posts_per_page);
+        echo $count;
         if ($count < 1) {
             echo '<h2>No Posts To Show</h2>';
         } else {
-            $query = "SELECT * FROM posts WHERE post_status = 'published LIMIT $page_1, 5";
+            if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'Administrator') {
+                $query = "SELECT * FROM posts LIMIT $page_counter, $posts_per_page";
+            } else {
+                $query = "SELECT * FROM posts WHERE post_status = 'published' LIMIT $page_counter, $posts_per_page";
+            }
+
+            //echo 'we have some posts';
 
             $select_all_posts_query = mysqli_query($connection, $query);
             //create variables from the columns in the post table.
@@ -42,6 +49,11 @@ include 'includes/header.php'
                 $post_image = $row['post_image'];
                 $post_content = $row['post_content'];
                 include 'includes/post-loop-template.php';
+            }
+            if ($pages_count >= 2) {
+                echo 1;
+            } else {
+                echo 0;
             }
         }
 
