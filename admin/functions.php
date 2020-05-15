@@ -770,14 +770,14 @@ function show_post_comments()
     $query .= "ORDER BY comment_id DESC";
     $display_all_comments = mysqli_query($connection, $query);
     while ($row = mysqli_fetch_assoc($display_all_comments)) {
-        $comment_date = $row['comment_date'];
+        $comment_date = date_create($row['comment_date']);
         $comment_author = $row['comment_author'];
         $comment_content = $row['comment_content'];
         ?>
         <li class="media mb-3">
-            <img class="mr-3" src="..." alt="Generic placeholder image">
+
             <div class="media-body">
-                <h5 class="mt-0 mb-1">Posted By <?php echo $comment_author; ?> On <?php echo $comment_date; ?>  </h5>
+                <h5 class="mt-0 mb-1">Posted By <?php echo $comment_author; ?> On <?php echo date_format($comment_date, 'M dS Y'); ?>  </h5>
                 <?php echo $comment_content; ?>
             </div>
         </li>
