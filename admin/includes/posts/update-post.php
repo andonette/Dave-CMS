@@ -114,8 +114,3 @@ while ($row = mysqli_fetch_assoc($select_post_by_id)) {
         </form>
     </div>
 </div><!-- end card -->
-
-
-//Functionality for the update form.
-//Get the form data on submit
-update_post_form();
