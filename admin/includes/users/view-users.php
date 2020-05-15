@@ -2,6 +2,7 @@
 /*
 The Template for viewing users
 */
+include 'includes/delete-modal.php';
 ?>
 <div class="card">
     <div class="card-body">

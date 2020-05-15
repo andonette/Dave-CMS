@@ -1,3 +1,4 @@
+<?php include 'includes/delete-modal.php'; ?>
 <div class="card">
     <div class="card-body">
         <table class="table">
