@@ -5,12 +5,12 @@
         </a>
         <div class="card-body">
             <h3 class="card-title">
-                <a href="post.php?p_id=<?php echo $post_id; ?>"><?php echo $post_title; ?></a>
+                <a class="text-white" href="post.php?p_id=<?php echo $post_id; ?>"><?php echo $post_title; ?></a>
             </h3>
             <p class="card-description">
                 <?php echo substr($post_content, 0, 300); ?>...<br>
 
-                <a class="btn btn-danger mt-3" href="post.php?p_id=<?php echo $post_id; ?>">Read More...</a>
+                <a class="btn btn-success mt-3" href="post.php?p_id=<?php echo $post_id; ?>">Read More...</a>
             </p>
             <div class="author">
                 <?php

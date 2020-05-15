@@ -11,14 +11,14 @@ include 'includes/header.php'
         <?php
         if (isset($_GET['page'])) {
             $page = $_GET['page'];
-    } else {
-        $page = "";
-    }
-    if ($page == "" || $page == 1) {
-        $page_1 = 0;
-    } else {
-        $page_1 = ($page * 5) - 5;
-    }
+        } else {
+            $page = "";
+        }
+        if ($page == "" || $page == 1) {
+            $page_1 = 0;
+        } else {
+            $page_1 = ($page * 5) - 5;
+        }
         $query = "SELECT * FROM posts";
         //query the database, select everything from the posts table
         $count_query = mysqli_query($connection, $query);

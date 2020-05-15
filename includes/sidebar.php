@@ -13,7 +13,7 @@ Sidebar
             <label for="password">Password</label>
             <input type="password" class="form-control" name="password">
             <div class="input-group">
-                <button class="btn btn-primary" type="submit"
+                <button class="btn btn-default" type="submit"
                 name="login">Login</button>
             </div>
         </form>
@@ -29,7 +29,7 @@ Sidebar
 
                 <input type="text" class="form-control mt-1" placeholder="search" name="search">
                 <div class="input-group-append">
-                    <button class="btn btn-primary" type="submit" name="submit">Search</button>
+                    <button class="btn btn-ghost-white" type="submit" name="submit">Search</button>
                 </div>
             </div>
         </form>
@@ -49,7 +49,7 @@ Sidebar
                 $cat_id = $row['cat_id'];
                 ?>
                 <li>
-                    <a href="category.php?category=<?php echo $cat_id; ?>"><?php echo $cat_title; ?></a>
+                    <a class="text-white" href="category.php?category=<?php echo $cat_id; ?>"><?php echo $cat_title; ?></a>
                 </li>
                 <?php
             }

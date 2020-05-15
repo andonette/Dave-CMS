@@ -9,7 +9,6 @@
             if (isset($_GET['author'])) {
                 $get_author = $_GET['author'];
             }
-
             //query the database, select everything from the posts table
             $query = "SELECT * FROM posts WHERE post_author_id = $get_author";
             $select_all_posts_query = mysqli_query($connection, $query);
@@ -18,7 +17,7 @@
                 echo "<p>we found $count posts</p>";// code...
             } else {
                 echo '<h2>No Posts To Show</h2>';
-                echo "<a class='btn btn-primary' href='index.php'>Back To Posts</a>";
+                echo "<a class='btn btn-success' href='index.php'>Back To Posts</a>";
             }
             //create variables from the columns in the post table.
             while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
