@@ -9,7 +9,13 @@
                 $get_category = $_GET['category'];
             }
             //query the database, select everything from the posts table
-            $query = "SELECT * FROM posts WHERE post_category_id = $get_category AND post_status = 'Published'";
+            //query the database, select everything from the posts table
+            if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'Administrator') {
+                $query = "SELECT * FROM posts WHERE post_category_id = $get_category";
+            } else {
+                $query = "SELECT * FROM posts WHERE post_category_id = $get_category AND post_status = 'Published'";
+            }
+
             $select_all_posts_query = mysqli_query($connection, $query);
             $count = mysqli_num_rows($select_all_posts_query);
 

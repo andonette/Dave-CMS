@@ -20,7 +20,13 @@
                 sql_error_check($view_query);
 
                 //query the database, select everything from the posts table
-                $query = "SELECT * FROM posts WHERE post_id = $get_post_id";
+                if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'Administrator') {
+                        $query = "SELECT * FROM posts WHERE post_id = $get_post_id";
+                } else {
+                        $query = "SELECT * FROM posts WHERE post_id = $get_post_id AND post_status = 'Published'";
+
+                }
+
                 $select_all_posts_query = mysqli_query($connection, $query);
                 //create variables from the columns in the post table.
                 while ($row = mysqli_fetch_assoc($select_all_posts_query)) {

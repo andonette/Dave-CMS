@@ -10,7 +10,12 @@
                 $get_author = $_GET['author'];
             }
             //query the database, select everything from the posts table
-            $query = "SELECT * FROM posts WHERE post_author_id = $get_author and post_status = 'Published'";
+            if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'Administrator') {
+                $query = "SELECT * FROM posts WHERE post_author_id = $get_author";
+            } else {
+                $query = "SELECT * FROM posts WHERE post_author_id = $get_author and post_status = 'Published'";
+            }
+
             $select_all_posts_query = mysqli_query($connection, $query);
             $count = mysqli_num_rows($select_all_posts_query);
             if ($count !== 0) {
