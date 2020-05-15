@@ -5,12 +5,12 @@ Site Index
 include 'includes/header.php'
 ?>
 <div class="container">
-    <div class="row">
-        <div class="col-12">
-
-        </div>
+  <div class="row">
+    <div class="col-12">
+        
     </div>
-    <!-- End Row -->
+  </div>
+  <!-- End Row -->
 </div>
 <!-- End Container -->
 <?php include 'includes/footer.php' ?>
