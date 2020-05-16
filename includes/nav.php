@@ -16,20 +16,30 @@
                             $query = "SELECT * FROM categories";
                             $select_all_categories = mysqli_query($connection, $query);
                             while ($row = mysqli_fetch_assoc($select_all_categories)) {
-                                $category_title = $row['cat_title'];
-                                echo "<a class='dropdown-item'>{$category_title}</a>";
+                                $cat_title = $row['cat_title'];
+                                $cat_id = $row['cat_id'];
+                                $category_class = '';
+                                $registration_class = '';
+                                $registration = 'registration.php';
+                                $current_page = basename($_SERVER['PHP_SELF']);
+                                if (isset($_GET['category']) && $_GET['category'] == $cat_id) {
+                                    $category_class = 'active';
+                                } else if($page_name = $registration){
+                                $registration_class = 'active';
+                                }
+                                    echo "<a class='dropdown-item {$category_class}' href='category.php?category={$cat_id}'>{$cat_title}</a>";
                             }
                             ?>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="admin/index.php">Admin</a>
+                        <a class="nav-link <?php echo $registration_class ?>" href="admin/index.php">Admin</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link ml-auto" href="contact.php">Contact</a>
+                        <a class="nav-link ml-auto  <?php echo $registration_class ?>" href="contact.php">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link ml-auto" href="registration.php">Register</a>
+                        <a class="nav-link ml-auto <?php echo $registration_class ?>" href="registration.php">Register</a>
                     </li>
                     <?php show_update(); ?>
                 </ul>

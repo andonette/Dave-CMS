@@ -24,7 +24,6 @@
                         $query = "SELECT * FROM posts WHERE post_id = $get_post_id";
                 } else {
                         $query = "SELECT * FROM posts WHERE post_id = $get_post_id AND post_status = 'Published'";
-
                 }
 
                 $select_all_posts_query = mysqli_query($connection, $query);

@@ -7,7 +7,6 @@
 
             if (isset($_GET['category'])) {
                 $get_category = $_GET['category'];
-            }
             //query the database, select everything from the posts table
             //query the database, select everything from the posts table
             if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'Administrator') {
@@ -35,7 +34,7 @@
                 $post_image = $row['post_image'];
                 $post_content = $row['post_content'];
                 include 'includes/post-loop-template.php';
-            } ?>
+            } } ?>
         </div>
         <!-- End Column -->
         <div class="col-sm-4">
