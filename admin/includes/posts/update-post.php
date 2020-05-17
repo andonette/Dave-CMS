@@ -27,6 +27,7 @@ while ($row = mysqli_fetch_assoc($select_post_by_id)) {
     $post_tags = $row['post_tags'];
     $post_image = $row['post_image'];
 }
+update_post_form();
 ?>
 <div class="card">
     <div class="card-body">
@@ -48,7 +49,11 @@ while ($row = mysqli_fetch_assoc($select_post_by_id)) {
                     while ($row = mysqli_fetch_assoc($display_all_categories_query)) {
                         $cat_title = $row['cat_title'];
                         $cat_id = $row['cat_id'];
-                        echo "<option value='{$cat_id}'>{$cat_title}</option>";
+                        if ($cat_id == $post_category_id) {
+                            echo "<option selected value='{$cat_id}'>{$cat_title}</option>";
+                        } else {
+                            echo "<option value='{$cat_id}'>{$cat_title}</option>";
+                        }
                     }
                     ?>
                 </select>

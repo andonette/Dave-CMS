@@ -147,6 +147,10 @@ function display_posts()
 }
 function update_post_form()
 {
+    global $connection;
+    if (isset($_GET['p_id'])) {
+        $url_post_id = $_GET['p_id'];
+    }
     if (isset($_POST['update_post'])) {
         $post_title = $_POST['post_title'];
         $post_content = $_POST['post_content'];
@@ -175,7 +179,7 @@ function update_post_form()
         $query = "UPDATE posts SET ";
         $query .= "post_title = '{$post_title}', ";
         $query .= "post_category_id = {$post_category_id}, ";
-        $query .= "post_author = '{$post_author}', ";
+        $query .= "post_author = '{$post_author_id}', ";
         $query .= "post_date = now(), ";
         $query .= "post_status = '{$post_status}', ";
         $query .= "post_content = '{$post_content}', ";
