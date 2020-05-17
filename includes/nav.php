@@ -7,7 +7,7 @@
             <span class="navbar-toggler-bar navbar-kebab"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav ml-auto">
                 <li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
                         Categories</a>
@@ -31,9 +31,6 @@
                             }
                             ?>
                         </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?php echo $registration_class ?>" href="admin/index.php">Admin</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link ml-auto  <?php echo $registration_class ?>" href="contact.php">Contact</a>

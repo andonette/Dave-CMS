@@ -13,5 +13,6 @@ Site Footer
 
 <!-- BLK• JS -->
 <script src="js/blk-design-system.js"></script>
+<script src="js/scripts.js"></script>
 </body>
 </html>
