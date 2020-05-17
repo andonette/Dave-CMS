@@ -1,4 +1,13 @@
 <?php
+function check_admin(){
+    //this is just checking if the user is an administrator
+    if (!isset($_SESSION['user_role'])) {
+        if ($_SESSION['user_role'] !== 'Administrator' || $_SESSION['user_role'] !== 'Subscriber') {
+            //if not they can't access the admin page
+            header("Location: ../index.php");
+        }
+    }
+}
 // users online
 function onlineUsers()
 {
@@ -724,7 +733,7 @@ function show_update()
     }
 }
 // Count Stuff.
-function count_rows($table)
+function row_count($table)
 {
     global $connection;
     $query = 'SELECT * FROM ' . $table;
@@ -732,11 +741,23 @@ function count_rows($table)
     $count = mysqli_num_rows($select);
     return $count;
 }
-$post_count = count_rows('posts');
-$user_count = count_rows('users');
-$comment_count = count_rows('categories');
-$category_count = count_rows('comments');
+$post_count = row_count('posts');
+$user_count = row_count('users');
+$comment_count = row_count('categories');
+$category_count = row_count('comments');
+$draft_post_count = count_draft('posts', 'post_status', 'Draft');
+$draft_comment_count = count_draft('comments', 'comment_status', 'approved');
+$admin_user_count = count_draft('users', 'user_role', 'Administrator');
+$admin_subscriber_count = count_draft('users', 'user_role', 'Subscriber');
 //echo $user_count;
+
+function count_draft($table, $column, $status){
+  global $connection;
+  $query = "SELECT * FROM $table WHERE $column = '$status'";
+  $select = mysqli_query($connection, $query);
+  $count = mysqli_num_rows($select);
+  return $count;
+}
 
 function comment_form()
 {

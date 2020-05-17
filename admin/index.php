@@ -27,12 +27,7 @@ include 'includes/header.php';
                                 <i class="fal fa-file fa-5x"></i>
                             </div>
                             <div class="col-sm-9 text-right">
-                                <?php
-                                $query = 'SELECT * FROM posts';
-                                $select = mysqli_query($connection, $query);
-                                $post_count = mysqli_num_rows($select);
-                                ?>
-                                <div class='h1'><?php echo $post_count; ?></div>
+                                <div class='h1'><?php echo row_count('posts'); ?></div>
                                 <div>Posts</div>
                             </div>
                         </div>
@@ -53,12 +48,7 @@ include 'includes/header.php';
                                 <i class="fal fa-comments fa-5x"></i>
                             </div>
                             <div class="col-sm-9 text-right">
-                                <?php
-                                $query = 'SELECT * FROM comments';
-                                $select = mysqli_query($connection, $query);
-                                $comment_count = mysqli_num_rows($select);
-                                ?>
-                                <div class='h1'><?php echo $comment_count ?></div>
+                                <div class='h1'><?php echo row_count('comments'); ?></div>
                                 <div>Comments</div>
                             </div>
                         </div>
@@ -79,12 +69,7 @@ include 'includes/header.php';
                                 <i class="fal fa-users fa-5x"></i>
                             </div>
                             <div class="col-sm-9 text-right">
-                                <?php
-                                $query = 'SELECT * FROM users';
-                                $select = mysqli_query($connection, $query);
-                                $user_count = mysqli_num_rows($select);
-                                ?>
-                                <div class='h1'><?php echo $user_count; ?></div>
+                                <div class='h1'><?php echo row_count('users'); ?></div>
                                 <div>Users</div>
                             </div>
                         </div>
@@ -105,12 +90,8 @@ include 'includes/header.php';
                                 <i class="fal fa-list fa-5x"></i>
                             </div>
                             <div class="col-sm-9 text-right">
-                                <?php
-                                $query = 'SELECT * FROM categories';
-                                $select = mysqli_query($connection, $query);
-                                $category_count = mysqli_num_rows($select);
-                                ?>
-                                <div class='h1'><?php echo $category_count; ?></div>
+
+                                <div class='h1'><?php echo row_count('categories'); ?></div>
                                 <div>Categories</div>
                             </div>
                         </div>
@@ -137,22 +118,6 @@ include 'includes/header.php';
 
                                 ['Data', 'Count'],
                                 <?php
-                                $query = 'SELECT * FROM posts WHERE post_status = "Draft"';
-                                $select = mysqli_query($connection, $query);
-                                $draft_post_count = mysqli_num_rows($select);
-
-                                $query = 'SELECT * FROM comments WHERE comment_status = "unapproved"';
-                                $select = mysqli_query($connection, $query);
-                                $draft_comment_count = mysqli_num_rows($select);
-
-                                $query = 'SELECT * FROM users WHERE user_role = "Administrator"';
-                                $select = mysqli_query($connection, $query);
-                                $admin_user_count = mysqli_num_rows($select);
-
-                                $query = 'SELECT * FROM users WHERE user_role = "Subscriber"';
-                                $select = mysqli_query($connection, $query);
-                                $admin_subscriber_count = mysqli_num_rows($select);
-
                                 $element_text = ['Active Posts', 'Draft Posts', 'Comments', 'Pending', 'Users', 'Admin', 'Subscribers', 'Categories'];
                                 $element_count = [$post_count, $draft_post_count, $comment_count, $draft_comment_count, $user_count,  $admin_user_count, $admin_subscriber_count, $category_count];
                                 for ($i=0; $i < 8; $i++) {
