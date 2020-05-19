@@ -6,10 +6,16 @@ include 'includes/header.php' ?>
 <?php
 /*form action */
 if (isset($_POST['register'])) {
-    $register = $_POST['register'];
     $user_name = $_POST['username'];
     $user_email = $_POST['email'];
     $user_password = $_POST['password'];
+
+    if (username_exists($user_name)) {
+        echo 'user exists';
+    }
+    if (email_exists($user_email)) {
+        echo 'email exists';
+    }
     echo $user_name . '<br>' . $user_email . '<br>' . $user_password;
 
     $user_name = mysqli_real_escape_string($connection, $user_name);
