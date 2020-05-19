@@ -15,16 +15,6 @@ if (isset($_GET['u_id'])) {
     //echo $query;
     //assign to a new variable
     $select_user_by_id = mysqli_query($connection, $query);
-    //loop through rows and get the data
-    //so we can display it in the update form
-    while ($row = mysqli_fetch_assoc($select_user_by_id)) {
-        $user_name = $row['user_name'];
-        $user_email = $row['user_email'];
-        $user_firstname = $row['user_firstname'];
-        $user_lastname = $row['user_lastname'];
-        $user_password = $row['user_password'];
-        $user_image = $row['user_image'];
-    }
 
     //Functionality for the update form.
     //Get the form data on submit
