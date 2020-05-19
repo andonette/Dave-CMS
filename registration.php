@@ -76,7 +76,7 @@ if (isset($_POST['register'])) {
                                         <i class="fal fa-user"></i>
                                     </div>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Username" name="username" autocomplete="on" value="">
+                                <input type="text" class="form-control" placeholder="Username" name="username" autocomplete="on" value="<?php echo isset($user_name) ? $user_name : ''; ?>">
                             </div>
                             <small class="text-muted">message</small>
                             <div class="input-group">
@@ -85,7 +85,7 @@ if (isset($_POST['register'])) {
                                         <i class="fal fa-envelope"></i>
                                     </div>
                                 </div>
-                                <input type="text" placeholder="Email" class="form-control" name="email" autocomplete="on" value="">
+                                <input type="text" placeholder="Email" class="form-control" name="email" autocomplete="on" value="<?php echo isset($user_email) ? $user_email : ''; ?>>">
                             </div>
                             <small class="text-muted">message</small>
                             <div class="input-group">
