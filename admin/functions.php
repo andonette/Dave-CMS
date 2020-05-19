@@ -50,10 +50,11 @@ function redirect($location) {
     return header("Location: " . $location);
 }
 
-function login_user($username, $db_user_password) {
+function login_user($db_user_name, $db_user_password) {
     global $connection;
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
+    echo $username;
     //first, store the results in a couple of temp variables
     //called username and password
 
