@@ -6,42 +6,11 @@ include 'includes/header.php' ?>
 <?php
 /*form action */
 if (isset($_POST['register'])) {
+    echo 'talking';
     $user_name = $_POST['username'];
     $user_email = $_POST['email'];
     $user_password = $_POST['password'];
-
-    if (username_exists($user_name)) {
-        echo 'user exists';
-    }
-    if (email_exists($user_email)) {
-        echo 'email exists';
-    }
-    echo $user_name . '<br>' . $user_email . '<br>' . $user_password;
-
-    $user_name = mysqli_real_escape_string($connection, $user_name);
-    $user_email = mysqli_real_escape_string($connection, $user_email);
-    $user_password = mysqli_real_escape_string($connection, $user_password);
-
-    $user_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12 ));
-
-
-    //Nice Looking Query
-    $query = "INSERT INTO users ";
-    $query .= "(user_name, ";
-    $query .= "user_email, ";
-    $query .= "user_password, ";
-    $query .= "user_role) ";
-
-    $query .= "VALUES('{$user_name}', ";
-    $query .= "'{$user_email}', ";
-    $query .= "'{$user_password}', ";
-    $query .= "'Subscriber') ";
-    echo $query;
-
-    if (!empty($user_name) && !empty($user_password) && !empty($user_email)) {
-        $register_query = mysqli_query($connection, $query);
-        sql_error_check($register_query);
-    }
+    register_user($user_name, $user_email, $user_password);
 }
 ?>
 <div class="page-header">

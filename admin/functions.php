@@ -46,6 +46,45 @@ function email_exists($email) {
 function redirect($location) {
     return header("Location: " . $location);
 }
+function register_user($user_name, $user_email, $user_password) {
+    global $connection;
+    $user_name = $_POST['username'];
+    $user_email = $_POST['email'];
+    $user_password = $_POST['password'];
+
+    if (username_exists($user_name)) {
+
+    }
+    if (email_exists($user_email)) {
+    
+    }
+    echo $user_name . '<br>' . $user_email . '<br>' . $user_password;
+
+    $user_name = mysqli_real_escape_string($connection, $user_name);
+    $user_email = mysqli_real_escape_string($connection, $user_email);
+    $user_password = mysqli_real_escape_string($connection, $user_password);
+
+    $user_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12 ));
+
+
+    //Nice Looking Query
+    $query = "INSERT INTO users ";
+    $query .= "(user_name, ";
+    $query .= "user_email, ";
+    $query .= "user_password, ";
+    $query .= "user_role) ";
+
+    $query .= "VALUES('{$user_name}', ";
+    $query .= "'{$user_email}', ";
+    $query .= "'{$user_password}', ";
+    $query .= "'Subscriber') ";
+    echo $query;
+
+    if (!empty($user_name) && !empty($user_password) && !empty($user_email)) {
+        $register_query = mysqli_query($connection, $query);
+        sql_error_check($register_query);
+    }
+}
 // users online
 function onlineUsers()
 {
