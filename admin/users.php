@@ -3,6 +3,9 @@
 The Template for the users page
 */
 include 'includes/header.php';
+if (!is_admin($_SESSION['username'])) {
+    header("Location: index.php");
+}
 ?>
 <div class="content">
     <div class="container-fluid">

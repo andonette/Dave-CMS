@@ -1,4 +1,5 @@
 <?php
+ob_start();
 //create an array for the database
 $db['db_host'] = 'localhost';
 $db['db_user'] = 'root';

@@ -8,6 +8,23 @@ function check_admin(){
         }
     }
 }
+function is_admin($username = '') {
+    global $connection;
+    $query = "SELECT user_role FROM users WHERE user_name = '$username'";
+    echo $username . '!';
+    $result = mysqli_query($connection, $query);
+    echo $query;
+    //sql_error_check($result);
+    if (!$result) {
+        die('query failed' . mysqli_error($connection));
+    }
+    $row = mysqli_fetch_array($result);
+    if ($row['user_role'] == 'Administrator') {
+        return true;
+    } else {
+        return false;
+    }
+}
 // users online
 function onlineUsers()
 {
@@ -291,7 +308,6 @@ function bulk_edit_posts()
                         $query .= "'{$post_tags}') ";
 
                         $create_post_query = mysqli_query($connection, $query);
-                        echo $query;
                         sql_error_check($create_post_query);
                     }
                     echo $query;
