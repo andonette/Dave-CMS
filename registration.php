@@ -5,8 +5,8 @@ Site Index
 include 'includes/header.php' ?>
 <?php
 /*form action */
-if (isset($_POST['register'])) {
-    echo 'talking';
+if (request('post')) {
+
     $user_name = trim($_POST['username']);
     $user_email = trim($_POST['email']);
     $user_password = trim($_POST['password']);
@@ -33,7 +33,7 @@ if (isset($_POST['register'])) {
      $error['email'] = 'email already exists, try again <a href="index.php">Please Login</a>';
     }
     if (strlen($user_password) < 8 ) {
-     $error['email'] = 'Password must be 8 characters or more';
+     $error['password'] = 'Password must be 8 characters or more';
     }
 
     foreach ($error as $key => $value) {

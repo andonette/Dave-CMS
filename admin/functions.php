@@ -1,4 +1,7 @@
 <?php
+function request($method){
+    return $_SERVER['REQUEST_METHOD'] == mb_strtoupper($method);
+}
 function check_admin(){
     //this is just checking if the user is an administrator
     if (!isset($_SESSION['user_role'])) {
