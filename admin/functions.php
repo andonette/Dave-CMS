@@ -48,15 +48,12 @@ function redirect($location) {
 }
 function register_user($user_name, $user_email, $user_password) {
     global $connection;
-    $user_name = $_POST['username'];
-    $user_email = $_POST['email'];
-    $user_password = $_POST['password'];
 
     if (username_exists($user_name)) {
 
     }
     if (email_exists($user_email)) {
-    
+
     }
     echo $user_name . '<br>' . $user_email . '<br>' . $user_password;
 

@@ -7,9 +7,9 @@ include 'includes/header.php' ?>
 /*form action */
 if (isset($_POST['register'])) {
     echo 'talking';
-    $user_name = $_POST['username'];
-    $user_email = $_POST['email'];
-    $user_password = $_POST['password'];
+    $user_name = trim($_POST['username']);
+    $user_email = trim($_POST['email']);
+    $user_password = trim($_POST['password']);
     register_user($user_name, $user_email, $user_password);
 }
 ?>
