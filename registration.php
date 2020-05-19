@@ -45,6 +45,7 @@ if (request('post')) {
     }
     if (empty($error)) {
         register_user($user_name, $user_email, $user_password);
+        login_user($username, $password);
     } else {
         echo $error['username'] . '<br>';
         echo $error['email'] . '<br>';
