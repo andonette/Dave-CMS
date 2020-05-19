@@ -43,7 +43,9 @@ function email_exists($email) {
         return false;
     }
 }
-
+function redirect($location) {
+    return header("Location: " . $location);
+}
 // users online
 function onlineUsers()
 {
