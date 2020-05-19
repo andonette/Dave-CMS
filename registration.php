@@ -29,7 +29,7 @@ if (isset($_POST['register'])) {
     if ($user_email == '') {
      $error['email'] = 'email cannot be empty';
     }
-    if (username_exists($user_name)) {
+    if (email_exists($user_name)) {
      $error['email'] = 'email already exists, try again <a href="index.php">Please Login</a>';
     }
     if (strlen($user_password) < 8 ) {
@@ -38,9 +38,17 @@ if (isset($_POST['register'])) {
 
     foreach ($error as $key => $value) {
         if (empty($value)) {
-            register_user($user_name, $user_email, $user_password);
+            unset($error[$key]);
+            //register_user($user_name, $user_email, $user_password);
             //login_user($user_name, $user_password);
         }
+    }
+    if (empty($error)) {
+        register_user($user_name, $user_email, $user_password);
+    } else {
+        echo $error['username'] . '<br>';
+        echo $error['email'] . '<br>';
+        echo $error['password'] . '<br>'; 
     }
 
 
@@ -85,14 +93,6 @@ if (isset($_POST['register'])) {
                                     </div>
                                 </div>
                                 <input type="password" class="form-control" placeholder="Password" name="password">
-                            </div>
-                            <div class="form-check text-left">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox">
-                                    <span class="form-check-sign"></span>
-                                    I agree to the
-                                    <a href="javascript:void(0)">terms and conditions</a>.
-                                </label>
                             </div>
                         </div>
                         <div class="card-footer">
