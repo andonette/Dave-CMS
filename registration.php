@@ -29,7 +29,7 @@ if (isset($_POST['register'])) {
     if ($user_email == '') {
      $error['email'] = 'email cannot be empty';
     }
-    if (email_exists($user_name)) {
+    if (email_exists($user_email)) {
      $error['email'] = 'email already exists, try again <a href="index.php">Please Login</a>';
     }
     if (strlen($user_password) < 8 ) {
@@ -78,16 +78,16 @@ if (isset($_POST['register'])) {
                                 </div>
                                 <input type="text" class="form-control" placeholder="Username" name="username" autocomplete="on" value="<?php echo isset($user_name) ? $user_name : ''; ?>">
                             </div>
-                            <small class="text-muted">message</small>
+                            <small class="text-muted"><?php echo isset($error['username']) ? $error['username'] : ''; ?></small>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <i class="fal fa-envelope"></i>
                                     </div>
                                 </div>
-                                <input type="text" placeholder="Email" class="form-control" name="email" autocomplete="on" value="<?php echo isset($user_email) ? $user_email : ''; ?>>">
+                                <input type="text" placeholder="Email" class="form-control" name="email" autocomplete="on" value="<?php echo isset($user_email) ? $user_email : ''; ?>">
                             </div>
-                            <small class="text-muted">message</small>
+                            <small class="text-muted"><?php echo isset($error['email']) ? $error['email'] : ''; ?></small>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
@@ -96,7 +96,7 @@ if (isset($_POST['register'])) {
                                 </div>
                                 <input type="password" class="form-control" placeholder="Password" name="password">
                             </div>
-                            <small class="text-muted">message</small>
+                            <small class="text-muted"><?php echo isset($error['password']) ? $error['password'] : ''; ?></small>
                         </div>
                         <div class="card-footer">
                             <button type="submit" name="register" value="Register" class="btn btn-info btn-round btn-lg">Register</button>
