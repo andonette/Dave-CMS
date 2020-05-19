@@ -36,8 +36,15 @@ if (isset($_POST['register'])) {
      $error['email'] = 'Password must be 8 characters or more';
     }
 
+    foreach ($error as $key => $value) {
+        if (empty($value)) {
+            register_user($user_name, $user_email, $user_password);
+            //login_user($user_name, $user_password);
+        }
+    }
 
-    register_user($user_name, $user_email, $user_password);
+
+
 }
 ?>
 <div class="page-header">
