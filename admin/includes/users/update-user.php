@@ -26,8 +26,6 @@ if (isset($_GET['u_id'])) {
         $user_image = $row['user_image'];
     }
 
-    $user_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12 ));
-
     //Functionality for the update form.
     //Get the form data on submit
     if (isset($_POST['update_user'])) {
@@ -38,6 +36,8 @@ if (isset($_GET['u_id'])) {
         $user_password = $_POST['user_password'];
         $user_image = $_FILES['user_image']['name'];
         $user_image_temp = $_FILES['user_image']['tmp_name'];
+
+        $user_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12 ));
 
         // this gets the image and moves it
         //don't really understand how this works at the minute
@@ -66,7 +66,7 @@ if (isset($_GET['u_id'])) {
         $query .= "user_email = '{$user_email}', ";
         $query .= "user_firstname = '{$user_firstname}', ";
         $query .= "user_lastname = '{$user_lastname}', ";
-        $query .= "user_password = '{$encrypted_password}', ";
+        $query .= "user_password = '{$user_password}', ";
         $query .= "user_image = '{$user_image} ' ";
         $query .= "WHERE user_id = {$url_user_id}";
 
