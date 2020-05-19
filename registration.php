@@ -10,6 +10,33 @@ if (isset($_POST['register'])) {
     $user_name = trim($_POST['username']);
     $user_email = trim($_POST['email']);
     $user_password = trim($_POST['password']);
+
+    $error = [
+        'username' => '',
+        'email' => '',
+        'password' => ''
+    ];
+
+    if (strlen($user_name) < 6 ) {
+     $error['username'] = 'Username should be at least 6 characters';
+    }
+    if ($user_name == '') {
+     $error['username'] = 'Username cannot be empty';
+    }
+    if (username_exists($user_name)) {
+     $error['username'] = 'User already exists, try again';
+    }
+    if ($user_email == '') {
+     $error['email'] = 'email cannot be empty';
+    }
+    if (username_exists($user_name)) {
+     $error['email'] = 'email already exists, try again <a href="index.php">Please Login</a>';
+    }
+    if (strlen($user_password) < 8 ) {
+     $error['email'] = 'Password must be 8 characters or more';
+    }
+
+
     register_user($user_name, $user_email, $user_password);
 }
 ?>
