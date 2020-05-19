@@ -11,13 +11,9 @@ function check_admin(){
 function is_admin($username = '') {
     global $connection;
     $query = "SELECT user_role FROM users WHERE user_name = '$username'";
-    echo $username . '!';
     $result = mysqli_query($connection, $query);
-    echo $query;
-    //sql_error_check($result);
-    if (!$result) {
-        die('query failed' . mysqli_error($connection));
-    }
+    sql_error_check($result);
+
     $row = mysqli_fetch_array($result);
     if ($row['user_role'] == 'Administrator') {
         return true;
@@ -25,6 +21,18 @@ function is_admin($username = '') {
         return false;
     }
 }
+function username_exists($username) {
+    global $connection;
+    $query = "SELECT user_name FROM users WHERE user_name = '$username'";
+    $result = mysqli_query($connection, $query);
+    sql_error_check($result);
+    if (mysqli_num_rows($result) > 0 ) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 // users online
 function onlineUsers()
 {
