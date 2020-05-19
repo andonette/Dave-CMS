@@ -48,7 +48,7 @@ if (isset($_POST['register'])) {
     } else {
         echo $error['username'] . '<br>';
         echo $error['email'] . '<br>';
-        echo $error['password'] . '<br>'; 
+        echo $error['password'] . '<br>';
     }
 
 
@@ -76,16 +76,18 @@ if (isset($_POST['register'])) {
                                         <i class="fal fa-user"></i>
                                     </div>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Username" name="username">
+                                <input type="text" class="form-control" placeholder="Username" name="username" autocomplete="on" value="">
                             </div>
+                            <small class="text-muted">message</small>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <i class="fal fa-envelope"></i>
                                     </div>
                                 </div>
-                                <input type="text" placeholder="Email" class="form-control" name="email">
+                                <input type="text" placeholder="Email" class="form-control" name="email" autocomplete="on" value="">
                             </div>
+                            <small class="text-muted">message</small>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
@@ -94,6 +96,7 @@ if (isset($_POST['register'])) {
                                 </div>
                                 <input type="password" class="form-control" placeholder="Password" name="password">
                             </div>
+                            <small class="text-muted">message</small>
                         </div>
                         <div class="card-footer">
                             <button type="submit" name="register" value="Register" class="btn btn-info btn-round btn-lg">Register</button>
