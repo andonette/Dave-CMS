@@ -41,7 +41,7 @@ include 'includes/delete-modal.php';
                     <th>Tags</th>
                     <th>Comments</th>
                     <th>Views</th>
-                    <th class="text-right">Actions</th>
+                    <th class="text-right" style="width: 100px;">Actions</th>
                 </thead>
                 <tbody>
                     <?php display_posts(); ?>

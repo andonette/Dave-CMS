@@ -266,15 +266,23 @@ function display_posts()
         echo "<td><a href='comments-filtered.php?id=$comment_id'class='text-dark'>{$comment_count}</a></td>";
 
         echo "<td>{$post_views_count}</td>";
-        echo '<td class="text-right" style="min-width: 130px;">';
+        echo '<td class="text-right" style="min-width: 200px;">';
         echo '<a href ="../post.php?p_id=' . $post_id . '"
         class="btn btn-warning btn-sm btn-round btn-icon mr-2">
         <i class="fal fa-eye pt-2"></i></a>';
         echo '<a href ="posts.php?source=update_post&p_id=' . $post_id . '"
         class="btn btn-success btn-sm btn-round btn-icon mr-2">
         <i class="fal fa-edit pt-2"></i></a>';
-        echo '<a rel="'.$post_id.'" href="javascript:void(0)" class="btn btn-danger btn-sm btn-round btn-icon delete-link">
-        <i class="fal fa-trash-alt pt-2"></i></a>';
+        ?>
+        <form method="post">
+            <input type="hidden" value="<?php echo $post_id ?>" name="post_id">
+            <button type="submit" name="delete" class="btn btn-danger btn-sm btn-round btn-icon delete-link">
+                <i class="fal fa-trash-alt pt-2"></i>
+            </button>
+        </form>
+        <?php
+        //echo '<a rel="'.$post_id.'" href="javascript:void(0)" class="btn btn-danger btn-sm btn-round btn-icon delete-link">
+        //<i class="fal fa-trash-alt pt-2"></i></a>';
         echo '</td>';
         echo '</tr>';
 
@@ -351,8 +359,8 @@ function switch_post_content()
 function delete_posts()
 {
     global $connection;
-    if (isset($_GET['delete'])) {
-        $the_post_id = $_GET['delete'];
+    if (isset($_POST['delete'])) {
+        $the_post_id = $_POST['post_id'];
         $query = 'DELETE FROM posts WHERE post_id = ' . $the_post_id;
         $delete_post = mysqli_query($connection, $query);
         header("Location: posts.php");
