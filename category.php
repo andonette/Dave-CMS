@@ -8,31 +8,36 @@
             if (isset($_GET['category'])) {
                 $get_category = $_GET['category'];
             //query the database, select everything from the posts table
-            //query the database, select everything from the posts table
             if (is_admin($_SESSION['username'])) {
-                $query = "SELECT * FROM posts WHERE post_category_id = $get_category";
+                echo 'hi admin';
+                $stmt1 = mysqli_prepare($connection, "SELECT post_id, post_title, post_author, post_date, post_image, post_content FROM posts WHERE post_category_id = ?");
             } else {
-                $query = "SELECT * FROM posts WHERE post_category_id = $get_category AND post_status = 'Published'";
+                $stmt2 = mysqli_prepare($connection, "SELECT post_id, post_title, post_author, post_date, post_image, post_content FROM posts WHERE post_category_id = ? AND post_status = ?");
+                $published = "Published";
+            }
+            if (isset($stmt1)) {
+                echo 'stmt1';
+                mysqli_stmt_bind_param($stmt1, "i", $post_category_id);
+                mysqli_stmt_execute($stmt1);
+                mysqli_stmt_bind_result($stmt1, $post_id, $post_title, $post_author, $post_date, $post_image, $post_content);
+                $stmt = $stmt1;
+            } else {
+                mysqli_stmt_bind_param($stmt2, "is", $post_category_id);
+                mysqli_stmt_execute($stmt2);
+                mysqli_stmt_bind_result($stmt2, $post_id, $post_title, $post_author, $post_date, $post_image, $post_content);
+                $stmt = $stmt2;
             }
 
-            $select_all_posts_query = mysqli_query($connection, $query);
-            $count = mysqli_num_rows($select_all_posts_query);
-
-            if ($count !== 0) {
-                echo "<p>we found $count posts</p>";// code...
-            } else {
+            if (mysqli_stmt_num_rows($stmt) === 0) {
                 echo '<h2>No Posts To Show</h2>';
                 echo "<a class='btn btn-primary' href='index.php'>Back To Posts</a>";
+            } else {
+                echo "<p>we found $count posts</p>";// code...
             }
 
             //create variables from the columns in the post table.
-            while ($row = mysqli_fetch_assoc($select_all_posts_query)) {
-                $post_id = $row['post_id'];
-                $post_title = $row['post_title'];
-                $post_author = $row['post_author_id'];
-                $post_date = date_create($row['post_date']);
-                $post_image = $row['post_image'];
-                $post_content = $row['post_content'];
+            while(mysqli_stmt_fetch($stmt1)){
+                echo 'hi';
                 include 'includes/post-loop-template.php';
             } } ?>
         </div>
