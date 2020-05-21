@@ -10,7 +10,7 @@
                 $get_author = $_GET['author'];
             }
             //query the database, select everything from the posts table
-            if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'Administrator') {
+            if (is_admin($_SESSION['username'])) {
                 $query = "SELECT * FROM posts WHERE post_author_id = $get_author";
             } else {
                 $query = "SELECT * FROM posts WHERE post_author_id = $get_author and post_status = 'Published'";

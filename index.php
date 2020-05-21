@@ -24,7 +24,7 @@ include 'includes/header.php'
                 echo 'i am another page <br>';
             }
 
-            if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'Administrator') {
+            if (is_admin($_SESSION['username'])) {
                 $query = "SELECT * FROM posts";
             } else {
                 $query = "SELECT * FROM posts WHERE post_status = 'published'";
@@ -37,7 +37,7 @@ include 'includes/header.php'
             echo $count;
 
 
-            if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'Administrator') {
+            if (is_admin($_SESSION['username'])) {
                 $query = "SELECT * FROM posts LIMIT $page_counter, $posts_per_page";
             } else {
                 $query = "SELECT * FROM posts WHERE post_status = 'published' LIMIT $page_counter, $posts_per_page";

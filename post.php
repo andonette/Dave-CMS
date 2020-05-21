@@ -20,7 +20,7 @@
                 sql_error_check($view_query);
 
                 //query the database, select everything from the posts table
-                if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'Administrator') {
+                if (is_admin($_SESSION['username'])) {
                         $query = "SELECT * FROM posts WHERE post_id = $get_post_id";
                 } else {
                         $query = "SELECT * FROM posts WHERE post_id = $get_post_id AND post_status = 'Published'";
