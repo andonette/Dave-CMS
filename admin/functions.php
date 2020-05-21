@@ -261,7 +261,7 @@ function display_posts()
         $comment_query = mysqli_query($connection, $comment_count_query);
         //$row = mysqli_fetch_array($comment_query);
         $comment_count = mysqli_num_rows($comment_query);
-        echo $comment_count;
+        //echo $comment_count;
 
         echo "<td><a href='comments-filtered.php?id=$comment_id'class='text-dark'>{$comment_count}</a></td>";
 
