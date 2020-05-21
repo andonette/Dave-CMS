@@ -216,18 +216,33 @@ function create_post()
 function display_posts()
 {
     global $connection;
-    $query = "SELECT * FROM posts";
+    $query = "SELECT posts.post_id, posts.post_title, posts.post_date, posts.post_category_id, posts.post_status, posts.post_image, ";
+    $query .= "posts.post_content, posts.post_author_id, posts.post_tags, posts.post_comment_count, posts.post_views_count, ";
+    $query .= "users.user_name, ";
+    $query .= "categories.cat_title, ";
+    $query .= "comments.comment_post_id ";
+    $query .= "FROM posts ";
+    $query .= "LEFT JOIN categories ON posts.post_category_id = categories.cat_id ";
+    $query .= "LEFT JOIN users ON posts.post_author_id = users.user_id ";
+    $query .= "LEFT JOIN comments ON posts.post_comment_count = comments.comment_id ORDER BY post_id DESC";
+    //echo $query;
+    //$query = "SELECT * FROM posts";
     $display_all_posts = mysqli_query($connection, $query);
+    sql_error_check($display_all_posts);
     while ($row = mysqli_fetch_assoc($display_all_posts)) {
         $post_id = $row['post_id'];
         $post_title = $row['post_title'];
         $post_date = $row['post_date'];
-        $post_author = $row['post_author'];
+        $post_author_id = $row['post_author_id'];
         $post_category_id = $row['post_category_id'];
         $post_status = $row['post_status'];
         $post_tags = $row['post_tags'];
         $post_image = $row['post_image'];
         $post_views_count = $row['post_views_count'];
+        $user_name = $row['user_name'];
+        $cat_title = $row['cat_title'];
+        $comment_id = $row['comment_post_id'];
+        //$comment_count = comment_id = $row['comment_post_id'];
 
         echo '<tr>';
         ?>
@@ -235,42 +250,34 @@ function display_posts()
         <?php
         echo "<td>{$post_id}</td>";
         echo "<td>{$post_date}</td>";
-        echo "<td>{$post_author}</td>";
+        echo "<td>{$user_name}</td>";
         echo "<td>{$post_title}</td>";
+        echo "<td>{$cat_title}</td>";
+        echo "<td>{$post_status}</td>";
+        echo "<td><img class='img-fluid' src='../images/posts/{$post_image}' alt='' style='max-width:100px;'/></td>";
+        echo "<td>{$post_tags}</td>";
 
+        $comment_count_query = "SELECT * FROM comments WHERE comment_post_id = {$post_id}";
+        $comment_query = mysqli_query($connection, $comment_count_query);
+        //$row = mysqli_fetch_array($comment_query);
+        $comment_count = mysqli_num_rows($comment_query);
+        echo $comment_count;
 
-        $query = "SELECT * FROM categories WHERE cat_id = " . $post_category_id;
-        $show_cat_name = mysqli_query($connection, $query);
-        while ($row = mysqli_fetch_assoc($show_cat_name)) {
-            $cat_title = $row['cat_title'];
-            $cat_id = $row['cat_id'];
+        echo "<td><a href='comments-filtered.php?id=$comment_id'class='text-dark'>{$comment_count}</a></td>";
 
-            echo "<td>{$cat_title}</td>";
-            echo "<td>{$post_status}</td>";
-            echo "<td><img class='img-fluid' src='../images/posts/{$post_image}' alt='' style='max-width:100px;'/></td>";
-            echo "<td>{$post_tags}</td>";
+        echo "<td>{$post_views_count}</td>";
+        echo '<td class="text-right" style="min-width: 130px;">';
+        echo '<a href ="../post.php?p_id=' . $post_id . '"
+        class="btn btn-warning btn-sm btn-round btn-icon mr-2">
+        <i class="fal fa-eye pt-2"></i></a>';
+        echo '<a href ="posts.php?source=update_post&p_id=' . $post_id . '"
+        class="btn btn-success btn-sm btn-round btn-icon mr-2">
+        <i class="fal fa-edit pt-2"></i></a>';
+        echo '<a rel="'.$post_id.'" href="javascript:void(0)" class="btn btn-danger btn-sm btn-round btn-icon delete-link">
+        <i class="fal fa-trash-alt pt-2"></i></a>';
+        echo '</td>';
+        echo '</tr>';
 
-            $comment_count_query = "SELECT * FROM comments WHERE comment_post_id = {$post_id}";
-            $comment_query = mysqli_query($connection, $comment_count_query);
-            $row = mysqli_fetch_array($comment_query);
-            $comment_id = $row['comment_post_id'];
-            $comment_count = mysqli_num_rows($comment_query);
-
-            echo "<td><a href='comments-filtered.php?id=$comment_id'>{$comment_count}</a></td>";
-
-            echo "<td>{$post_views_count}</td>";
-            echo '<td class="text-right" style="min-width: 130px;">';
-            echo '<a href ="../post.php?p_id=' . $post_id . '"
-            class="btn btn-warning btn-sm btn-round btn-icon mr-2">
-            <i class="fal fa-eye pt-2"></i></a>';
-            echo '<a href ="posts.php?source=update_post&p_id=' . $post_id . '"
-            class="btn btn-success btn-sm btn-round btn-icon mr-2">
-            <i class="fal fa-edit pt-2"></i></a>';
-            echo '<a rel="'.$post_id.'" href="javascript:void(0)" class="btn btn-danger btn-sm btn-round btn-icon delete-link">
-            <i class="fal fa-trash-alt pt-2"></i></a>';
-            echo '</td>';
-            echo '</tr>';
-        }
     }
 }
 function update_post_form()
@@ -330,14 +337,14 @@ function switch_post_content()
     }
     switch ($set_source) {
         case 'create_post':
-            include 'includes/posts/create-post.php';
-            break;
+        include 'includes/posts/create-post.php';
+        break;
         case 'update_post':
-            include 'includes/posts/update-post.php';
-            break;
+        include 'includes/posts/update-post.php';
+        break;
         default:
-            include 'includes/posts/view-posts.php';
-            break;
+        include 'includes/posts/view-posts.php';
+        break;
     }
 }
 
@@ -363,86 +370,86 @@ function bulk_edit_posts()
 
             switch ($bulk_options) {
                 case 'Published':
-                    global $connection;
-                    $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = $checkBoxValue";
-                    $update_status = mysqli_query($connection, $query);
-                    echo $query;
-                    header("Location: posts.php");
-                    sql_error_check($update_status);
-                    break;
+                global $connection;
+                $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = $checkBoxValue";
+                $update_status = mysqli_query($connection, $query);
+                echo $query;
+                header("Location: posts.php");
+                sql_error_check($update_status);
+                break;
                 case 'Duplicate':
-                    global $connection;
-                    $query = "SELECT * FROM posts WHERE post_id = $checkBoxValue";
-                    $update_status = mysqli_query($connection, $query);
-                    while ($row = mysqli_fetch_assoc($update_status)) {
-                        $post_id = $row['post_id'];
-                        $post_title = $row['post_title'];
-                        $post_date = $row['post_date'];
-                        $post_author = $row['post_author'];
-                        $post_author_id = $row['post_author_id'];
-                        $post_category_id = $row['post_category_id'];
-                        $post_status = $row['post_status'];
-                        $post_content = $row['post_content'];
-                        $post_tags = $row['post_tags'];
-                        $post_image = $row['post_image'];
-                        $post_comment_count = $row['post_comment_count'];
+                global $connection;
+                $query = "SELECT * FROM posts WHERE post_id = $checkBoxValue";
+                $update_status = mysqli_query($connection, $query);
+                while ($row = mysqli_fetch_assoc($update_status)) {
+                    $post_id = $row['post_id'];
+                    $post_title = $row['post_title'];
+                    $post_date = $row['post_date'];
+                    $post_author = $row['post_author'];
+                    $post_author_id = $row['post_author_id'];
+                    $post_category_id = $row['post_category_id'];
+                    $post_status = $row['post_status'];
+                    $post_content = $row['post_content'];
+                    $post_tags = $row['post_tags'];
+                    $post_image = $row['post_image'];
+                    $post_comment_count = $row['post_comment_count'];
 
-                        //Nice Looking Query
-                        $query = "INSERT INTO posts ";
-                        $query .= "(post_title, ";
-                        $query .= "post_date, ";
-                        $query .= "post_category_id, ";
-                        $query .= "post_author_id, ";
-                        $query .= "post_status, ";
-                        $query .= "post_content, ";
-                        $query .= "post_image, ";
-                        $query .= "post_comment_count, ";
-                        $query .= "post_tags) ";
+                    //Nice Looking Query
+                    $query = "INSERT INTO posts ";
+                    $query .= "(post_title, ";
+                    $query .= "post_date, ";
+                    $query .= "post_category_id, ";
+                    $query .= "post_author_id, ";
+                    $query .= "post_status, ";
+                    $query .= "post_content, ";
+                    $query .= "post_image, ";
+                    $query .= "post_comment_count, ";
+                    $query .= "post_tags) ";
 
-                        $query .= "VALUES('{$post_title}', ";
-                        $query .= "now(), ";
-                        $query .= "{$post_category_id}, ";
-                        $query .= "{$post_author_id}, ";
-                        $query .= "'{$post_status}', ";
-                        $query .= "'{$post_content}', ";
-                        $query .= "'{$post_image}', ";
-                        $query .= "0, ";
-                        $query .= "'{$post_tags}') ";
+                    $query .= "VALUES('{$post_title}', ";
+                    $query .= "now(), ";
+                    $query .= "{$post_category_id}, ";
+                    $query .= "{$post_author_id}, ";
+                    $query .= "'{$post_status}', ";
+                    $query .= "'{$post_content}', ";
+                    $query .= "'{$post_image}', ";
+                    $query .= "0, ";
+                    $query .= "'{$post_tags}') ";
 
-                        $create_post_query = mysqli_query($connection, $query);
-                        sql_error_check($create_post_query);
-                    }
-                    echo $query;
-                    header("Location: posts.php");
-                    sql_error_check($update_status);
-                    break;
+                    $create_post_query = mysqli_query($connection, $query);
+                    sql_error_check($create_post_query);
+                }
+                echo $query;
+                header("Location: posts.php");
+                sql_error_check($update_status);
+                break;
                 case 'Draft':
-                    global $connection;
-                    $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = $checkBoxValue";
-                    $update_status = mysqli_query($connection, $query);
-                    echo $query;
-                    header("Location: posts.php");
-                    sql_error_check($update_status);
-                    break;
+                global $connection;
+                $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = $checkBoxValue";
+                $update_status = mysqli_query($connection, $query);
+                echo $query;
+                header("Location: posts.php");
+                sql_error_check($update_status);
+                break;
                 case 'delete':
-                    global $connection;
-                    $query = "DELETE FROM posts WHERE post_id = $checkBoxValue" ;
-                    $delete_post = mysqli_query($connection, $query);
-                    echo $query;
-                    header("Location: posts.php");
-                    sql_error_check($delete_post);
-                    break;
+                global $connection;
+                $query = "DELETE FROM posts WHERE post_id = $checkBoxValue" ;
+                $delete_post = mysqli_query($connection, $query);
+                echo $query;
+                header("Location: posts.php");
+                sql_error_check($delete_post);
+                break;
                 case 'reset':
-                    global $connection;
-                    $query = "UPDATE posts SET post_views_count = 0 WHERE post_id = $checkBoxValue";
-                    $update_status = mysqli_query($connection, $query);
-                    echo $query;
-                    header("Location: posts.php");
-                    sql_error_check($update_status);
-                    break;
+                global $connection;
+                $query = "UPDATE posts SET post_views_count = 0 WHERE post_id = $checkBoxValue";
+                $update_status = mysqli_query($connection, $query);
+                echo $query;
+                header("Location: posts.php");
+                sql_error_check($update_status);
+                break;
                 default:
-                    // code...
-                    break;
+                // code...
+                break;
             }
         }
     }
@@ -519,20 +526,20 @@ function display_comments_filtered()
             $post_title = $row['post_title'];
 
 
-        echo "<td><a href='../post.php?p_id=$post_id'>{$post_title}</a></td>";
-        echo "<td>{$comment_date}</td>";
-        echo '<td class="text-right" style="min-width: 130px">';
-        echo '<a href ="comments.php?approve=' . $comment_id . '"
-        class="btn btn-success btn-sm btn-round btn-icon mr-2">
-        <i class="fal fa-thumbs-up pt-2"></i></a>';
-        echo '<a href ="comments.php?unapprove=' . $comment_id . '"
-        class="btn btn-warning btn-sm btn-round btn-icon mr-2">
-        <i class="fal fa-thumbs-down pt-2"></i></a>';
-        echo '<a rel="'.$comment_id.'" href="javascript:void(0)" class="btn btn-danger btn-sm btn-round btn-icon delete-link">
-        <i class="fal fa-trash-alt pt-2"></i></a>';
-        echo '</td>';
-        echo '</tr>';
-    }
+            echo "<td><a href='../post.php?p_id=$post_id'>{$post_title}</a></td>";
+            echo "<td>{$comment_date}</td>";
+            echo '<td class="text-right" style="min-width: 130px">';
+            echo '<a href ="comments.php?approve=' . $comment_id . '"
+            class="btn btn-success btn-sm btn-round btn-icon mr-2">
+            <i class="fal fa-thumbs-up pt-2"></i></a>';
+            echo '<a href ="comments.php?unapprove=' . $comment_id . '"
+            class="btn btn-warning btn-sm btn-round btn-icon mr-2">
+            <i class="fal fa-thumbs-down pt-2"></i></a>';
+            echo '<a rel="'.$comment_id.'" href="javascript:void(0)" class="btn btn-danger btn-sm btn-round btn-icon delete-link">
+            <i class="fal fa-trash-alt pt-2"></i></a>';
+            echo '</td>';
+            echo '</tr>';
+        }
     }
 }
 
@@ -580,14 +587,14 @@ function switch_user_content()
     }
     switch ($set_source) {
         case 'create_user':
-            include 'includes/users/create-user.php';
-            break;
+        include 'includes/users/create-user.php';
+        break;
         case 'update_user':
-            include 'includes/users/update-user.php';
-            break;
+        include 'includes/users/update-user.php';
+        break;
         default:
-            include 'includes/users/view-users.php';
-            break;
+        include 'includes/users/view-users.php';
+        break;
     }
 }
 function create_user()
@@ -870,11 +877,11 @@ $admin_subscriber_count = count_draft('users', 'user_role', 'Subscriber');
 //echo $user_count;
 
 function count_draft($table, $column, $status){
-  global $connection;
-  $query = "SELECT * FROM $table WHERE $column = '$status'";
-  $select = mysqli_query($connection, $query);
-  $count = mysqli_num_rows($select);
-  return $count;
+    global $connection;
+    $query = "SELECT * FROM $table WHERE $column = '$status'";
+    $select = mysqli_query($connection, $query);
+    $count = mysqli_num_rows($select);
+    return $count;
 }
 
 function comment_form()
@@ -897,32 +904,32 @@ function comment_form()
                 '{$comment_content}', 'unapproved', now())";
 
                 $comment_form_query = mysqli_query($connection, $query);
-        } else {
-            echo '<script>alert("Comment cannot be empty")</script>';
+            } else {
+                echo '<script>alert("Comment cannot be empty")</script>';
+            }
         }
     }
-}
-function show_post_comments()
-{
-    global $connection;
-    global $get_post_id;
-    //this gets the post id from the comment
-    //and displays comments with a status of approved
-    $query = "SELECT * FROM comments WHERE comment_post_id = {$get_post_id} ";
-    $query .= "AND comment_status = 'approved' ";
-    $query .= "ORDER BY comment_id DESC";
-    $display_all_comments = mysqli_query($connection, $query);
-    while ($row = mysqli_fetch_assoc($display_all_comments)) {
-        $comment_date = date_create($row['comment_date']);
-        $comment_author = $row['comment_author'];
-        $comment_content = $row['comment_content'];
-        ?>
-        <li class="media mb-3">
+    function show_post_comments()
+    {
+        global $connection;
+        global $get_post_id;
+        //this gets the post id from the comment
+        //and displays comments with a status of approved
+        $query = "SELECT * FROM comments WHERE comment_post_id = {$get_post_id} ";
+        $query .= "AND comment_status = 'approved' ";
+        $query .= "ORDER BY comment_id DESC";
+        $display_all_comments = mysqli_query($connection, $query);
+        while ($row = mysqli_fetch_assoc($display_all_comments)) {
+            $comment_date = date_create($row['comment_date']);
+            $comment_author = $row['comment_author'];
+            $comment_content = $row['comment_content'];
+            ?>
+            <li class="media mb-3">
 
-            <div class="media-body">
-                <h5 class="mt-0 mb-1">Posted By <?php echo $comment_author; ?> On <?php echo date_format($comment_date, 'M dS Y'); ?>  </h5>
-                <?php echo $comment_content; ?>
-            </div>
-        </li>
-    <?php }
-}
+                <div class="media-body">
+                    <h5 class="mt-0 mb-1">Posted By <?php echo $comment_author; ?> On <?php echo date_format($comment_date, 'M dS Y'); ?>  </h5>
+                    <?php echo $comment_content; ?>
+                </div>
+            </li>
+        <?php }
+    }
