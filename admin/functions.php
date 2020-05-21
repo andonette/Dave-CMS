@@ -54,7 +54,6 @@ function login_user($db_user_name, $db_user_password) {
     global $connection;
     $username = trim($_POST['username']);
     $password = trim($_POST['password']);
-    echo $username;
     //first, store the results in a couple of temp variables
     //called username and password
 
@@ -120,7 +119,6 @@ function register_user($user_name, $user_email, $user_password) {
     $query .= "'{$user_email}', ";
     $query .= "'{$user_password}', ";
     $query .= "'Subscriber') ";
-    echo $query;
 
     if (!empty($user_name) && !empty($user_password) && !empty($user_email)) {
         $register_query = mysqli_query($connection, $query);
@@ -427,7 +425,6 @@ function bulk_edit_posts()
                     $create_post_query = mysqli_query($connection, $query);
                     sql_error_check($create_post_query);
                 }
-                echo $query;
                 header("Location: posts.php");
                 sql_error_check($update_status);
                 break;
@@ -435,7 +432,6 @@ function bulk_edit_posts()
                 global $connection;
                 $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = $checkBoxValue";
                 $update_status = mysqli_query($connection, $query);
-                echo $query;
                 header("Location: posts.php");
                 sql_error_check($update_status);
                 break;
@@ -443,7 +439,6 @@ function bulk_edit_posts()
                 global $connection;
                 $query = "DELETE FROM posts WHERE post_id = $checkBoxValue" ;
                 $delete_post = mysqli_query($connection, $query);
-                echo $query;
                 header("Location: posts.php");
                 sql_error_check($delete_post);
                 break;
@@ -451,7 +446,6 @@ function bulk_edit_posts()
                 global $connection;
                 $query = "UPDATE posts SET post_views_count = 0 WHERE post_id = $checkBoxValue";
                 $update_status = mysqli_query($connection, $query);
-                echo $query;
                 header("Location: posts.php");
                 sql_error_check($update_status);
                 break;
@@ -795,7 +789,6 @@ function delete_category()
                 $the_cat_id = $_GET['delete'];
                 echo "WORKING";
                 $query = 'DELETE FROM categories WHERE cat_id = ' . $the_cat_id;
-                echo $query;
                 $delete_category = mysqli_query($connection, $query);
                 header("Location: categories.php");
                 if (!$delete_category) {
