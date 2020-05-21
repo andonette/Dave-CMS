@@ -274,7 +274,7 @@ function display_posts()
         class="btn btn-success btn-sm btn-round btn-icon mr-2">
         <i class="fal fa-edit pt-2"></i></a>';
         ?>
-        <form method="post">
+        <form method="post" class="d-inline">
             <input type="hidden" value="<?php echo $post_id ?>" name="post_id">
             <button type="submit" name="delete" class="btn btn-danger btn-sm btn-round btn-icon delete-link">
                 <i class="fal fa-trash-alt pt-2"></i>
