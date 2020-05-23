@@ -1,7 +1,9 @@
 <?php
+//for using post requests
 function request($method){
     return $_SERVER['REQUEST_METHOD'] == mb_strtoupper($method);
 }
+//check if the user is an admin and if not return them to the front end
 function check_admin(){
     //this is just checking if the user is an administrator
     if (!isset($_SESSION['user_role'])) {
@@ -11,6 +13,7 @@ function check_admin(){
         }
     }
 }
+//check if user is an admin
 function is_admin($username = '') {
     global $connection;
     $query = "SELECT user_role FROM users WHERE user_name = '$username'";
@@ -24,6 +27,7 @@ function is_admin($username = '') {
         return false;
     }
 }
+// check if the username exists
 function username_exists($username) {
     global $connection;
     $query = "SELECT user_name FROM users WHERE user_name = '$username'";
@@ -35,6 +39,7 @@ function username_exists($username) {
         return false;
     }
 }
+//check if the email exists
 function email_exists($email) {
     global $connection;
     $query = "SELECT user_email FROM users WHERE user_email = '$email'";
@@ -46,10 +51,11 @@ function email_exists($email) {
         return false;
     }
 }
+//simple redirect to location
 function redirect($location) {
     return header("Location: " . $location);
 }
-
+//login functionality
 function login_user($db_user_name, $db_user_password) {
     global $connection;
     $username = trim($_POST['username']);
