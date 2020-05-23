@@ -98,12 +98,9 @@ function login_user($db_user_name, $db_user_password) {
 }
 function register_user($user_name, $user_email, $user_password) {
     global $connection;
-
     if (username_exists($user_name)) {
-
     }
     if (email_exists($user_email)) {
-
     }
     echo $user_name . '<br>' . $user_email . '<br>' . $user_password;
 
@@ -112,7 +109,6 @@ function register_user($user_name, $user_email, $user_password) {
     $user_password = mysqli_real_escape_string($connection, $user_password);
 
     $user_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12 ));
-
 
     //Nice Looking Query
     $query = "INSERT INTO users ";
