@@ -4,7 +4,7 @@ The Template for the users page
 */
 include 'includes/header.php';
 if (!is_admin($_SESSION['username'])) {
-    header("Location: index.php");
+    redirect('index');
 }
 ?>
 <div class="content">

@@ -76,7 +76,7 @@ if (isset($_GET['u_id'])) {
         echo '<div class="alert alert-success">User Updated: <a class="text-white" href="users.php">View Users</a></div>';
     }
 } else {
-    header("Location: index.php");
+    redirect('index');
 }
 ?>
 

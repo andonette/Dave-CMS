@@ -9,7 +9,7 @@ function check_admin(){
     if (!isset($_SESSION['user_role'])) {
         if ($_SESSION['user_role'] !== 'Administrator' || $_SESSION['user_role'] !== 'Subscriber') {
             //if not they can't access the admin page
-            header("Location: ../index.php");
+            redirect('index.php');
         }
     }
 }
@@ -90,10 +90,10 @@ function login_user($db_user_name, $db_user_password) {
         $_SESSION['lastname'] = $db_user_lastname;
         $_SESSION['user_role'] = $db_user_role;
         //and head on over to the admin area
-        header("Location: ../admin");
+        hredirect('admin');
     } else {
         //otherwise stay on the front end
-        header("Location: ../index.php");
+        redirect('index');
     }
 }
 function register_user($user_name, $user_email, $user_password) {
@@ -367,7 +367,7 @@ function delete_posts()
         $the_post_id = $_POST['post_id'];
         $query = 'DELETE FROM posts WHERE post_id = ' . $the_post_id;
         $delete_post = mysqli_query($connection, $query);
-        header("Location: posts.php");
+        redirect('posts.php');
         sql_error_check($delete_post);
     }
 }
@@ -386,7 +386,7 @@ function bulk_edit_posts()
                 $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = $checkBoxValue";
                 $update_status = mysqli_query($connection, $query);
                 echo $query;
-                header("Location: posts.php");
+                redirect('posts.php');
                 sql_error_check($update_status);
                 break;
                 case 'Duplicate':
@@ -431,28 +431,28 @@ function bulk_edit_posts()
                     $create_post_query = mysqli_query($connection, $query);
                     sql_error_check($create_post_query);
                 }
-                header("Location: posts.php");
+                redirect('posts.php');
                 sql_error_check($update_status);
                 break;
                 case 'Draft':
                 global $connection;
                 $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = $checkBoxValue";
                 $update_status = mysqli_query($connection, $query);
-                header("Location: posts.php");
+                redirect('posts.php');
                 sql_error_check($update_status);
                 break;
                 case 'delete':
                 global $connection;
                 $query = "DELETE FROM posts WHERE post_id = $checkBoxValue" ;
                 $delete_post = mysqli_query($connection, $query);
-                header("Location: posts.php");
+                redirect('posts.php');
                 sql_error_check($delete_post);
                 break;
                 case 'reset':
                 global $connection;
                 $query = "UPDATE posts SET post_views_count = 0 WHERE post_id = $checkBoxValue";
                 $update_status = mysqli_query($connection, $query);
-                header("Location: posts.php");
+                redirect('posts.php');
                 sql_error_check($update_status);
                 break;
                 default:
@@ -558,7 +558,7 @@ function approve_comment()
         $the_comment_id = $_GET['approve'];
         $query = 'UPDATE comments SET comment_status = "approved" WHERE comment_id =' . $the_comment_id;
         $approve_category = mysqli_query($connection, $query);
-        header("Location: comments.php");
+        redirect('comments.php');
         sql_error_check($approve_category);
     }
 }
@@ -569,7 +569,7 @@ function unapprove_comment()
         $the_comment_id = $_GET['unapprove'];
         $query = 'UPDATE comments SET comment_status = "unapproved" WHERE comment_id =' . $the_comment_id;
         $unapprove_category = mysqli_query($connection, $query);
-        header("Location: comments.php");
+        redirect('comments.php');
         sql_error_check($unapprove_category);
     }
 }
@@ -580,7 +580,7 @@ function delete_comment()
         $the_comment_id = $_GET['delete'];
         $query = 'DELETE FROM comments WHERE comment_id = ' . $the_comment_id;
         $delete_category = mysqli_query($connection, $query);
-        header("Location: comments.php");
+        redirect('comments.php');
         sql_error_check($delete_category);
     }
 }
@@ -688,7 +688,7 @@ function delete_user()
                 $the_user_id = $_GET['delete'];
                 $query = 'DELETE FROM users WHERE user_id = ' . $the_user_id;
                 $delete_user = mysqli_query($connection, $query);
-                header("Location: users.php");
+                redirect('users.php');
                 if (!$delete_user) {
                     die('Query Failed' . mysqli_error($connection));
                 }
@@ -760,7 +760,7 @@ function update_category()
         $the_cat_title = $_POST['cat_title'];
         $query = "UPDATE categories SET cat_title = '" . $the_cat_title . "' WHERE cat_id = '". $cat_id ."' ";
         $update_category = mysqli_query($connection, $query);
-        header("Location: categories.php");
+        redirect('categories.php');
         if (!$update_category) {
             die('Query Failed' . mysqli_error($connection));
         }
@@ -796,7 +796,7 @@ function delete_category()
                 echo "WORKING";
                 $query = 'DELETE FROM categories WHERE cat_id = ' . $the_cat_id;
                 $delete_category = mysqli_query($connection, $query);
-                header("Location: categories.php");
+                redirect('categories.php');
                 if (!$delete_category) {
                     die('Query Failed' . mysqli_error($connection));
                 }

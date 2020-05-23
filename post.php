@@ -105,7 +105,7 @@
         </div>
     <?php }
 } else {
-    header("Location: index.php");
+    redirect('index');
 }
 ?>
         <!-- End Column -->
