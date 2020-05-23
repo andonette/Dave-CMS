@@ -27,16 +27,16 @@
                                 } else if($page_name = $registration){
                                 $registration_class = 'active';
                                 }
-                                    echo "<a class='dropdown-item {$category_class}' href='category.php?category={$cat_id}'>{$cat_title}</a>";
+                                    echo "<a class='dropdown-item {$category_class}' href='/Dave-CMS/category/{$cat_id}'>{$cat_title}</a>";
                             }
                             ?>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link ml-auto  <?php echo $registration_class ?>" href="contact">Contact</a>
+                        <a class="nav-link ml-auto  <?php echo $registration_class ?>" href="/Dave-CMS/contact">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link ml-auto <?php echo $registration_class ?>" href="registration">Register</a>
+                        <a class="nav-link ml-auto <?php echo $registration_class ?>" href="/Dave-CMS/registration">Register</a>
                     </li>
                     <?php show_update(); ?>
                 </ul>

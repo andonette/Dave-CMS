@@ -18,7 +18,7 @@ session_start();
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,300,700' rel='stylesheet' type='text/css'>
     <script src="https://kit.fontawesome.com/84146e01c9.js" crossorigin="anonymous"></script>
     <!-- CSS Files -->
-    <link rel="stylesheet" href="assets/css/blk-design-system-pro.css">
+    <link rel="stylesheet" href="/Dave-CMS/assets/css/blk-design-system-pro.css">
 </head>
 <body>
 <?php include 'nav.php' ?>

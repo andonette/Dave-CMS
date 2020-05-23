@@ -8,7 +8,7 @@ Sidebar
     <div class="card">
         <div class="card-body">
             <h4>Logged in as <?php echo $_SESSION['username'] ?></h4>
-            <a class="btn btn-success" href="admin">Admin</a>
+            <a class="btn btn-success" href="/Dave-CMS/admin">Admin</a>
             <a class="btn" href="includes/logout.php">Logout</a>
 
         </div>

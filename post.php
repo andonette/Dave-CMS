@@ -42,7 +42,7 @@
 
                         <div class="card-image">
                             <a href="javascript:;">
-                                <img class="img rounded" src="images/posts/<?php echo $post_image; ?>" />
+                                <img class="img rounded" src="/Dave-CMS/images/posts/<?php echo $post_image; ?>" />
                             </a>
 
 
