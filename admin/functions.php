@@ -689,9 +689,7 @@ function delete_user()
                 $query = 'DELETE FROM users WHERE user_id = ' . $the_user_id;
                 $delete_user = mysqli_query($connection, $query);
                 redirect('users.php');
-                if (!$delete_user) {
-                    die('Query Failed' . mysqli_error($connection));
-                }
+                sql_error_check($delete_user);
             }
         }
     }
@@ -761,9 +759,7 @@ function update_category()
         $query = "UPDATE categories SET cat_title = '" . $the_cat_title . "' WHERE cat_id = '". $cat_id ."' ";
         $update_category = mysqli_query($connection, $query);
         redirect('categories.php');
-        if (!$update_category) {
-            die('Query Failed' . mysqli_error($connection));
-        }
+        sql_error_check($update_category);
     }
 }
 
@@ -779,9 +775,7 @@ function form_submit_update_category()
             $cat_id = $row['cat_id'];
             echo '<input type="text" class="form-control mt-2"
             placeholder="search" name="cat_title" value="'.$cat_title.'">';
-            if (!$update_categories_query) {
-                die('Query Failed' . mysqli_error($connection));
-            }
+            sql_error_check($update_categories_query);
         }
     }
 }
@@ -797,9 +791,7 @@ function delete_category()
                 $query = 'DELETE FROM categories WHERE cat_id = ' . $the_cat_id;
                 $delete_category = mysqli_query($connection, $query);
                 redirect('categories.php');
-                if (!$delete_category) {
-                    die('Query Failed' . mysqli_error($connection));
-                }
+                sql_error_check($delete_category);
             }
         }
     }
