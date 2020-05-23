@@ -3,9 +3,8 @@
 function request($method=null) {
     if ($_SERVER['REQUEST_METHOD'] == mb_strtoupper($method)) {
         return true;
-    } else {
-        return false;
     }
+    return false;
 }
 //check if the user is an admin and if not return them to the front end
 function check_admin(){
@@ -27,9 +26,8 @@ function is_admin($username = '') {
     $row = mysqli_fetch_array($result);
     if ($row['user_role'] == 'Administrator') {
         return true;
-    } else {
-        return false;
     }
+    return false;
 }
 
 // check if the username exists
@@ -40,9 +38,8 @@ function username_exists($username) {
     sql_error_check($result);
     if (mysqli_num_rows($result) > 0 ) {
         return true;
-    } else {
-        return false;
     }
+    return false;
 }
 //check if the email exists
 function email_exists($email) {
@@ -52,9 +49,8 @@ function email_exists($email) {
     sql_error_check($result);
     if (mysqli_num_rows($result) > 0 ) {
         return true;
-    } else {
-        return false;
     }
+    return false;
 }
 //simple redirect to location
 function redirect($location) {
