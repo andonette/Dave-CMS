@@ -1,4 +1,5 @@
 <?php
+
 //for using post requests
 function request($method=null) {
     if ($_SERVER['REQUEST_METHOD'] == mb_strtoupper($method)) {
@@ -6,14 +7,24 @@ function request($method=null) {
     }
     return false;
 }
+//simple redirect to location
+function redirect($location) {
+    global $urlroot;
+    return header("Location: ../" . $location);
+    exit;
+}
+
 //check if the user is an admin and if not return them to the front end
-function check_admin(){
+function check_login_redirect(){
     //this is just checking if the user is an administrator
-    if (!isset($_SESSION['user_role'])) {
-        if ($_SESSION['user_role'] !== 'Administrator' || $_SESSION['user_role'] !== 'Subscriber') {
+    if (is_logged_in()) {
             //if not they can't access the admin page
-            redirect('index.php');
-        }
+            redirect('index');
+    }
+}
+function is_logged_in() {
+    if (!isset($_SESSION['user_role'])) {
+        return true;
     }
 }
 //check if user is an admin
@@ -52,11 +63,7 @@ function email_exists($email) {
     }
     return false;
 }
-//simple redirect to location
-function redirect($location) {
-    return header("Location: " . $location);
-    exit;
-}
+
 //login functionality
 function login_user($db_user_name, $db_user_password) {
     global $connection;
@@ -92,7 +99,7 @@ function login_user($db_user_name, $db_user_password) {
         $_SESSION['lastname'] = $db_user_lastname;
         $_SESSION['user_role'] = $db_user_role;
         //and head on over to the admin area
-        hredirect('admin');
+        redirect('admin');
     } else {
         //otherwise stay on the front end
         redirect('index');
