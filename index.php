@@ -10,7 +10,10 @@ include 'includes/header.php'
             <h1 class="title">Latest Blogposts</h1>
 
             <?php
-
+            if (is_logged_in()) {
+                echo 'hey' . $_SESSION['username'];
+                echo 'hey' . $_SESSION['user_role'];
+            }
             if (isset($_GET['page'])) {
                 $page = $_GET['page'];
             } else {

@@ -6,8 +6,9 @@ include '../includes/config.php';
 include 'functions.php';
 session_start();
 ob_start();
-
-check_login_redirect();
+if ( is_admin('username')) {
+    redirect('../Dave-CMS');
+}
 ?>
 <!doctype html>
 <html lang="en">

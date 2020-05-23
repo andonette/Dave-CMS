@@ -15,15 +15,14 @@ function redirect($location) {
 }
 
 //check if the user is an admin and if not return them to the front end
-function check_login_redirect(){
+function check_login_redirect($location){
     //this is just checking if the user is an administrator
     if (is_logged_in()) {
-            //if not they can't access the admin page
-            redirect('index');
+    redirect($location);
     }
 }
 function is_logged_in() {
-    if (!isset($_SESSION['user_role'])) {
+    if (isset($_SESSION['user_role'])) {
         return true;
     }
 }
@@ -99,7 +98,7 @@ function login_user($db_user_name, $db_user_password) {
         $_SESSION['lastname'] = $db_user_lastname;
         $_SESSION['user_role'] = $db_user_role;
         //and head on over to the admin area
-        redirect('admin');
+        redirect('Dave-CMS/admin');
     } else {
         //otherwise stay on the front end
         redirect('index');

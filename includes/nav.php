@@ -35,11 +35,10 @@
                     <li class="nav-item">
                         <a class="nav-link ml-auto  <?php echo $registration_class ?>" href="/Dave-CMS/contact">Contact</a>
                     </li>
-                    <?php if (!is_logged_in()): ?>
+                    <?php if (is_logged_in()): ?>
                         <li class="nav-item">
                             <a class="nav-link ml-auto <?php echo $registration_class ?>" href="/Dave-CMS/admin">Admin</a>
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link ml-auto <?php echo $registration_class ?>" href="/Dave-CMS/logout.php">Logout</a>
                         </li>

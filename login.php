@@ -2,7 +2,21 @@
 /*
 Site Index
 */
-include 'includes/header.php' ?>
+include 'includes/header.php';
+
+check_login_redirect('Dave-CMS/admin');
+
+if (request('post')) {
+    if (isset($_POST['username']) && isset($_POST['password'])) {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        login_user($username, $password);
+        redirect('Dave-CMS/admin');
+    } else {
+        redirect('Dave-CMS/index.php');
+    }
+}
+ ?>
 
 
 <div class="page-header">
