@@ -11,6 +11,9 @@ foreach ($db as $key => $value) {
     define(strtoupper($key), $value);
 }
 
+$urlroot = define('URLROOT', 'http://localhost:8888/Dave-CMS');
+$approot = define('APPROOT', dirname(dirname(__FILE__)));
+
 //connect to database
 $connection = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 if (!$connection) {
