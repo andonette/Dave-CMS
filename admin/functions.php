@@ -1,7 +1,11 @@
 <?php
 //for using post requests
-function request($method){
-    return $_SERVER['REQUEST_METHOD'] == mb_strtoupper($method);
+function request($method=null) {
+    if ($_SERVER['REQUEST_METHOD'] == mb_strtoupper($method)) {
+        return true;
+    } else {
+        return false;
+    }
 }
 //check if the user is an admin and if not return them to the front end
 function check_admin(){
@@ -27,6 +31,7 @@ function is_admin($username = '') {
         return false;
     }
 }
+
 // check if the username exists
 function username_exists($username) {
     global $connection;
