@@ -54,6 +54,7 @@ function email_exists($email) {
 //simple redirect to location
 function redirect($location) {
     return header("Location: " . $location);
+    exit;
 }
 //login functionality
 function login_user($db_user_name, $db_user_password) {
