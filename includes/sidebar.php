@@ -3,33 +3,6 @@
 Sidebar
 */
 ?>
-<!-- Log In Well -->
-<?php if (isset($_SESSION['user_role'])): ?>
-    <div class="card">
-        <div class="card-body">
-            <h4>Logged in as <?php echo $_SESSION['username'] ?></h4>
-            <a class="btn btn-success" href="/Dave-CMS/admin">Admin</a>
-            <a class="btn" href="includes/logout.php">Logout</a>
-
-        </div>
-    </div>
-<?php else: ?>
-    <div class="card">
-        <div class="card-body">
-            <h4>Log In</h4>
-            <form class="form" action="includes/login.php" method="post">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" name="username">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" name="password">
-                <div class="input-group">
-                    <button class="btn btn-default" type="submit"
-                    name="login">Login</button>
-                </div>
-            </form>
-        </div>
-    </div>
-<?php endif; ?>
 <!-- Blog Search Well -->
 <div class="card">
     <div class="card-body">
