@@ -7,7 +7,7 @@ include 'functions.php';
 session_start();
 ob_start();
 
-check_admin();
+check_login_redirect();
 ?>
 <!doctype html>
 <html lang="en">
