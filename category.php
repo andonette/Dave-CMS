@@ -10,7 +10,7 @@
                 $get_category = $_GET['category'];
             //query the database, select everything from the posts table
             //query the database, select everything from the posts table
-            if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'Administrator') {
+                if (is_admin($_SESSION['username'])) {
                 $query = "SELECT * FROM posts WHERE post_category_id = $get_category";
             } else {
                 $query = "SELECT * FROM posts WHERE post_category_id = $get_category AND post_status = 'Published'";
