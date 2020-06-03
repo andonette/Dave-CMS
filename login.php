@@ -52,7 +52,9 @@ if (request('post')) {
                                 <input type="password" class="form-control" placeholder="Password" name="password">
                             </div>
                             <small class="text-muted"><?php echo isset($error['password']) ? $error['password'] : ''; ?></small>
+                            <a href="reset-pass.php">forgot password?</a>
                         </div>
+
                         <div class="card-footer">
                             <button type="submit" name="register" value="Register" class="btn btn-info btn-round btn-lg">Login</button>
                         </div>
